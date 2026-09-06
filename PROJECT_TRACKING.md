@@ -73,6 +73,12 @@ Current Focus: Phase 3 — Product Ecosystem Showcase
   - Ultra-high-resolution 1200x630 OpenGraph social card (`public/og-image.jpg`, `public/og-image.png`).
   - Configured `og:title`, `og:description`, `og:image`, `og:image:secure_url`, `og:image:width: 1200`, `og:image:height: 630`, `og:type: image/jpeg`, `og:locale: en_IN`, and Twitter card tags.
   - Optimized specifically for WhatsApp, LinkedIn, iMessage, and Twitter rich preview unfurls.
+- [x] **Generative Engine Optimization (GEO) & Geographic AI Compatibility**:
+  - **`/llms.txt` Standard**: Implemented machine-readable knowledge specification for ChatGPT, SearchGPT, Perplexity, Claude, and Gemini agents (`public/llms.txt`).
+  - **AI Crawler Directives (`robots.txt`)**: Explicitly permitted `GPTBot`, `ChatGPT-User`, `PerplexityBot`, `ClaudeBot`, `Google-Extended`, and `Applebot-Extended`.
+  - **Geographic Meta Tags**: Embedded `geo.region: IN-GJ`, `geo.placename: Surat, Katargam`, `geo.position: 21.2291;72.8428`, and `ICBM`.
+  - **Comprehensive JSON-LD Schema Graph**: Defined `Organization`, `LocalBusiness` (Surat address, 5.0 Google rating), and 5 `SoftwareApplication` entities (JyotOS, ScholarCard AI, jyotAssist AI, StaffBridge, EventOS) for LLM retrieval and knowledge graph indexing.
+  - **Search Sitemap**: Added `public/sitemap.xml` for crawler indexing.
 
 ---
 

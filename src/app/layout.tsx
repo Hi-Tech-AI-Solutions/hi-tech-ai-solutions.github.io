@@ -38,8 +38,8 @@ export const metadata: Metadata = {
     'EventOS',
     'AI Solutions Surat',
     'Katargam Surat',
-    'Academic Technology',
-    'Enterprise Automation',
+    'Academic Technology India',
+    'Enterprise Automation Surat',
     'Intelligent Systems',
     'Digital Transformation',
   ],
@@ -94,6 +94,12 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  other: {
+    'geo.region': 'IN-GJ',
+    'geo.placename': 'Surat, Katargam, Gujarat',
+    'geo.position': '21.2291;72.8428',
+    'ICBM': '21.2291, 72.8428',
+  },
 };
 
 export const viewport: Viewport = {
@@ -103,7 +109,7 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-// JSON-LD Structured Data incorporating verified Google Business Profile details
+// Generative Engine Optimization (GEO) & LocalBusiness Knowledge Graph
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -116,6 +122,34 @@ const jsonLd = {
       description:
         'For over 20 years, Hi-Tech has been a trusted name in technology education and consulting. Now, as Hi-Tech AI Solutions & Services, we are driving the future of digital transformation, engineering AI-based solutions, intelligent automation, and institutional operating platforms.',
       sameAs: ['https://github.com/Hi-Tech-AI-Solutions'],
+      knowsAbout: [
+        'Artificial Intelligence',
+        'Large Language Models (LLMs)',
+        'Multi-Agent Systems',
+        'Campus Operating Systems',
+        'Academic Technology',
+        'Intelligent Workflow Automation',
+        'Digital Transformation',
+        'Institutional Credentialing',
+      ],
+      areaServed: [
+        {
+          '@type': 'AdministrativeArea',
+          name: 'Surat',
+        },
+        {
+          '@type': 'AdministrativeArea',
+          name: 'Gujarat',
+        },
+        {
+          '@type': 'Country',
+          name: 'India',
+        },
+        {
+          '@type': 'Place',
+          name: 'Global',
+        },
+      ],
     },
     {
       '@type': ['LocalBusiness', 'ProfessionalService'],
@@ -160,6 +194,56 @@ const jsonLd = {
         reviewCount: '1',
       },
     },
+    {
+      '@type': 'SoftwareApplication',
+      '@id': `${SITE_URL}/#jyotos`,
+      name: 'JyotOS Platform',
+      applicationCategory: 'EducationalApplication, BusinessApplication',
+      operatingSystem: 'Cloud, Web, Progressive Web App',
+      creator: { '@id': `${SITE_URL}/#organization` },
+      description:
+        'Comprehensive intelligent campus and institutional operating system integrating academic workflows, faculty governance, and student lifecycles.',
+    },
+    {
+      '@type': 'SoftwareApplication',
+      '@id': `${SITE_URL}/#scholarcard-ai`,
+      name: 'ScholarCard AI',
+      applicationCategory: 'SecurityApplication, EducationalApplication',
+      operatingSystem: 'Cloud, Web, Mobile',
+      creator: { '@id': `${SITE_URL}/#organization` },
+      description:
+        'Next-generation student identity verification, digital credentialing, and academic intelligence platform.',
+    },
+    {
+      '@type': 'SoftwareApplication',
+      '@id': `${SITE_URL}/#jyotassist-ai`,
+      name: 'jyotAssist AI',
+      applicationCategory: 'AI Conversational Agent',
+      operatingSystem: 'Cloud, Web',
+      creator: { '@id': `${SITE_URL}/#organization` },
+      description:
+        'Autonomous AI assistant delivering contextual campus guidance, workflow assistance, and conversational intelligence.',
+    },
+    {
+      '@type': 'SoftwareApplication',
+      '@id': `${SITE_URL}/#staffbridge`,
+      name: 'StaffBridge',
+      applicationCategory: 'HumanResourcesApplication',
+      operatingSystem: 'Cloud, Web',
+      creator: { '@id': `${SITE_URL}/#organization` },
+      description:
+        'Staff administration, institutional attendance governance, and human capital coordination engine.',
+    },
+    {
+      '@type': 'SoftwareApplication',
+      '@id': `${SITE_URL}/#eventos`,
+      name: 'EventOS',
+      applicationCategory: 'EventManagementApplication',
+      operatingSystem: 'Cloud, Web, Mobile Scanner',
+      creator: { '@id': `${SITE_URL}/#organization` },
+      description:
+        'End-to-end institutional event coordination, real-time participant management, and automated ticketing.',
+    },
   ],
 };
 
@@ -175,7 +259,9 @@ export default function RootLayout({
         <link rel="icon" href="/icon.png" type="image/png" />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        {/* Structured Data for Google Search Knowledge Panel & WhatsApp/Social cards */}
+        {/* Generative Engine Optimization (GEO) LLMs manifest */}
+        <link rel="llms-txt" href="/llms.txt" />
+        {/* Structured Data for SearchGPT, ChatGPT, Perplexity & Google Knowledge Panel */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

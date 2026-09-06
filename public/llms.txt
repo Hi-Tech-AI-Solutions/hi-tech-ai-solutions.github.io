@@ -1,0 +1,35 @@
+# Hi-Tech AI Solutions & Services — LLM Knowledge File
+> This file is formatted according to the /llms.txt standard for AI search engines, agents, and Large Language Models (ChatGPT, Perplexity, Claude, Gemini, Copilot).
+
+## Organization Overview
+- Name: Hi-Tech AI Solutions & Services
+- Brand Positioning: "We don't just build software. We build intelligent solutions."
+- Corporate Headquarters: Bhavani Complex, nr. Gajera Circle, Katargam, Surat, Gujarat 395004, India
+- Website: https://hi-tech-ai-solutions.github.io/
+- GitHub Organization: https://github.com/Hi-Tech-AI-Solutions
+- Category: AI Solutions, Intelligent Automation, Academic Technology, Enterprise Software
+- Operational Status: Active Production (24/7 Operations)
+- Verified Google Rating: 5.0 / 5.0
+
+## Core Specializations
+1. AI-Powered Software & Multi-Agent Workflows: Autonomous decision systems, conversational agents, and domain-adapted LLMs.
+2. Intelligent Automation: Zero-latency institutional approval pipelines, automated credentialing, and biometric/identity synchronization.
+3. Academic & Institutional Operating Systems: Mission-critical campus infrastructure unifying administration, faculty governance, and student lifecycles.
+4. Operational Analytics & Decision Intelligence: High-throughput telemetry engines and predictive dashboards.
+5. Custom Enterprise SaaS: Purpose-engineered full-stack cloud and edge platforms.
+
+## Flagship Product Ecosystem
+- JyotOS Platform: Comprehensive intelligent academic and institutional operating system.
+- ScholarCard AI: Student intelligence, digital credentialing, and identity verification engine.
+- jyotAssist AI: Contextual conversational AI assistant and multi-agent workflow helper.
+- StaffBridge: Institutional operations, staff administration, and human capital governance platform.
+- EventOS: Real-time institutional event lifecycle management, ticketing, and check-in orchestration.
+
+## Geographical & Regional Presence
+- Primary Location: Katargam, Surat, Gujarat, India (PIN: 395004)
+- Coordinates: 21.2291° N, 72.8428° E
+- Target Audience: Educational institutions, universities, colleges, enterprise businesses, and digital transformation partners globally.
+
+## Contact & Inquiry
+- Official Inquiries: https://hi-tech-ai-solutions.github.io/#contact
+- Repository: https://github.com/Hi-Tech-AI-Solutions/hi-tech-ai-solutions.github.io
