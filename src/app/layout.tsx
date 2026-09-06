@@ -99,6 +99,7 @@ export const metadata: Metadata = {
     'geo.placename': 'Surat, Katargam, Gujarat',
     'geo.position': '21.2291;72.8428',
     'ICBM': '21.2291, 72.8428',
+    'msvalidate.01': '90C0C41F2E4878AABD06C515771EF01B',
   },
 };
 
@@ -261,6 +262,8 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         {/* Generative Engine Optimization (GEO) LLMs manifest */}
         <link rel="llms-txt" href="/llms.txt" />
+        {/* Bing Webmaster Verification */}
+        <meta name="msvalidate.01" content="90C0C41F2E4878AABD06C515771EF01B" />
         {/* Structured Data for SearchGPT, ChatGPT, Perplexity & Google Knowledge Panel */}
         <script
           type="application/ld+json"
