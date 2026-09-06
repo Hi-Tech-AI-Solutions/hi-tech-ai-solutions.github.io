@@ -12,6 +12,7 @@ import {
   Copy,
 } from 'lucide-react';
 import ExecutiveConsultationModal from '@/components/consultation/ExecutiveConsultationModal';
+import SolutionMatcher from '@/components/conversion/SolutionMatcher';
 
 export default function ContactSection() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -40,16 +41,15 @@ export default function ContactSection() {
   return (
     <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5 relative">
       {/* Background Glows */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-cyan-500/10 blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-cyan-500/10 blur-[180px] pointer-events-none" />
 
-      <div className="cyber-glass rounded-3xl p-8 sm:p-14 relative overflow-hidden text-center max-w-4xl mx-auto space-y-8 border border-cyan-500/30 shadow-[0_0_60px_-15px_rgba(0,240,255,0.25)]">
-        {/* Status Pill */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/40 text-neon-cyan text-xs font-mono uppercase tracking-widest">
+      {/* Section Header */}
+      <div className="text-center max-w-3xl mx-auto mb-16 space-y-4 relative z-10">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/40 text-neon-cyan text-xs font-mono uppercase tracking-widest shadow-[0_0_20px_rgba(0,240,255,0.2)]">
           <Sparkles className="w-3.5 h-3.5" />
-          <span>Institutional Partnership & Deployment</span>
+          <span>Conversion & Institutional Solutions Hub</span>
         </div>
 
-        {/* Heading */}
         <h2 className="text-3xl sm:text-5xl font-extrabold text-white leading-tight tracking-tight">
           Have an institutional challenge? <br />
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-neon-cyan via-sky-300 to-violet-400">
@@ -57,12 +57,18 @@ export default function ContactSection() {
           </span>
         </h2>
 
-        {/* Subtitle */}
         <p className="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed font-sans">
-          From full-scale campus operating systems like <strong>JyotOS</strong> to autonomous AI assistants, 
-          tamper-evident credentialing, and custom enterprise automation pipelines, partner directly with 
-          Hi-Tech AI Solutions & Services.
+          Whether you require a full-scale campus operating system like <strong>JyotOS</strong>, student credentialing via <strong>ScholarCard AI</strong>, or custom autonomous AI workflows, evaluate your architecture below or consult directly with our engineering leadership.
         </p>
+      </div>
+
+      {/* 1. Interactive Solution Matcher Engine */}
+      <div className="mb-14 relative z-10">
+        <SolutionMatcher />
+      </div>
+
+      {/* 2. Direct Executive Consultation Card */}
+      <div className="cyber-glass rounded-3xl p-8 sm:p-14 relative overflow-hidden text-center max-w-4xl mx-auto space-y-8 border border-cyan-500/30 shadow-[0_0_60px_-15px_rgba(0,240,255,0.25)] z-10">
 
         {/* Primary Interactive Actions */}
         <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
