@@ -12,6 +12,8 @@ Hi-Tech AI Solutions & Services is an AI solutions and digital transformation co
 
 This repository powers the official corporate identity, innovation showcase, and product discovery portal for our ecosystem.
 
+> 📊 **Project Tracking & Milestones**: See [**`PROJECT_TRACKING.md`**](./PROJECT_TRACKING.md) for real-time phase progress (25% Complete), completed features, current focus, and upcoming deliverables.
+
 ---
 
 ## 🚀 Flagship Solutions & Product Ecosystem

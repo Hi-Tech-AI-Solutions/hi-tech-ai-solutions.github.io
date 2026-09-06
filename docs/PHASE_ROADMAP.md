@@ -1,5 +1,7 @@
 # Hi-Tech AI Solutions & Services — Development Phase Roadmap
 
+> 📌 **Live Project Progress & Real-Time Tracking**: See [`../PROJECT_TRACKING.md`](../PROJECT_TRACKING.md) for the active milestone tracker, completed deliverables, upcoming tasks, and deployment telemetry.
+
 This document tracks the phased execution of the official showcase website for **Hi-Tech AI Solutions & Services**, aligned with the master implementation brief in [`HITECH_AI_FUTURISTIC_WEBSITE_MASTER_PROMPT.md`](./HITECH_AI_FUTURISTIC_WEBSITE_MASTER_PROMPT.md).
 
 ---
