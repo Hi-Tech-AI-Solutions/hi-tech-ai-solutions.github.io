@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-cyber-bg: #030712;
+  --color-cyber-surface: #080e1a;
+  --color-cyan-glow: rgba(0, 240, 255, 0.4);
+  --color-violet-glow: rgba(139, 92, 246, 0.35);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: #030712;
+    color: #f3f4f6;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: rgba(0, 240, 255, 0.3);
+    color: #ffffff;
+  }
+}
+
+@layer components {
+  /* Futuristic Glass Card */
+  .cyber-glass {
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .cyber-glass:hover {
+    border-color: rgba(0, 240, 255, 0.3);
+    box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.6), 0 0 20px -4px rgba(0, 240, 255, 0.15);
+  }
+
+  /* Neon Glow Pill Badge */
+  .neon-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 9999px;
+    background: rgba(0, 240, 255, 0.08);
+    border: 1px solid rgba(0, 240, 255, 0.25);
+    color: #00F0FF;
+  }
+
+  /* Primary Cyber Button */
+  .btn-cyber-primary {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    border-radius: 0.5rem;
+    color: #030712;
+    background: linear-gradient(135deg, #00F0FF 0%, #38BDF8 100%);
+    box-shadow: 0 0 20px -3px rgba(0, 240, 255, 0.45);
+    transition: all 0.25s ease;
+  }
+
+  .btn-cyber-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px -2px rgba(0, 240, 255, 0.65);
+  }
+
+  /* Secondary Cyber Button */
+  .btn-cyber-secondary {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    border-radius: 0.5rem;
+    color: #F3F4F6;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    transition: all 0.25s ease;
+  }
+
+  .btn-cyber-secondary:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(0, 240, 255, 0.4);
+    color: #00F0FF;
+    transform: translateY(-2px);
+  }
+}
+
+/* Background Cyber Matrix Grid */
+.cyber-grid-bg {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* Reduced Motion Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
