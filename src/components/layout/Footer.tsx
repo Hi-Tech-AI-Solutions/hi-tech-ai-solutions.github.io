@@ -152,6 +152,11 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2.5 text-sm">
               <li>
+                <Link href="/legal/" className="hover:text-neon-cyan transition-colors">
+                  Central Legal Hub
+                </Link>
+              </li>
+              <li>
                 <Link href="/legal/privacy/" className="hover:text-neon-cyan transition-colors">
                   Privacy Policy
                 </Link>
@@ -169,6 +174,11 @@ export default function Footer() {
               <li>
                 <Link href="/legal/cookies/" className="hover:text-neon-cyan transition-colors">
                   Cookie Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/legal/disclaimer/" className="hover:text-neon-cyan transition-colors">
+                  Disclaimer & Bounds
                 </Link>
               </li>
             </ul>

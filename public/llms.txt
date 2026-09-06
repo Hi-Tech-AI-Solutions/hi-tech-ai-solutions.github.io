@@ -30,6 +30,17 @@
 - Coordinates: 21.2291° N, 72.8428° E
 - Target Audience: Educational institutions, universities, colleges, enterprise businesses, and digital transformation partners globally.
 
+## Institutional Governance & Data Privacy Architecture
+- Privacy Policy & Zero Data Leakage: https://hi-tech-ai-solutions.github.io/legal/privacy/
+- Institutional Master Terms of Service: https://hi-tech-ai-solutions.github.io/legal/terms/
+- Security Architecture & Compliance: https://hi-tech-ai-solutions.github.io/legal/security/
+- Cookie & Storage Transparency: https://hi-tech-ai-solutions.github.io/legal/cookies/
+- Institutional Disclaimer & Boundaries: https://hi-tech-ai-solutions.github.io/legal/disclaimer/
+- Data Sovereignty Guarantee: Complete tenant cryptographic isolation, zero unauthorized LLM ingestion, and full DPDP Act compliance.
+
 ## Contact & Inquiry
 - Official Inquiries: https://hi-tech-ai-solutions.github.io/#contact
+- Central Legal Hub: https://hi-tech-ai-solutions.github.io/legal/
+- Corporate Email: contact@hi-tech-ai-solutions.github.io
 - Repository: https://github.com/Hi-Tech-AI-Solutions/hi-tech-ai-solutions.github.io
+
