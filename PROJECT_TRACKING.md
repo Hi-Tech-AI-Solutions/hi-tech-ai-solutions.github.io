@@ -59,11 +59,20 @@ Current Focus: Phase 3 — Product Ecosystem Showcase
   - Tagline: *"We don't just build software. We build intelligent solutions."*
   - Dual CTAs ("Explore Our Innovations", "Build With Us") with cyber glow buttons.
   - Live system status indicators (Active Production, JyotOS Flagship, Zero Leak Privacy).
-- [x] **Trust & Credibility Strip ([`TrustStrip.tsx`](./src/components/home/TrustStrip.tsx))**:
-  - Highlights Institutional Grade Security, 99.9% High Availability, Active 5-Platform Product Ecosystem, and Strict Data Governance.
-- [x] **Enhanced Capabilities Grid ("What We Build", [`CapabilitiesSection.tsx`](./src/components/home/CapabilitiesSection.tsx))**:
-  - Category filtering across All, AI Solutions, Automation, Academic, and Enterprise.
-  - 6 detailed capability cards with key deliverables, technical stack tags, and consultation triggers.
+- [x] **Verified Google Business Listing Integration & Contact Details**:
+  - Fetched official Google Business profile for **Hi-Tech AI Solutions & Services**.
+  - **Address**: Bhavani Complex, nr. Gajera Circle, opp. SAIBABA PETROL PUMP, Mahavir Nagar Society, Katargam, Surat, Gujarat 395004.
+  - **Hours**: 24/7 Operations.
+  - **Rating**: 5.0 ⭐⭐⭐⭐⭐ (Google Verified).
+  - Embedded Schema.org JSON-LD `LocalBusiness` & `Organization` structured data with GeoCoordinates (Katargam, Surat) for search engines.
+- [x] **Brand Logo & Favicon Suite**:
+  - High-res vector circuit-node monogram 'H' (`public/logo.svg`, `public/icon.svg`).
+  - High-res square app icons and favicons (`public/logo.png`, `public/icon.png`, `public/favicon.ico`, `public/apple-touch-icon.png`).
+  - Integrated custom circuit 'H' logo with neon cyber glow directly into `Navbar.tsx` and `Footer.tsx`.
+- [x] **WhatsApp & Social Media Rich Sharing OpenGraph Metadata**:
+  - Ultra-high-resolution 1200x630 OpenGraph social card (`public/og-image.jpg`, `public/og-image.png`).
+  - Configured `og:title`, `og:description`, `og:image`, `og:image:secure_url`, `og:image:width: 1200`, `og:image:height: 630`, `og:type: image/jpeg`, `og:locale: en_IN`, and Twitter card tags.
+  - Optimized specifically for WhatsApp, LinkedIn, iMessage, and Twitter rich preview unfurls.
 
 ---
 

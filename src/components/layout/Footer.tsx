@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Cpu, ShieldCheck } from 'lucide-react';
+import { ShieldCheck } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = 2026;
@@ -15,8 +15,15 @@ export default function Footer() {
           {/* Brand Col */}
           <div className="lg:col-span-2 space-y-4">
             <Link href="/" className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg bg-gradient-to-tr from-cyan-500/20 to-violet-500/20 border border-neon-cyan/40 flex items-center justify-center">
-                <Cpu className="w-5 h-5 text-neon-cyan" />
+              <div className="w-10 h-10 rounded-xl bg-[#080e1a] border border-neon-cyan/40 p-1 flex items-center justify-center">
+                <svg viewBox="0 0 128 128" className="w-full h-full" fill="none">
+                  <path d="M38 28v72M90 28v72M38 64h52" stroke="#00F0FF" strokeWidth="14" strokeLinecap="round" />
+                  <circle cx="38" cy="28" r="8" fill="#00F0FF" />
+                  <circle cx="38" cy="100" r="8" fill="#10B981" />
+                  <circle cx="90" cy="28" r="8" fill="#00F0FF" />
+                  <circle cx="90" cy="100" r="8" fill="#10B981" />
+                  <circle cx="64" cy="64" r="10" fill="#FFFFFF" stroke="#00F0FF" strokeWidth="4" />
+                </svg>
               </div>
               <span className="text-lg font-bold text-white tracking-tight">
                 Hi-Tech <span className="text-neon-cyan">AI Solutions</span>
@@ -26,6 +33,25 @@ export default function Footer() {
               We don&apos;t just build software. We build intelligent solutions. Empowering
               educational institutions, enterprises, and innovators with next-generation AI systems.
             </p>
+
+            {/* Verified Google Business Address & Rating */}
+            <div className="pt-2 space-y-2 text-xs font-mono text-gray-400">
+              <div className="flex items-start gap-2">
+                <span className="text-emerald-400">📍</span>
+                <span>
+                  Bhavani Complex, Katargam, Surat, Gujarat 395004
+                </span>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="text-amber-400 font-bold flex items-center gap-1">
+                  <span>5.0</span>
+                  <span>★★★★★</span>
+                </span>
+                <span className="text-gray-500">|</span>
+                <span className="text-cyan-400">Verified Google Business</span>
+              </div>
+            </div>
+
             <div className="flex items-center gap-4 pt-2">
               <a
                 href="https://github.com/Hi-Tech-AI-Solutions"
@@ -40,7 +66,7 @@ export default function Footer() {
               </a>
               <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 bg-emerald-950/40 border border-emerald-500/30 px-2.5 py-1 rounded-full">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-                <span>Systems Operational</span>
+                <span>24/7 Operations</span>
               </div>
             </div>
           </div>

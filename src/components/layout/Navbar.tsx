@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Cpu, Menu, X, ArrowRight, Sparkles } from 'lucide-react';
+import { Menu, X, ArrowRight, Sparkles } from 'lucide-react';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -31,8 +31,15 @@ export default function Navbar() {
             href="/"
             className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-cyan rounded-lg p-1"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500/20 via-violet-500/20 to-emerald-500/20 border border-neon-cyan/40 flex items-center justify-center group-hover:border-neon-cyan group-hover:shadow-[0_0_15px_rgba(0,240,255,0.4)] transition-all">
-              <Cpu className="w-5 h-5 text-neon-cyan group-hover:scale-110 transition-transform" />
+            <div className="w-10 h-10 rounded-xl bg-[#080e1a] border border-neon-cyan/40 p-1 flex items-center justify-center group-hover:border-neon-cyan group-hover:shadow-[0_0_15px_rgba(0,240,255,0.4)] transition-all">
+              <svg viewBox="0 0 128 128" className="w-full h-full" fill="none">
+                <path d="M38 28v72M90 28v72M38 64h52" stroke="#00F0FF" strokeWidth="14" strokeLinecap="round" />
+                <circle cx="38" cy="28" r="8" fill="#00F0FF" />
+                <circle cx="38" cy="100" r="8" fill="#10B981" />
+                <circle cx="90" cy="28" r="8" fill="#00F0FF" />
+                <circle cx="90" cy="100" r="8" fill="#10B981" />
+                <circle cx="64" cy="64" r="10" fill="#FFFFFF" stroke="#00F0FF" strokeWidth="4" />
+              </svg>
             </div>
             <div className="flex flex-col">
               <span className="text-lg font-bold tracking-tight text-white flex items-center gap-1.5">

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1200px;
+      height: 630px;
+      background-color: #030712;
+      color: #F3F4F6;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 60px 70px;
+      position: relative;
+    }
+    /* Ambient Glows */
+    .glow-cyan {
+      position: absolute;
+      top: -100px;
+      left: 100px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(0, 240, 255, 0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .glow-violet {
+      position: absolute;
+      bottom: -100px;
+      right: 100px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.16) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .grid-lines {
+      position: absolute;
+      inset: 0;
+      background-size: 50px 50px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      pointer-events: none;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 18px;
+      background: rgba(0, 240, 255, 0.08);
+      border: 1px solid rgba(0, 240, 255, 0.35);
+      border-radius: 9999px;
+      color: #00F0FF;
+      font-size: 14px;
+      font-family: monospace;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 700;
+    }
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      background: #00F0FF;
+      border-radius: 50%;
+    }
+    .headline {
+      font-size: 54px;
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -1.5px;
+      color: #FFFFFF;
+      margin-top: 24px;
+      max-width: 950px;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #00F0FF 0%, #38BDF8 50%, #A78BFA 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      font-size: 22px;
+      color: #9CA3AF;
+      line-height: 1.5;
+      margin-top: 14px;
+      max-width: 800px;
+    }
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 24px;
+      position: relative;
+      z-index: 10;
+    }
+    .products {
+      display: flex;
+      gap: 12px;
+    }
+    .product-tag {
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      font-size: 13px;
+      font-family: monospace;
+      color: #E5E7EB;
+      font-weight: 600;
+    }
+    .location {
+      font-size: 14px;
+      font-family: monospace;
+      color: #10B981;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo-container {
+      position: absolute;
+      top: 60px;
+      right: 70px;
+      width: 110px;
+      height: 110px;
+    }
+  </style>
+</head>
+<body>
+  <div class="glow-cyan"></div>
+  <div class="glow-violet"></div>
+  <div class="grid-lines"></div>
+
+  <!-- SVG Logo in Top-Right -->
+  <div class="logo-container">
+    <svg viewBox="0 0 512 512" width="110" height="110">
+      <rect width="512" height="512" rx="112" fill="#070b14" stroke="#00F0FF" stroke-width="8" />
+      <path d="M168 136v240M344 136v240M168 256h176" stroke="#00F0FF" stroke-width="32" stroke-linecap="round" />
+      <circle cx="168" cy="136" r="28" fill="#030712" stroke="#00F0FF" stroke-width="10" />
+      <circle cx="168" cy="136" r="12" fill="#00F0FF" />
+      <circle cx="168" cy="376" r="28" fill="#030712" stroke="#10B981" stroke-width="10" />
+      <circle cx="168" cy="376" r="12" fill="#10B981" />
+      <circle cx="344" cy="136" r="28" fill="#030712" stroke="#00F0FF" stroke-width="10" />
+      <circle cx="344" cy="136" r="12" fill="#00F0FF" />
+      <circle cx="344" cy="376" r="28" fill="#030712" stroke="#10B981" stroke-width="10" />
+      <circle cx="344" cy="376" r="12" fill="#10B981" />
+      <circle cx="256" cy="256" r="36" fill="#030712" stroke="#38BDF8" stroke-width="10" />
+      <circle cx="256" cy="256" r="16" fill="#00F0FF" />
+    </svg>
+  </div>
+
+  <!-- Main Content -->
+  <div>
+    <div class="badge">
+      <span class="badge-dot"></span>
+      Hi-Tech AI Solutions &amp; Services
+    </div>
+
+    <h1 class="headline">
+      We don't just build software. <br>
+      <span class="gradient-text">We build intelligent solutions.</span>
+    </h1>
+
+    <p class="subtitle">
+      AI-native systems, intelligent automation, and institutional operating platforms built for real-world reliability and scale.
+    </p>
+  </div>
+
+  <!-- Footer Info & Products -->
+  <div class="footer">
+    <div class="products">
+      <span class="product-tag" style="border-color: rgba(0,240,255,0.4); color: #00F0FF;">⚡ JyotOS Platform</span>
+      <span class="product-tag">ScholarCard AI</span>
+      <span class="product-tag">jyotAssist AI</span>
+      <span class="product-tag">StaffBridge</span>
+      <span class="product-tag">EventOS</span>
+    </div>
+    <div class="location">
+      📍 Katargam, Surat, Gujarat • 5.0 ★ Rated
+    </div>
+  </div>
+</body>
+</html>
