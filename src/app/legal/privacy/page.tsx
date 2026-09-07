@@ -140,7 +140,7 @@ export default function PrivacyPolicyPage() {
         <div className="p-4 rounded-xl bg-black/40 border border-white/10 text-xs font-mono space-y-1">
           <div><strong>Grievance Officer:</strong> Legal & Data Protection Cell</div>
           <div><strong>Corporate Office:</strong> Bhavani Complex, nr. Gajera Circle, Katargam, Surat, Gujarat 395004</div>
-          <div><strong>Contact Email:</strong> <a href="mailto:contact@hi-tech-ai-solutions.github.io" className="text-neon-cyan underline">contact@hi-tech-ai-solutions.github.io</a></div>
+          <div><strong>Contact Email:</strong> <a href="mailto:hitech.nft@gmail.com" className="text-neon-cyan underline">hitech.nft@gmail.com</a></div>
         </div>
       </section>
     </div>

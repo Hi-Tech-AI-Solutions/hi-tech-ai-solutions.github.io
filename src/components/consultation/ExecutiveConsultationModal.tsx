@@ -37,9 +37,9 @@ export default function ExecutiveConsultationModal({
   });
   const [activeTab, setActiveTab] = useState<'form' | 'channels'>('form');
 
-  const OFFICIAL_EMAIL = 'contact@hi-tech-ai-solutions.github.io';
-  const OFFICIAL_PHONE = '+91 99099 88111';
-  const WHATSAPP_NUMBER = '919909988111';
+  const OFFICIAL_EMAIL = 'hitech.nft@gmail.com';
+  const OFFICIAL_PHONE = '+919974803770';
+  const WHATSAPP_NUMBER = '919974803770';
 
   useEffect(() => {
     if (defaultTopic) {

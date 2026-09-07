@@ -18,8 +18,8 @@ export default function ContactSection() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
 
-  const OFFICIAL_EMAIL = 'contact@hi-tech-ai-solutions.github.io';
-  const WHATSAPP_NUMBER = '919909988111';
+  const OFFICIAL_EMAIL = 'hitech.nft@gmail.com';
+  const WHATSAPP_NUMBER = '919974803770';
 
   const handleCopyEmail = async () => {
     try {

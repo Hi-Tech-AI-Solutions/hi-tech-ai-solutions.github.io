@@ -100,7 +100,7 @@ export default function SecurityArchitecturePage() {
       <section className="space-y-3">
         <h2 className="text-xl font-bold text-white tracking-tight">Vulnerability Management & Responsible Disclosure</h2>
         <p className="text-sm">
-          We maintain automated continuous integration vulnerability scans across our dependency matrices, container base images, and Next.js static asset bundles. Security researchers and campus systems administrators are invited to report findings directly to <a href="mailto:contact@hi-tech-ai-solutions.github.io" className="text-neon-cyan underline">contact@hi-tech-ai-solutions.github.io</a>.
+          We maintain automated continuous integration vulnerability scans across our dependency matrices, container base images, and Next.js static asset bundles. Security researchers and campus systems administrators are invited to report findings directly to <a href="mailto:hitech.nft@gmail.com" className="text-neon-cyan underline">hitech.nft@gmail.com</a>.
         </p>
       </section>
     </div>

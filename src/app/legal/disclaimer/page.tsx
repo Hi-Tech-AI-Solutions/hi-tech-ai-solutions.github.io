@@ -144,9 +144,9 @@ export default function DisclaimerPage() {
           If you have questions regarding the classification of any tool, algorithm, or case study presented on this platform, or wish to review enterprise service agreements:
         </p>
         <div className="flex flex-wrap gap-4 text-xs font-mono text-cyan-400 pt-1">
-          <span>Official Corporate Email: <a href="mailto:contact@hi-tech-ai-solutions.github.io" className="underline text-white">contact@hi-tech-ai-solutions.github.io</a></span>
+          <span>Official Corporate Email: <a href="mailto:hitech.nft@gmail.com" className="underline text-white">hitech.nft@gmail.com</a></span>
           <span>•</span>
-          <span>Surat HQ Phone: <a href="tel:+919909988111" className="underline text-white">+91 99099 88111</a></span>
+          <span>Surat HQ Phone: <a href="tel:+919974803770" className="underline text-white">+919974803770</a></span>
         </div>
       </section>
     </div>

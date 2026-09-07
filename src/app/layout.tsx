@@ -120,6 +120,8 @@ const jsonLd = {
       name: 'Hi-Tech AI Solutions & Services',
       url: SITE_URL,
       logo: `${SITE_URL}/logo.png`,
+      email: 'hitech.nft@gmail.com',
+      telephone: '+919974803770',
       description:
         'For over 20 years, Hi-Tech has been a trusted name in technology education and consulting. Now, as Hi-Tech AI Solutions & Services, we are driving the future of digital transformation, engineering AI-based solutions, intelligent automation, and institutional operating platforms.',
       sameAs: ['https://github.com/Hi-Tech-AI-Solutions'],
@@ -158,6 +160,8 @@ const jsonLd = {
       name: 'Hi-Tech AI Solutions & Services',
       url: SITE_URL,
       image: `${SITE_URL}/og-image.jpg`,
+      email: 'hitech.nft@gmail.com',
+      telephone: '+919974803770',
       priceRange: '$$',
       address: {
         '@type': 'PostalAddress',

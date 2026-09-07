@@ -82,8 +82,8 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
           </div>
           <div className="text-right">
             <span>Governance Inquiries: </span>
-            <a href="mailto:contact@hi-tech-ai-solutions.github.io" className="text-neon-cyan hover:underline">
-              contact@hi-tech-ai-solutions.github.io
+            <a href="mailto:hitech.nft@gmail.com" className="text-neon-cyan hover:underline">
+              hitech.nft@gmail.com
             </a>
           </div>
         </div>

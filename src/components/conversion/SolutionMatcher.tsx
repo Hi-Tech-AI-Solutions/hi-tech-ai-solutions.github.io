@@ -46,7 +46,7 @@ export default function SolutionMatcher() {
   }>({});
   const [result, setResult] = useState<MatchResult | null>(null);
 
-  const WHATSAPP_NUMBER = '919909988111';
+  const WHATSAPP_NUMBER = '919974803770';
 
   const steps: QuestionStep[] = [
     {
@@ -257,7 +257,7 @@ I would like to schedule a technical walkthrough and discuss institutional sandb
     const body = encodeURIComponent(
       `Hello Hi-Tech AI Solutions Team,\n\nWe evaluated our institutional requirements using your online Solution Matcher:\n- Organization: ${answers.orgType}\n- Primary Friction: ${answers.challenge}\n- Scale / Timeline: ${answers.scale}\n- Matched Architecture: ${result.title}\n\nPlease share your implementation blueprint and available times for an executive briefing.\n\nBest regards.`
     );
-    window.location.href = `mailto:contact@hi-tech-ai-solutions.github.io?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:hitech.nft@gmail.com?subject=${subject}&body=${body}`;
   };
 
   return (
