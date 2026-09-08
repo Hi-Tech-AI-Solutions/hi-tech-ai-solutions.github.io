@@ -4,6 +4,7 @@ import {
   Activity,
   Layers,
   Shield,
+  Cpu,
 } from 'lucide-react';
 import IntelligenceNetwork from './IntelligenceNetwork';
 
@@ -49,7 +50,7 @@ export default function HeroSection() {
         </div>
 
         {/* Real-Time Live Architecture Indicators */}
-        <div className="pt-6 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-mono text-gray-400">
+        <div className="pt-6 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs font-mono text-gray-400">
           <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">
             <Activity className="w-4 h-4 text-neon-cyan" />
             <span>Status: <strong className="text-white">Active Production</strong></span>
@@ -57,6 +58,10 @@ export default function HeroSection() {
           <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">
             <Layers className="w-4 h-4 text-violet-400" />
             <span>Flagship: <strong className="text-white">JyotOS Suite</strong></span>
+          </div>
+          <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">
+            <Cpu className="w-4 h-4 text-cyan-400" />
+            <span>Fleet: <strong className="text-white">13 Deployed Solutions</strong></span>
           </div>
           <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">
             <Shield className="w-4 h-4 text-emerald-400" />

@@ -18,12 +18,20 @@
 4. Operational Analytics & Decision Intelligence: High-throughput telemetry engines and predictive dashboards.
 5. Custom Enterprise SaaS: Purpose-engineered full-stack cloud and edge platforms.
 
-## Flagship Product Ecosystem
-- JyotOS Platform: Comprehensive intelligent academic and institutional operating system.
-- ScholarCard AI: Student intelligence, digital credentialing, and identity verification engine.
-- jyotAssist AI: Contextual conversational AI assistant and multi-agent workflow helper.
-- StaffBridge: Institutional operations, staff administration, and human capital governance platform.
-- EventOS: Real-time institutional event lifecycle management, ticketing, and check-in orchestration.
+## Flagship Product Ecosystem (13 Deployed Solutions)
+1. **JyotOS Platform**: AI-Native Institutional Operating System unifying academic, administrative, and student services. (https://hi-tech-ai-solutions.github.io/#jyotos)
+2. **jyotAssist AI**: Next-Gen WhatsApp Business CRM & Grounded AI Support Desk via Meta Cloud API v21.0. (https://jyot-assist-ai.vercel.app/)
+3. **ScholarCard AI**: Smart student ID lifecycle, mobile profile intake, and 300 DPI CR80 print queue platform. (https://scholarcard-ai.vercel.app/)
+4. **ClassPulsePro**: Real-time timetable and lecture reconciliation engine reconciling 10,459+ sessions across 87 faculty. (https://classpulse-jyotos-ai.vercel.app/)
+5. **JyotOS AAI Showcase**: Institutional orientation presentation runtime with rotating neon CSS shaders & streaming AI. (https://jyotos-showcase.vercel.app/)
+6. **StaffBridge**: Institutional human capital, staff administration, and VAPID Web Push alert engine. (https://staff-bridge-jyotos.vercel.app/)
+7. **EventOS**: Academic event lifecycle system with sub-400ms QR check-in and verified public reports archive. (https://event-os-jyot-os.vercel.app/)
+8. **GCAS Vacant Seats (AdmitTracker)**: Live seat vacancy intelligence and instant search for all VNSGU affiliated colleges. (https://gcas-vacant-seats.vercel.app/)
+9. **BAMTS Operations Hub**: BAOU Study Centre 1839 operations, assignment checklist, and public QR receipt verification. (https://bamts.vercel.app/)
+10. **Amroli Digital Campus**: Central control launchpad, virtual token queue, and segregated student onboarding groups. (https://amroli-digital-campus.vercel.app/)
+11. **BAOU 1839 AI Helpdesk**: Bilingual (English & Gujarati) autonomous conversational assistant for BAOU distance learners. (https://baou1839ai.vercel.app/)
+12. **Institutional Admission Analytics Hub**: Cross-preference multiple choice modeling and round-by-round cutoff analytics. (https://adm-analytics.vercel.app/)
+13. **HiTECH LMS**: Multi-campus paperless faculty leave governance with 2-step approval workflows for Campus 1 & 2. (https://amroli-lms1.vercel.app/)
 
 ## Geographical & Regional Presence
 - Primary Location: Katargam, Surat, Gujarat, India (PIN: 395004)

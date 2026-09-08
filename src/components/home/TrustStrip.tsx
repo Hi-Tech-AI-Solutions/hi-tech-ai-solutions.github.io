@@ -18,7 +18,7 @@ export default function TrustStrip() {
     {
       icon: Cpu,
       title: 'Active Product Ecosystem',
-      subtitle: '5 synchronized platforms running in active deployments',
+      subtitle: '13 synchronized platforms running across active deployments',
       color: 'text-violet-400',
     },
     {

@@ -7,6 +7,10 @@ import {
   CheckCircle2,
   ExternalLink,
   ArrowRight,
+  Cpu,
+  Building2,
+  Globe,
+  GitBranch,
 } from 'lucide-react';
 
 interface ProductDetailModalProps {
@@ -36,12 +40,12 @@ export default function ProductDetailModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-black/80 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-black/85 backdrop-blur-xl animate-in fade-in duration-200"
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
     >
-      <div className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto cyber-glass rounded-3xl border border-white/20 p-6 sm:p-9 shadow-2xl space-y-7">
+      <div className="relative w-full max-w-3xl max-h-[92vh] overflow-y-auto cyber-glass rounded-3xl border border-neon-cyan/30 p-6 sm:p-9 shadow-[0_20px_60px_-15px_rgba(0,240,255,0.25)] space-y-7 bg-gradient-to-b from-[#080e1a] via-[#0b1328] to-[#040711]">
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -60,6 +64,10 @@ export default function ProductDetailModal({
             <span className="text-xs font-mono text-gray-400 bg-white/5 px-2.5 py-1 rounded-md border border-white/10">
               {product.category}
             </span>
+            <div className="flex items-center gap-1.5 text-xs font-mono text-neon-cyan/90 bg-cyan-950/40 px-2.5 py-1 rounded-md border border-cyan-500/30">
+              <Building2 className="w-3 h-3" />
+              <span>{product.institution}</span>
+            </div>
           </div>
 
           <h2 id="modal-title" className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
@@ -70,14 +78,39 @@ export default function ProductDetailModal({
           </p>
         </div>
 
+        {/* Operational Telemetry HUD Matrix */}
+        {product.metrics && product.metrics.length > 0 && (
+          <div className="space-y-2">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-gray-400 block">
+              Operational Telemetry & Performance Metrics:
+            </span>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+              {product.metrics.map((m, idx) => (
+                <div
+                  key={idx}
+                  className="p-3 rounded-2xl bg-black/50 border border-neon-cyan/20 flex flex-col justify-between space-y-1 shadow-[0_0_15px_rgba(0,240,255,0.05)]"
+                >
+                  <span className="text-[9px] uppercase font-mono text-gray-400 tracking-wider">
+                    {m.label}
+                  </span>
+                  <span className="text-xs sm:text-sm font-mono font-extrabold text-neon-cyan truncate">
+                    {m.value}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Product Overview Summary */}
         <div className="bg-black/50 border border-white/10 rounded-2xl p-5 space-y-3">
           <p className="text-sm sm:text-base text-gray-300 leading-relaxed font-sans">
             {product.summary}
           </p>
-          <div className="pt-2 border-t border-white/10">
-            <span className="text-xs font-mono text-gray-400 uppercase tracking-wider block mb-1">
-              Architecture Blueprint:
+          <div className="pt-3 border-t border-white/10">
+            <span className="text-xs font-mono text-neon-cyan uppercase tracking-wider block mb-1.5 flex items-center gap-1.5">
+              <Cpu className="w-3.5 h-3.5" />
+              <span>Architecture & Implementation Blueprint:</span>
             </span>
             <p className="text-xs sm:text-sm text-gray-400 font-mono leading-relaxed">
               {product.architectureDescription}
@@ -88,7 +121,7 @@ export default function ProductDetailModal({
         {/* Core Highlights */}
         <div className="space-y-3">
           <h4 className="text-xs font-mono uppercase tracking-wider text-gray-300">
-            System Highlights:
+            System Highlights & Institutional Capabilities:
           </h4>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
             {product.coreHighlights.map((hl, idx) => (
@@ -97,7 +130,7 @@ export default function ProductDetailModal({
                 className="flex items-start gap-2.5 p-3 rounded-xl bg-white/5 border border-white/5 text-xs sm:text-sm text-gray-300"
               >
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                <span>{hl}</span>
+                <span className="leading-relaxed">{hl}</span>
               </div>
             ))}
           </div>
@@ -107,7 +140,7 @@ export default function ProductDetailModal({
         {product.modules.length > 0 && (
           <div className="space-y-3">
             <h4 className="text-xs font-mono uppercase tracking-wider text-gray-300">
-              Engineered Sub-Modules:
+              Engineered Sub-Modules ({product.modules.length}):
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {product.modules.map((mod, idx) => (
@@ -127,7 +160,7 @@ export default function ProductDetailModal({
                       {mod.status}
                     </span>
                   </div>
-                  <p className="text-xs text-gray-400">{mod.description}</p>
+                  <p className="text-xs text-gray-400 leading-relaxed">{mod.description}</p>
                 </div>
               ))}
             </div>
@@ -168,29 +201,43 @@ export default function ProductDetailModal({
           </div>
         </div>
 
-        {/* Action Footer */}
-        <div className="pt-5 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          {product.githubRepo ? (
-            <a
-              href={product.githubRepo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-cyber-secondary w-full sm:w-auto text-xs py-2.5"
-            >
-              <span>Inspect GitHub Repository</span>
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
-          ) : (
-            <div className="text-xs font-mono text-gray-500">Institutional Enterprise Suite</div>
-          )}
+        {/* Primary Action Buttons Footer */}
+        <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+            {product.liveDemoUrl && (
+              <a
+                href={product.liveDemoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-cyber-primary text-xs py-2.5 px-4 flex items-center gap-1.5 w-full sm:w-auto justify-center"
+              >
+                <Globe className="w-3.5 h-3.5" />
+                <span>Launch Live Application</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            )}
+
+            {product.githubRepo && (
+              <a
+                href={product.githubRepo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-cyber-secondary text-xs py-2.5 px-4 flex items-center gap-1.5 w-full sm:w-auto justify-center"
+              >
+                <GitBranch className="w-3.5 h-3.5 text-violet-400" />
+                <span>Inspect Repository</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            )}
+          </div>
 
           <a
             href="#contact"
             onClick={onClose}
-            className="btn-cyber-primary w-full sm:w-auto text-xs py-2.5 px-5"
+            className="inline-flex items-center gap-1.5 text-xs font-mono text-gray-300 hover:text-white px-4 py-2.5 rounded-xl border border-white/10 hover:border-neon-cyan/50 transition-all w-full sm:w-auto justify-center"
           >
-            <span>Request Architecture Briefing</span>
-            <ArrowRight className="w-4 h-4" />
+            <span>Request Enterprise Consultation</span>
+            <ArrowRight className="w-3.5 h-3.5" />
           </a>
         </div>
       </div>
