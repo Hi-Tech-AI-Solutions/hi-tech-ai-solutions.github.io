@@ -109,9 +109,16 @@ Current Focus: Phase 7 — Quality Gates, A11y & Performance
   - Primary dual action buttons: **"Launch Live Application ↗"** and **"Inspect Repository ↗"**.
   - Operational Telemetry & Performance Metrics HUD grid.
   - Complete architecture blueprint, module matrix, tech stack tags, and institutional target audiences.
-- [x] **Homepage Hero & Trust Strip Telemetry**:
-  - Embedded live fleet indicators (*"13 Deployed Solutions"*, *"13 synchronized platforms in active deployments"*).
-  - Next.js 15 static export build verified (`0 errors, 0 warnings`).
+- [x] **Quantum Command Cockpit (Hybrid A+B) & Dynamic Theme Switcher**:
+  - **Avionics Flight-Deck Telemetry Bar**: Real-time IST/UTC clock, sub-second telemetry pings (`11ms Ping`), active fleet tracking (`13 Nodes Online`), and cryptographic isolation tags.
+  - **Interactive AAI Command Terminal** ([`src/components/home/CommandTerminal.tsx`](./src/components/home/CommandTerminal.tsx)):
+    - Embedded into the hero section with preset capability queries and custom input execution.
+    - Real-time typewriter synthesis streaming architecture breakdowns, verified metrics, and 1-click launch triggers.
+  - **Hardware-Accelerated Conic Neon Borders**: Implemented CSS `@property --border-angle` conic gradient animations revolving around flagship cards, active terminals, and avionics instruments.
+  - **Global Reversible Theme Mode Switcher** ([`src/context/ThemeContext.tsx`](./src/context/ThemeContext.tsx)):
+    - Floating theme toggle dock in the bottom-right corner + desktop/mobile navbar switcher pill.
+    - Enables instantaneous, client-side switching between **"Quantum Cockpit (Hybrid A+B)"** and **"Classic Cyber Studio (Previous Version)"** with persistent `localStorage` preservation.
+  - **Verified Build & Static Export**: Next.js 15 static export build verified (`0 errors, 0 warnings`).
 
 ### **Phase 4: Proof, Architecture & Case Studies**
 - [x] **Institutional Case Study & Proven Project Story** ([`src/data/caseStudies.ts`](./src/data/caseStudies.ts), [`src/components/proof/CaseStudiesSection.tsx`](./src/components/proof/CaseStudiesSection.tsx)):

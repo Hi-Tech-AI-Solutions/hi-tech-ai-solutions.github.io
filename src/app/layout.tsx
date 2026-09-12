@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import { ThemeToggleProvider } from '@/context/ThemeContext';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -275,24 +276,26 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-cyber-bg text-gray-100 antialiased min-h-screen flex flex-col font-sans selection:bg-cyan-500/30 selection:text-white">
-        {/* Skip to Content for WCAG Accessibility */}
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-cyan-400 focus:text-black focus:font-semibold focus:rounded-md shadow-lg"
-        >
-          Skip to main content
-        </a>
+        <ThemeToggleProvider>
+          {/* Skip to Content for WCAG Accessibility */}
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-cyan-400 focus:text-black focus:font-semibold focus:rounded-md shadow-lg"
+          >
+            Skip to main content
+          </a>
 
-        {/* Global Navigation Header */}
-        <Navbar />
+          {/* Global Navigation Header */}
+          <Navbar />
 
-        {/* Main Content Area */}
-        <div id="main-content" className="flex-1">
-          {children}
-        </div>
+          {/* Main Content Area */}
+          <div id="main-content" className="flex-1">
+            {children}
+          </div>
 
-        {/* Global Footer */}
-        <Footer />
+          {/* Global Footer */}
+          <Footer />
+        </ThemeToggleProvider>
       </body>
     </html>
   );

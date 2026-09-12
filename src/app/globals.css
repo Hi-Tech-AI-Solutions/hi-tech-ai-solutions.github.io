@@ -2,9 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0deg;
+}
+
+@keyframes rotate-border {
+  to {
+    --border-angle: 360deg;
+  }
+}
+
+@keyframes radar-sweep {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
 :root {
-  --color-cyber-bg: #030712;
-  --color-cyber-surface: #080e1a;
+  --color-cyber-bg: #02050a;
+  --color-cyber-surface: #060b14;
   --color-cyan-glow: rgba(0, 240, 255, 0.4);
   --color-violet-glow: rgba(139, 92, 246, 0.35);
 }
@@ -16,7 +46,7 @@
   }
 
   body {
-    background-color: #030712;
+    background-color: #02050a;
     color: #f3f4f6;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
     overflow-x: hidden;
@@ -31,7 +61,7 @@
 @layer components {
   /* Futuristic Glass Card */
   .cyber-glass {
-    background: rgba(15, 23, 42, 0.65);
+    background: rgba(8, 14, 26, 0.75);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -39,8 +69,70 @@
   }
 
   .cyber-glass:hover {
-    border-color: rgba(0, 240, 255, 0.3);
-    box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.6), 0 0 20px -4px rgba(0, 240, 255, 0.15);
+    border-color: rgba(0, 240, 255, 0.4);
+    box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.8), 0 0 25px -4px rgba(0, 240, 255, 0.25);
+  }
+
+  /* Hardware-Accelerated Rotating Conic Gradient Neon Border (Persistent) */
+  .neon-conic-border {
+    position: relative;
+    background-clip: padding-box;
+  }
+
+  .neon-conic-border::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: conic-gradient(
+      from var(--border-angle),
+      #00F0FF,
+      #8B5CF6,
+      #EC4899,
+      #10B981,
+      #00F0FF
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: rotate-border 6s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Rotating Conic Neon Border On Hover */
+  .neon-conic-border-hover {
+    position: relative;
+    background-clip: padding-box;
+  }
+
+  .neon-conic-border-hover::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: conic-gradient(
+      from var(--border-angle),
+      #00F0FF,
+      #8B5CF6,
+      #EC4899,
+      #10B981,
+      #00F0FF
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: rotate-border 4s linear infinite;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+  }
+
+  .neon-conic-border-hover:hover::before {
+    opacity: 1;
   }
 
   /* Neon Glow Pill Badge */
@@ -55,8 +147,9 @@
     text-transform: uppercase;
     border-radius: 9999px;
     background: rgba(0, 240, 255, 0.08);
-    border: 1px solid rgba(0, 240, 255, 0.25);
+    border: 1px solid rgba(0, 240, 255, 0.3);
     color: #00F0FF;
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
   }
 
   /* Primary Cyber Button */
@@ -70,16 +163,16 @@
     font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: 0.025em;
-    border-radius: 0.5rem;
-    color: #030712;
+    border-radius: 0.75rem;
+    color: #02050a;
     background: linear-gradient(135deg, #00F0FF 0%, #38BDF8 100%);
-    box-shadow: 0 0 20px -3px rgba(0, 240, 255, 0.45);
+    box-shadow: 0 0 25px -2px rgba(0, 240, 255, 0.5);
     transition: all 0.25s ease;
   }
 
   .btn-cyber-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0 30px -2px rgba(0, 240, 255, 0.65);
+    box-shadow: 0 0 35px 0px rgba(0, 240, 255, 0.75);
   }
 
   /* Secondary Cyber Button */
@@ -93,7 +186,7 @@
     font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: 0.025em;
-    border-radius: 0.5rem;
+    border-radius: 0.75rem;
     color: #F3F4F6;
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.12);
@@ -106,6 +199,26 @@
     border-color: rgba(0, 240, 255, 0.4);
     color: #00F0FF;
     transform: translateY(-2px);
+    box-shadow: 0 0 20px -3px rgba(0, 240, 255, 0.25);
+  }
+
+  /* Mission Control Flight Deck Pill */
+  .avionics-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.85rem;
+    font-family: var(--font-jetbrains, monospace);
+    font-size: 0.75rem;
+    border-radius: 9999px;
+    background: rgba(6, 11, 20, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #94a3b8;
+    backdrop-filter: blur(10px);
+  }
+
+  .avionics-pill strong {
+    color: #f8fafc;
   }
 }
 
@@ -115,6 +228,19 @@
   background-image: 
     linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* Radar Sweep Utility */
+.radar-sweep-effect {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent 0deg, rgba(0, 240, 255, 0.12) 60deg, transparent 60.1deg);
+  animation: radar-sweep 8s linear infinite;
+  transform-origin: 0 0;
+  pointer-events: none;
 }
 
 /* Reduced Motion Accessibility */
