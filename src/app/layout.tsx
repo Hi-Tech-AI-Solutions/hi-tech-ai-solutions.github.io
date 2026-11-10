@@ -281,9 +281,10 @@ export default function RootLayout({
       <body className="bg-cyber-bg text-gray-100 antialiased min-h-screen flex flex-col font-sans selection:bg-cyan-500/30 selection:text-white">
         <ThemeToggleProvider>
           {/* Skip to Content for WCAG Accessibility */}
+          {/* z-[60]: the fixed header is z-50 and comes later in the DOM, so at z-50 it painted over this link */}
           <a
             href="#main-content"
-            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-cyan-400 focus:text-black focus:font-semibold focus:rounded-md shadow-lg"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:px-4 focus:py-2 focus:bg-cyan-400 focus:text-black focus:font-semibold focus:rounded-md shadow-lg"
           >
             Skip to main content
           </a>
@@ -291,10 +292,10 @@ export default function RootLayout({
           {/* Global Navigation Header */}
           <Navbar />
 
-          {/* Main Content Area */}
-          <div id="main-content" className="flex-1">
+          {/* Main Content Area: a real <main> landmark, focusable so the skip link lands on it */}
+          <main id="main-content" tabIndex={-1} className="flex-1 focus:outline-none">
             {children}
-          </div>
+          </main>
 
           {/* Global Footer */}
           <Footer />

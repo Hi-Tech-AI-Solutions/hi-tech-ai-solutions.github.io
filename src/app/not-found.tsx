@@ -3,8 +3,9 @@ import Link from 'next/link';
 export const metadata = { title: 'Page not found' };
 
 export default function NotFound() {
+  // The root layout already provides the <main> landmark, so this is a plain section.
   return (
-    <main className="min-h-[70vh] flex items-center justify-center px-4 pt-28 pb-16">
+    <section className="min-h-[70vh] flex items-center justify-center px-4 pt-28 pb-16">
       <div className="max-w-xl text-center">
         <p className="text-sm font-mono uppercase tracking-widest text-neon-cyan">Error 404</p>
         <h1 className="mt-4 text-4xl sm:text-6xl font-semibold text-white tracking-tight">
@@ -19,6 +20,6 @@ export default function NotFound() {
           <Link href="/#ecosystem" className="btn-cyber-secondary">See the products</Link>
         </div>
       </div>
-    </main>
+    </section>
   );
 }

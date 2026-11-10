@@ -1,22 +1,43 @@
 import React from 'react';
 import Link from 'next/link';
-import { ShieldCheck } from 'lucide-react';
+import { ShieldCheck, Phone, Mail, MessageCircle } from 'lucide-react';
 import MotionToggle from '@/components/ui/MotionToggle';
+import { CONTACT, telUrl, whatsappUrl, mailtoUrl } from '@/lib/site';
+
+// Root-relative hashes so these links also work from the legal pages and the 404 page.
+const SOLUTION_LINKS = [
+  'AI-Powered Software',
+  'Intelligent Automation',
+  'Academic Technology',
+  'Institutional Intelligence',
+  'Custom AI SaaS',
+];
+
+const ECOSYSTEM_LINKS = ['ScholarCard AI', 'jyotAssist AI', 'StaffBridge', 'EventOS'];
+
+const LEGAL_LINKS = [
+  { href: '/legal/', label: 'Central Legal Hub' },
+  { href: '/legal/privacy/', label: 'Privacy Policy' },
+  { href: '/legal/terms/', label: 'Terms of Service' },
+  { href: '/legal/security/', label: 'Security Architecture' },
+  { href: '/legal/cookies/', label: 'Cookie Policy' },
+  { href: '/legal/disclaimer/', label: 'Disclaimer & Bounds' },
+];
 
 export default function Footer() {
-  const currentYear = 2026;
+  // Evaluated at build time (static export), so it follows the year of the latest deploy.
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="relative bg-[#0B0F19] border-t border-white/10 text-gray-400 overflow-hidden">
-      {/* Subtle Glow Backdrop */}
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12 relative z-10">
+      {/* md:pb-28 keeps the last row clear of the floating design switch, which sits bottom-right from md up */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12 md:pb-28 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
           {/* Brand Col */}
           <div className="lg:col-span-2 space-y-4">
-            <Link href="/" className="flex items-center gap-3">
+            <Link href="/" className="inline-flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-[#111724] border border-neon-cyan/40 p-1 flex items-center justify-center">
-                <svg viewBox="0 0 128 128" className="w-full h-full" fill="none">
+                <svg viewBox="0 0 128 128" className="w-full h-full" fill="none" aria-hidden="true">
                   <path d="M38 28v72M90 28v72M38 64h52" stroke="#B7C2D6" strokeWidth="14" strokeLinecap="round" />
                   <circle cx="38" cy="28" r="8" fill="#B7C2D6" />
                   <circle cx="38" cy="100" r="8" fill="#10B981" />
@@ -34,10 +55,37 @@ export default function Footer() {
               educational institutions, enterprises, and innovators with next-generation AI systems.
             </p>
 
+            {/* Direct contact: the phone number and email must be findable without opening a dialog */}
+            <ul className="pt-1 space-y-2 text-sm">
+              <li>
+                <a href={telUrl} className="inline-flex items-center gap-2 text-gray-200 hover:text-white transition-colors">
+                  <Phone className="w-4 h-4 text-gray-400" aria-hidden="true" />
+                  <span>{CONTACT.phoneDisplay}</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href={whatsappUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-gray-200 hover:text-white transition-colors"
+                >
+                  <MessageCircle className="w-4 h-4 text-emerald-400" aria-hidden="true" />
+                  <span>Chat on WhatsApp</span>
+                </a>
+              </li>
+              <li>
+                <a href={mailtoUrl()} className="inline-flex items-center gap-2 text-gray-200 hover:text-white transition-colors">
+                  <Mail className="w-4 h-4 text-gray-400" aria-hidden="true" />
+                  <span>{CONTACT.email}</span>
+                </a>
+              </li>
+            </ul>
+
             {/* Verified Google Business Address & Rating */}
             <div className="pt-2 space-y-2 text-xs font-mono text-gray-400">
               <div className="flex items-start gap-2">
-                <span className="text-emerald-400">📍</span>
+                <span className="text-emerald-400" aria-hidden="true">📍</span>
                 <span>
                   Bhavani Complex, Katargam, Surat, Gujarat 395004
                 </span>
@@ -45,9 +93,9 @@ export default function Footer() {
               <div className="flex items-center gap-3">
                 <span className="text-amber-400 font-bold flex items-center gap-1">
                   <span>5.0</span>
-                  <span>★★★★★</span>
+                  <span aria-hidden="true">★★★★★</span>
                 </span>
-                <span className="text-gray-400">|</span>
+                <span className="text-gray-400" aria-hidden="true">|</span>
                 <span className="text-cyan-400">Verified Google Business</span>
               </div>
             </div>
@@ -57,7 +105,7 @@ export default function Footer() {
                 href="https://github.com/Hi-Tech-AI-Solutions"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 hover:border-neon-cyan hover:text-neon-cyan flex items-center justify-center text-gray-300 transition-colors"
+                className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 hover:border-neon-cyan hover:text-white flex items-center justify-center text-gray-300 transition-colors"
                 aria-label="GitHub Organization"
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
@@ -65,124 +113,70 @@ export default function Footer() {
                 </svg>
               </a>
               <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 bg-emerald-950/40 border border-emerald-500/30 px-2.5 py-1 rounded-full">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" aria-hidden="true" />
                 <span>24/7 Operations</span>
               </div>
             </div>
           </div>
 
           {/* Solutions Col */}
-          <div>
-            <h3 className="text-xs font-mono uppercase tracking-widest text-white mb-4">
+          <nav aria-label="Core solutions">
+            <h2 className="text-xs font-mono uppercase tracking-widest text-white mb-4">
               Core Solutions
-            </h3>
+            </h2>
             <ul className="space-y-2.5 text-sm">
-              <li>
-                <a href="#solutions" className="hover:text-neon-cyan transition-colors">
-                  AI-Powered Software
-                </a>
-              </li>
-              <li>
-                <a href="#solutions" className="hover:text-neon-cyan transition-colors">
-                  Intelligent Automation
-                </a>
-              </li>
-              <li>
-                <a href="#solutions" className="hover:text-neon-cyan transition-colors">
-                  Academic Technology
-                </a>
-              </li>
-              <li>
-                <a href="#solutions" className="hover:text-neon-cyan transition-colors">
-                  Institutional Intelligence
-                </a>
-              </li>
-              <li>
-                <a href="#solutions" className="hover:text-neon-cyan transition-colors">
-                  Custom AI SaaS
-                </a>
-              </li>
+              {SOLUTION_LINKS.map((label) => (
+                <li key={label}>
+                  <Link href="/#solutions" className="hover:text-white transition-colors">
+                    {label}
+                  </Link>
+                </li>
+              ))}
             </ul>
-          </div>
+          </nav>
 
           {/* Products & Ecosystem Col */}
-          <div>
-            <h3 className="text-xs font-mono uppercase tracking-widest text-white mb-4">
+          <nav aria-label="Product ecosystem">
+            <h2 className="text-xs font-mono uppercase tracking-widest text-white mb-4">
               Ecosystem
-            </h3>
+            </h2>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <a
-                  href="#ecosystem"
-                  className="hover:text-neon-cyan transition-colors flex items-center justify-between"
+                <Link
+                  href="/#jyotos"
+                  className="hover:text-white transition-colors flex items-center justify-between"
                 >
                   <span>JyotOS Platform</span>
                   <span className="text-[10px] font-mono text-violet-400 bg-violet-950/50 px-1.5 py-0.5 rounded border border-violet-500/30">
                     Flagship
                   </span>
-                </a>
+                </Link>
               </li>
-              <li>
-                <a href="#ecosystem" className="hover:text-neon-cyan transition-colors">
-                  ScholarCard AI
-                </a>
-              </li>
-              <li>
-                <a href="#ecosystem" className="hover:text-neon-cyan transition-colors">
-                  jyotAssist AI
-                </a>
-              </li>
-              <li>
-                <a href="#ecosystem" className="hover:text-neon-cyan transition-colors">
-                  StaffBridge
-                </a>
-              </li>
-              <li>
-                <a href="#ecosystem" className="hover:text-neon-cyan transition-colors">
-                  EventOS
-                </a>
-              </li>
+              {ECOSYSTEM_LINKS.map((label) => (
+                <li key={label}>
+                  <Link href="/#ecosystem" className="hover:text-white transition-colors">
+                    {label}
+                  </Link>
+                </li>
+              ))}
             </ul>
-          </div>
+          </nav>
 
           {/* Legal & Compliance Col */}
-          <div>
-            <h3 className="text-xs font-mono uppercase tracking-widest text-white mb-4">
+          <nav aria-label="Governance and legal">
+            <h2 className="text-xs font-mono uppercase tracking-widest text-white mb-4">
               Governance & Legal
-            </h3>
+            </h2>
             <ul className="space-y-2.5 text-sm">
-              <li>
-                <Link href="/legal/" className="hover:text-neon-cyan transition-colors">
-                  Central Legal Hub
-                </Link>
-              </li>
-              <li>
-                <Link href="/legal/privacy/" className="hover:text-neon-cyan transition-colors">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="/legal/terms/" className="hover:text-neon-cyan transition-colors">
-                  Terms of Service
-                </Link>
-              </li>
-              <li>
-                <Link href="/legal/security/" className="hover:text-neon-cyan transition-colors">
-                  Security Architecture
-                </Link>
-              </li>
-              <li>
-                <Link href="/legal/cookies/" className="hover:text-neon-cyan transition-colors">
-                  Cookie Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="/legal/disclaimer/" className="hover:text-neon-cyan transition-colors">
-                  Disclaimer & Bounds
-                </Link>
-              </li>
+              {LEGAL_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="hover:text-white transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
-          </div>
+          </nav>
         </div>
 
         {/* Bottom Bar */}
@@ -190,12 +184,12 @@ export default function Footer() {
           <div>
             © {currentYear} Hi-Tech AI Solutions & Services. All rights reserved.
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
             <span className="flex items-center gap-1.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" aria-hidden="true" />
               <span>Institutional Grade Security</span>
             </span>
-            <MotionToggle />
+            <MotionToggle alwaysShowLabel />
             <span>Version 1.0.0</span>
           </div>
         </div>

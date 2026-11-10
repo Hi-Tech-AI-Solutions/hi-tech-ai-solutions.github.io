@@ -12,6 +12,8 @@ export type ProductCategory =
   | 'Smart Campus & Identity'
   | 'Operations & Events';
 
+export type LiveAccess = 'public' | 'login' | 'none';
+
 export interface ProductMetric {
   label: string;
   value: string;
@@ -38,6 +40,16 @@ export interface Product {
   techStack: string[];
   targetAudience: string[];
   liveDemoUrl?: string;
+  /**
+   * What an anonymous visitor finds at liveDemoUrl:
+   *  'public' = usable without an account
+   *  'login'  = a sign-in page (a live system restricted to the institution's own staff)
+   *  'none'   = not reachable by the public right now, so no link is shown
+   * Last checked on 10 Nov 2026 by opening every URL without credentials.
+   */
+  liveAccess?: LiveAccess;
+  /** In-page section that explains the product, for products without a public app of their own. */
+  overviewAnchor?: string;
   githubRepo?: string;
   /** Only show the repo link when the repository is public (private repos 404 for visitors). */
   githubPublic?: boolean;
@@ -98,7 +110,7 @@ export const PRODUCTS: Product[] = [
     ],
     techStack: ['Next.js App Router', 'TypeScript', 'Tailwind CSS', 'PostgreSQL', 'FastAPI', 'Python AI Core'],
     targetAudience: ['Universities', 'Colleges', 'Polytechnic Institutes', 'Higher Education Consortia'],
-    liveDemoUrl: 'https://hi-tech-ai-solutions.github.io/#jyotos',
+    overviewAnchor: '/#jyotos',
     githubRepo: 'https://github.com/Hi-Tech-AI-Solutions',
     metrics: [
       { label: 'Uptime SLA', value: '99.99%' },
@@ -156,6 +168,7 @@ export const PRODUCTS: Product[] = [
     techStack: ['Next.js 16', 'React 19', 'Supabase Realtime', 'pgvector', 'Meta Cloud API v21.0', 'Gemini Flash'],
     targetAudience: ['Academic Admissions', 'Enterprise Customer Support', 'Counseling Teams'],
     liveDemoUrl: 'https://jyot-assist-ai.vercel.app/',
+    liveAccess: 'public',
     githubRepo: 'https://github.com/jyotOS-Core/jyotAssist-AI',
     metrics: [
       { label: 'Official Protocol', value: 'Meta API v21.0' },
@@ -213,6 +226,7 @@ export const PRODUCTS: Product[] = [
     techStack: ['Next.js 16', 'TypeScript', 'Tailwind CSS v4', 'Supabase PostgreSQL', 'Canvas API'],
     targetAudience: ['Colleges & Universities', 'ID Card Printers', 'Campus Librarians'],
     liveDemoUrl: 'https://scholarcard-ai.vercel.app/',
+    liveAccess: 'public',
     githubRepo: 'https://github.com/jyotOS-Core/scholarcard-ai',
     metrics: [
       { label: 'Print Standard', value: '300 DPI CR80' },
@@ -270,6 +284,7 @@ export const PRODUCTS: Product[] = [
     techStack: ['Next.js 16 App Router', 'TypeScript', 'Supabase PostgreSQL', 'PostgREST Streaming', 'Python Pandas'],
     targetAudience: ['College Principals', 'Department HODs', 'Faculty Members', 'NAAC Coordinators'],
     liveDemoUrl: 'https://classpulse-jyotos-ai.vercel.app/',
+    liveAccess: 'login',
     githubRepo: 'https://github.com/jyotOS-Core/ClassPulsePro',
     metrics: [
       { label: 'Reconciled Logs', value: '10,459+ Sessions' },
@@ -322,6 +337,7 @@ export const PRODUCTS: Product[] = [
     techStack: ['HTML5 Canvas', 'Vanilla CSS Engine', 'Web Audio API', 'Grounded LLM RAG', 'Vercel Edge CDN'],
     targetAudience: ['College Leadership', 'First-Year Students', 'Parents & Guardians', 'Institutional Presenters'],
     liveDemoUrl: 'https://jyotos-showcase.vercel.app/',
+    liveAccess: 'public',
     githubRepo: 'https://github.com/jyotOS-Core/JyotOS-AAI-Showcase',
     metrics: [
       { label: 'Memory Base', value: '65-Slide Wiki' },
@@ -374,6 +390,7 @@ export const PRODUCTS: Product[] = [
     techStack: ['Next.js 16', 'TypeScript', 'Supabase PostgreSQL', 'VAPID Web Push', 'Resend API'],
     targetAudience: ['College Principals', 'Academic Coordinators', 'Institutional HR', 'Faculty Members'],
     liveDemoUrl: 'https://staff-bridge-jyotos.vercel.app/',
+    liveAccess: 'public',
     githubRepo: 'https://github.com/jyotOS-Core/StaffBridge',
     metrics: [
       { label: 'Push Engine', value: 'VAPID Web Push' },
@@ -426,6 +443,9 @@ export const PRODUCTS: Product[] = [
     techStack: ['Next.js 16', 'React 19', 'TypeScript', 'Tailwind CSS 4', 'Supabase ems_* Schema'],
     targetAudience: ['Event Coordinators', 'Cultural Committees', 'College Deans', 'Student Participants'],
     liveDemoUrl: 'https://event-os-jyot-os.vercel.app/',
+    // Anonymous visitors are redirected to vercel.com/login (Vercel Deployment Protection).
+    // Set this to 'public' once protection is switched off for the production deployment.
+    liveAccess: 'none',
     githubRepo: 'https://github.com/jyotOS-Core/EventOS',
     metrics: [
       { label: 'Check-in Latency', value: '<400ms QR' },
@@ -473,6 +493,7 @@ export const PRODUCTS: Product[] = [
     techStack: ['Vanilla JS Engine', 'HTML5', 'CSS Glassmorphism', 'Web Scraping Pipeline', 'Vercel Edge'],
     targetAudience: ['Prospective Students', 'College Admissions Staff', 'Academic Counselors'],
     liveDemoUrl: 'https://gcas-vacant-seats.vercel.app/',
+    liveAccess: 'public',
     githubRepo: 'https://github.com/amroli/admission-webscrapper',
     metrics: [
       { label: 'Coverage', value: 'All VNSGU Colleges' },
@@ -525,6 +546,7 @@ export const PRODUCTS: Product[] = [
     techStack: ['Next.js 16', 'React 19', 'Supabase PostgreSQL', 'Tailwind CSS', 'QR Receipt Engine'],
     targetAudience: ['BAOU Coordinators', 'Study Centre Staff', 'Distance Learning Students'],
     liveDemoUrl: 'https://bamts.vercel.app/',
+    liveAccess: 'login',
     githubRepo: 'https://github.com/amroli/bamts',
     metrics: [
       { label: 'Verification', value: 'Public QR Route' },
@@ -577,6 +599,7 @@ export const PRODUCTS: Product[] = [
     techStack: ['Next.js App Router', 'TypeScript', 'Tailwind CSS', 'Supabase PostgreSQL', 'Lucide Icons'],
     targetAudience: ['Enrolled Freshmen', 'Campus Operators', 'College Administration', 'Faculty In-Charges'],
     liveDemoUrl: 'https://amroli-digital-campus.vercel.app/',
+    liveAccess: 'public',
     githubRepo: 'https://github.com/amroli/amroli-digital-campus',
     metrics: [
       { label: 'Intake Protocol', value: 'Virtual Token Queue' },
@@ -624,6 +647,7 @@ export const PRODUCTS: Product[] = [
     techStack: ['React 19', 'Vite', 'Tailwind CSS', 'Domain-Adapted NLP', 'Vercel Edge'],
     targetAudience: ['Distance Education Students', 'Open University Candidates', 'Helpdesk Volunteers'],
     liveDemoUrl: 'https://baou1839ai.vercel.app/',
+    liveAccess: 'public',
     githubRepo: 'https://github.com/amroli/baou-1839-ai-helpdesk',
     metrics: [
       { label: 'Linguistic Engine', value: 'Bilingual (EN / GUJ)' },
@@ -681,6 +705,7 @@ export const PRODUCTS: Product[] = [
     techStack: ['HTML5', 'Chart.js', 'Supabase JS SDK', 'PostgreSQL RLS', 'Google Workspace SSO'],
     targetAudience: ['Admission Deans', 'Institutional Trustees', 'Faculty Counselors', 'Registrars'],
     liveDemoUrl: 'https://adm-analytics.vercel.app/',
+    liveAccess: 'login',
     githubRepo: 'https://github.com/amroli/admission-analytics',
     metrics: [
       { label: 'Preference Matrix', value: 'Multi-Choice Model' },
@@ -733,6 +758,7 @@ export const PRODUCTS: Product[] = [
     techStack: ['Next.js App Router', 'TypeScript', 'Tailwind CSS', 'PostgreSQL', 'Google Workspace Auth'],
     targetAudience: ['College Principals', 'Department Heads', 'Administrative Staff', 'College Faculty'],
     liveDemoUrl: 'https://amroli-lms1.vercel.app/',
+    liveAccess: 'login',
     githubRepo: 'https://github.com/amroli/leave_management_system',
     metrics: [
       { label: 'Campuses', value: 'Campus 1 & Campus 2' },
@@ -743,3 +769,30 @@ export const PRODUCTS: Product[] = [
     demoAvailable: true,
   },
 ];
+
+export interface ProductLinkInfo {
+  href: string;
+  label: string;
+  /** Opens in a new tab */
+  external: boolean;
+  kind: 'public' | 'login' | 'overview';
+}
+
+/**
+ * The one honest link a visitor can follow for a product, or null when there is none.
+ * A public app opens in a new tab; a staff-only system is labelled as a sign-in page
+ * instead of being presented as a demo; products without an app link to their section.
+ */
+export function getProductLink(product: Product): ProductLinkInfo | null {
+  const access: LiveAccess = product.liveAccess ?? 'public';
+  if (product.liveDemoUrl && access === 'public') {
+    return { href: product.liveDemoUrl, label: 'Open live app', external: true, kind: 'public' };
+  }
+  if (product.liveDemoUrl && access === 'login') {
+    return { href: product.liveDemoUrl, label: 'Live system (staff sign-in)', external: true, kind: 'login' };
+  }
+  if (product.overviewAnchor) {
+    return { href: product.overviewAnchor, label: 'See how it works', external: false, kind: 'overview' };
+  }
+  return null;
+}
