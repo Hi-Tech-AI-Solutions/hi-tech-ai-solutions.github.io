@@ -26,6 +26,9 @@ interface NetworkNode {
   metrics: string;
 }
 
+// One neutral tone for every node: amber stays reserved for buttons and key links.
+const NODE_COLOR = '#B7C2D6';
+
 const NODES: NetworkNode[] = [
   {
     id: 'problem',
@@ -34,7 +37,7 @@ const NODES: NetworkNode[] = [
     icon: HelpCircle,
     x: 50,
     y: 10,
-    color: '#38BDF8', // Sky Cyan
+    color: NODE_COLOR,
     summary: 'Operational friction and institutional bottlenecks.',
     details:
       'We start from ground reality: academic administrative drag, fragmented student verification, manual staff coordination, and uncoordinated event lifecycles.',
@@ -47,7 +50,7 @@ const NODES: NetworkNode[] = [
     icon: Database,
     x: 50,
     y: 26,
-    color: '#B7C2D6', // Electric Cyan
+    color: NODE_COLOR,
     summary: 'Institutional & operational signal streams.',
     details:
       'Secure ingestion of campus records, telemetry, schedules, and enterprise workflows with zero-leak data governance.',
@@ -60,7 +63,7 @@ const NODES: NetworkNode[] = [
     icon: Cpu,
     x: 50,
     y: 45,
-    color: '#8B5CF6', // Neural Violet
+    color: NODE_COLOR,
     summary: 'Cognitive reasoning & orchestration layer.',
     details:
       'Multi-agent systems, fine-tuned domain LLMs, and deterministic rule engines coordinating intelligent task dispatch.',
@@ -73,7 +76,7 @@ const NODES: NetworkNode[] = [
     icon: BarChart3,
     x: 20,
     y: 62,
-    color: '#38BDF8', // Cyan
+    color: NODE_COLOR,
     summary: 'Real-time decision intelligence.',
     details:
       'Translating institutional volume into clear predictive signals, attendance heatmaps, and executive visibility.',
@@ -86,7 +89,7 @@ const NODES: NetworkNode[] = [
     icon: Zap,
     x: 50,
     y: 62,
-    color: '#10B981', // Pulse Emerald
+    color: NODE_COLOR,
     summary: 'Autonomous zero-drag workflows.',
     details:
       'Instantaneous credential generation, self-driving event check-ins, and automated multi-step approvals.',
@@ -99,7 +102,7 @@ const NODES: NetworkNode[] = [
     icon: BookOpen,
     x: 80,
     y: 62,
-    color: '#F59E0B', // Amber
+    color: NODE_COLOR,
     summary: 'Institutional memory & governance.',
     details:
       'Context-aware knowledge retrieval for assistant bots, audit compliance, and policy guidance.',
@@ -112,7 +115,7 @@ const NODES: NetworkNode[] = [
     icon: CheckCircle2,
     x: 50,
     y: 78,
-    color: '#10B981',
+    color: NODE_COLOR,
     summary: 'Production-hardened software ecosystem.',
     details:
       'Modular systems such as JyotOS, ScholarCard AI, StaffBridge, and EventOS deployed into mission-critical production.',
@@ -125,7 +128,7 @@ const NODES: NetworkNode[] = [
     icon: TrendingUp,
     x: 50,
     y: 92,
-    color: '#B7C2D6',
+    color: NODE_COLOR,
     summary: 'Tangible institutional ROI & speed.',
     details:
       'Realized administrative time savings, 100% digital verification speed, and high-trust institutional transformation.',
@@ -196,7 +199,7 @@ export default function IntelligenceNetwork() {
             <defs>
               <linearGradient id="cyanVioletGlow" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="#B7C2D6" stopOpacity="0.8" />
-                <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0.8" />
+                <stop offset="100%" stopColor="#B7C2D6" stopOpacity="0.8" />
               </linearGradient>
             </defs>
 
@@ -224,7 +227,7 @@ export default function IntelligenceNetwork() {
                     <circle
                       r="1"
                       fill="#B7C2D6"
-                      className="animate-pulse"
+                      className="flow-dot animate-pulse"
                     >
                       <animate
                         attributeName="cx"
@@ -258,8 +261,10 @@ export default function IntelligenceNetwork() {
                   tabIndex={0}
                   role="button"
                   aria-label={`Node: ${node.label}`}
+                  aria-pressed={isActive}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
                       setActiveNodeId(node.id);
                     }
                   }}
@@ -368,8 +373,10 @@ export default function IntelligenceNetwork() {
               {NODES.map((n) => (
                 <button
                   key={n.id}
+                  type="button"
                   onClick={() => setActiveNodeId(n.id)}
-                  className={`text-[10px] font-mono px-2 py-1 rounded transition-all ${
+                  aria-pressed={n.id === activeNodeId}
+                  className={`text-[11px] font-mono px-2.5 py-1.5 rounded transition-all ${
                     n.id === activeNodeId
                       ? 'bg-neon-cyan text-black font-bold shadow-[0_0_10px_rgba(183,194,214,0.4)]'
                       : 'bg-white/5 text-gray-400 hover:text-white hover:bg-white/10'

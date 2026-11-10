@@ -160,7 +160,11 @@ export default function CapabilitiesSection() {
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex flex-wrap gap-2 p-1.5 rounded-xl bg-[#111724] border border-white/10 self-start md:self-auto">
+        <div
+          role="group"
+          aria-label="Filter capabilities"
+          className="flex flex-wrap gap-2 p-1.5 rounded-xl bg-[#111724] border border-white/10 self-start md:self-auto"
+        >
           {[
             { id: 'all', label: 'All Capabilities' },
             { id: 'ai', label: 'AI Solutions' },
@@ -170,8 +174,10 @@ export default function CapabilitiesSection() {
           ].map((tab) => (
             <button
               key={tab.id}
+              type="button"
               onClick={() => setSelectedFilter(tab.id)}
-              className={`text-xs font-mono px-3.5 py-1.5 rounded-lg transition-all ${
+              aria-pressed={selectedFilter === tab.id}
+              className={`text-xs font-mono px-3.5 py-2 rounded-lg transition-all ${
                 selectedFilter === tab.id
                   ? 'bg-gradient-to-r from-neon-cyan/20 to-violet-500/20 text-neon-cyan border border-neon-cyan/40 font-semibold shadow-[0_0_15px_rgba(183,194,214,0.2)]'
                   : 'text-gray-400 hover:text-white hover:bg-white/5'

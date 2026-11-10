@@ -112,7 +112,7 @@ export default function Navbar() {
             >
               {isCockpit ? (
                 <>
-                  <Zap className="w-3.5 h-3.5 text-neon-cyan" aria-hidden="true" />
+                  <Zap className="w-3.5 h-3.5 text-neon-cyan animate-pulse" aria-hidden="true" />
                   <span className="text-neon-cyan font-bold">Cockpit</span>
                 </>
               ) : (

@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import { AlertCircle, ShieldAlert, Cpu, Sparkles, HelpCircle } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Institutional Disclaimer & Prototype Status — Hi-Tech AI Solutions & Services',
+  title: 'Institutional Disclaimer & Prototype Status',
   description:
     'Official operational boundaries, AI decision-support limitations, prototype classifications, and intellectual property disclaimers for Hi-Tech AI Solutions & Services.',
 };
@@ -32,9 +32,9 @@ export default function DisclaimerPage() {
       <div className="p-5 rounded-2xl bg-rose-950/20 border border-rose-500/30 flex items-start gap-4">
         <ShieldAlert className="w-6 h-6 text-rose-400 shrink-0 mt-0.5" />
         <div className="space-y-1">
-          <h3 className="text-sm font-bold text-white font-mono uppercase">
+          <h2 className="text-sm font-bold text-white font-mono uppercase">
             Mandatory Human-in-the-Loop Governance Notice
-          </h3>
+          </h2>
           <p className="text-xs text-gray-300">
             All AI models, predictive algorithms, automated triage agents, and anomaly detectors deployed across the Hi-Tech ecosystem operate as assistive intelligence tools. They are designed to augment administrative staff and faculty, not replace statutory human institutional authority.
           </p>
@@ -76,7 +76,7 @@ export default function DisclaimerPage() {
             <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950/60 border border-emerald-500/40 text-emerald-400 font-bold uppercase">
               Live Production
             </span>
-            <h4 className="text-sm font-bold text-white">Commercial Deployments</h4>
+            <h3 className="text-sm font-bold text-white">Commercial Deployments</h3>
             <p className="text-xs text-gray-400">
               Battle-tested, enterprise-grade software backed by formal SLAs, 24/7 telemetry monitoring, and contractual uptime guarantees (e.g. JyotOS Core, Admission Analytics Hub).
             </p>
@@ -86,7 +86,7 @@ export default function DisclaimerPage() {
             <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950/60 border border-cyan-500/40 text-neon-cyan font-bold uppercase">
               Active Beta / Pilot
             </span>
-            <h4 className="text-sm font-bold text-white">Institutional Sandbox</h4>
+            <h3 className="text-sm font-bold text-white">Institutional Sandbox</h3>
             <p className="text-xs text-gray-400">
               Functional solutions deployed in staged campus environments for user acceptance testing, feedback gathering, and stress-load testing prior to general release.
             </p>
@@ -96,7 +96,7 @@ export default function DisclaimerPage() {
             <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-950/60 border border-amber-500/40 text-amber-400 font-bold uppercase">
               R&D / Experimental
             </span>
-            <h4 className="text-sm font-bold text-white">Innovation Prototypes</h4>
+            <h3 className="text-sm font-bold text-white">Innovation Prototypes</h3>
             <p className="text-xs text-gray-400">
               Forward-looking experimental frameworks, exploratory multi-agent protocols, and UI concept previews displayed strictly for technical demonstration and feedback.
             </p>
@@ -136,17 +136,17 @@ export default function DisclaimerPage() {
 
       {/* Section 5: Inquiries & Verification */}
       <section className="p-6 rounded-2xl bg-[#111724] border border-white/10 space-y-3">
-        <h3 className="text-sm font-bold text-white font-mono uppercase flex items-center gap-2">
-          <HelpCircle className="w-4 h-4 text-neon-cyan" />
+        <h2 className="text-sm font-bold text-white font-mono uppercase flex items-center gap-2">
+          <HelpCircle className="w-4 h-4 text-neon-cyan" aria-hidden="true" />
           <span>Questions & Governance Inquiries</span>
-        </h3>
+        </h2>
         <p className="text-xs text-gray-300">
           If you have questions regarding the classification of any tool, algorithm, or case study presented on this platform, or wish to review enterprise service agreements:
         </p>
         <div className="flex flex-wrap gap-4 text-xs font-mono text-cyan-400 pt-1">
           <span>Official Corporate Email: <a href="mailto:hitech.nft@gmail.com" className="underline text-white">hitech.nft@gmail.com</a></span>
           <span>•</span>
-          <span>Surat HQ Phone: <a href="tel:+919974803770" className="underline text-white">+919974803770</a></span>
+          <span>Surat HQ Phone: <a href="tel:+919974803770" className="underline text-white">+91 99748 03770</a></span>
         </div>
       </section>
     </div>

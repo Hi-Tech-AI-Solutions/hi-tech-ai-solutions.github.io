@@ -46,7 +46,11 @@ export default function CaseStudiesSection() {
       </div>
 
       {/* Case Study Selection Tabs */}
-      <div className="flex flex-wrap items-center justify-center gap-3 mb-12 relative z-10">
+      <div
+        role="group"
+        aria-label="Choose a case study"
+        className="flex flex-wrap items-center justify-center gap-3 mb-12 relative z-10"
+      >
         {CASE_STUDIES.map((study) => {
           const isSelected = study.id === selectedCaseId;
           return (
@@ -54,6 +58,7 @@ export default function CaseStudiesSection() {
               key={study.id}
               type="button"
               onClick={() => setSelectedCaseId(study.id)}
+              aria-pressed={isSelected}
               className={`px-4 py-2.5 rounded-xl text-xs font-mono transition-all flex items-center gap-2 border cursor-pointer ${
                 isSelected
                   ? 'bg-[#111724] border-cyan-500/60 text-white shadow-[0_0_20px_rgba(183,194,214,0.25)] font-bold'

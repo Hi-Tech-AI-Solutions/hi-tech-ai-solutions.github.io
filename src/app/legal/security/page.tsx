@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import { Lock, Shield, Server, KeyRound, FileCode2 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Security Architecture & Compliance — Hi-Tech AI Solutions & Services',
+  title: 'Security Architecture & Compliance',
   description:
     'Detailed technical breakdown of security controls, cryptographic isolation, encryption standards, and institutional data protection across Hi-Tech AI systems.',
 };

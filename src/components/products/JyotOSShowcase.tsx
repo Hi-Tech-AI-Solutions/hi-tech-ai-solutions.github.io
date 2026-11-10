@@ -150,54 +150,50 @@ export default function JyotOSShowcase() {
             {ARCH_TIERS.map((tier) => {
               const isSelected = tier.id === activeTierId;
 
+              // A real <button>: the div with role="button" let the Space key scroll the page.
               return (
-                <div
+                <button
                   key={tier.id}
+                  type="button"
                   onClick={() => setActiveTierId(tier.id)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') setActiveTierId(tier.id);
-                  }}
-                  tabIndex={0}
-                  role="button"
                   aria-pressed={isSelected}
-                  className={`p-5 rounded-2xl border transition-all duration-300 cursor-pointer flex items-center justify-between ${
+                  className={`w-full text-left p-5 rounded-2xl border transition-all duration-300 cursor-pointer flex items-center justify-between gap-3 ${
                     isSelected
                       ? `${tier.bgColor} ${tier.borderColor} shadow-[0_0_25px_-5px_rgba(183,194,214,0.3)] scale-[1.01]`
                       : 'bg-[#111724]/70 border-white/10 hover:border-white/20 hover:bg-white/5'
                   }`}
                 >
-                  <div className="flex items-center gap-4">
-                    <div
-                      className={`w-12 h-12 rounded-xl flex items-center justify-center border transition-all ${
+                  <span className="flex items-center gap-4">
+                    <span
+                      className={`w-12 h-12 shrink-0 rounded-xl flex items-center justify-center border transition-all ${
                         isSelected
                           ? `${tier.borderColor} bg-black/40 ${tier.color}`
                           : 'border-white/10 bg-white/5 text-gray-400'
                       }`}
                     >
-                      <tier.icon className="w-6 h-6" />
-                    </div>
-                    <div>
+                      <tier.icon className="w-6 h-6" aria-hidden="true" />
+                    </span>
+                    <span>
                       <span className={`text-[10px] font-mono tracking-wider font-semibold uppercase block ${tier.color}`}>
                         {tier.badge}
                       </span>
-                      <h3 className="text-lg font-bold text-white tracking-tight">
+                      <span className="block text-lg font-bold text-white tracking-tight">
                         {tier.name}
-                      </h3>
-                    </div>
-                  </div>
-
-                  <div className="text-right">
-                    <span
-                      className={`text-xs font-mono px-2.5 py-1 rounded transition-colors ${
-                        isSelected
-                          ? 'bg-neon-cyan text-black font-bold'
-                          : 'text-gray-400 bg-white/5'
-                      }`}
-                    >
-                      {isSelected ? 'Active Layer' : 'Inspect →'}
+                      </span>
                     </span>
-                  </div>
-                </div>
+                  </span>
+
+                  <span
+                    aria-hidden="true"
+                    className={`shrink-0 text-xs font-mono px-2.5 py-1 rounded transition-colors ${
+                      isSelected
+                        ? 'bg-neon-cyan text-black font-bold'
+                        : 'text-gray-400 bg-white/5'
+                    }`}
+                  >
+                    {isSelected ? 'Active Layer' : 'Inspect →'}
+                  </span>
+                </button>
               );
             })}
           </div>
@@ -213,8 +209,9 @@ export default function JyotOSShowcase() {
                   key={i}
                   className="flex items-center gap-2 p-2 rounded-lg bg-white/5 text-xs text-gray-300 font-mono"
                 >
-                  <mod.icon className="w-3.5 h-3.5 text-neon-cyan shrink-0" />
-                  <span className="truncate">{mod.label}</span>
+                  <mod.icon className="w-3.5 h-3.5 text-neon-cyan shrink-0" aria-hidden="true" />
+                  {/* wraps instead of truncating: "Faculty Governance" was cut off on narrow screens */}
+                  <span className="leading-tight">{mod.label}</span>
                 </div>
               ))}
             </div>

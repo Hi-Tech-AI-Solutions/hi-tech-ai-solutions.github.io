@@ -1,7 +1,9 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Product } from '@/data/products';
+import { useDialog } from '@/lib/useDialog';
+import ProductLink from './ProductLink';
 import {
   X,
   CheckCircle2,
@@ -9,7 +11,6 @@ import {
   ArrowRight,
   Cpu,
   Building2,
-  Globe,
   GitBranch,
 } from 'lucide-react';
 
@@ -22,50 +23,56 @@ export default function ProductDetailModal({
   product,
   onClose,
 }: ProductDetailModalProps) {
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
-    };
-    if (product) {
-      document.body.style.overflow = 'hidden';
-      window.addEventListener('keydown', handleKeyDown);
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [product, onClose]);
+  const dialogRef = useDialog<HTMLDivElement>(Boolean(product), onClose);
 
   if (!product) return null;
 
+  // Close the dialog first, then move the visitor (and keyboard focus) to the contact section.
+  const goToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    onClose();
+    window.setTimeout(() => {
+      if (window.location.hash !== '#contact') window.location.hash = 'contact';
+      document.getElementById('contact')?.scrollIntoView();
+      document.getElementById('btn-initiate-consultation')?.focus({ preventScroll: true });
+    }, 0);
+  };
+
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-black/85 backdrop-blur-xl animate-in fade-in duration-200"
+      ref={dialogRef}
+      tabIndex={-1}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-black/85 backdrop-blur-xl focus:outline-none"
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
+      onClick={(e) => {
+        // A click on the dark backdrop (not on the card) closes the dialog.
+        if (e.target === e.currentTarget) onClose();
+      }}
     >
       <div className="relative w-full max-w-3xl max-h-[92vh] overflow-y-auto cyber-glass rounded-3xl border border-neon-cyan/30 p-6 sm:p-9 shadow-[0_20px_60px_-15px_rgba(183,194,214,0.25)] space-y-7 bg-gradient-to-b from-[#111724] via-[#111724] to-[#0D121D]">
         {/* Close Button */}
         <button
+          type="button"
           onClick={onClose}
-          className="absolute top-6 right-6 p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-neon-cyan"
-          aria-label="Close product details modal"
+          className="absolute top-6 right-6 p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-cyan"
+          aria-label="Close product details"
         >
-          <X className="w-5 h-5" />
+          <X className="w-5 h-5" aria-hidden="true" />
         </button>
 
         {/* Modal Header */}
         <div className="space-y-3 pr-10">
           <div className="flex flex-wrap items-center gap-2">
-            <span className={`text-[10px] font-mono tracking-wider font-semibold uppercase px-2.5 py-1 rounded-md border ${product.badgeColor}`}>
+            <span className="text-[10px] font-mono tracking-wider font-semibold uppercase px-2.5 py-1 rounded-md border border-white/15 text-gray-200 bg-white/5">
               {product.status}
             </span>
             <span className="text-xs font-mono text-gray-400 bg-white/5 px-2.5 py-1 rounded-md border border-white/10">
               {product.category}
             </span>
             <div className="flex items-center gap-1.5 text-xs font-mono text-neon-cyan/90 bg-cyan-950/40 px-2.5 py-1 rounded-md border border-cyan-500/30">
-              <Building2 className="w-3 h-3" />
+              <Building2 className="w-3 h-3" aria-hidden="true" />
               <span>{product.institution}</span>
             </div>
           </div>
@@ -84,21 +91,21 @@ export default function ProductDetailModal({
             <span className="text-[10px] font-mono uppercase tracking-wider text-gray-400 block">
               Operational Telemetry & Performance Metrics:
             </span>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+            <dl className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
               {product.metrics.map((m, idx) => (
                 <div
                   key={idx}
                   className="p-3 rounded-2xl bg-black/50 border border-neon-cyan/20 flex flex-col justify-between space-y-1 shadow-[0_0_15px_rgba(183,194,214,0.05)]"
                 >
-                  <span className="text-[9px] uppercase font-mono text-gray-400 tracking-wider">
+                  <dt className="text-[9px] uppercase font-mono text-gray-400 tracking-wider">
                     {m.label}
-                  </span>
-                  <span className="text-xs sm:text-sm font-mono font-semibold text-neon-cyan truncate">
+                  </dt>
+                  <dd className="text-xs sm:text-sm font-mono font-semibold text-neon-cyan break-words">
                     {m.value}
-                  </span>
+                  </dd>
                 </div>
               ))}
-            </div>
+            </dl>
           </div>
         )}
 
@@ -108,8 +115,8 @@ export default function ProductDetailModal({
             {product.summary}
           </p>
           <div className="pt-3 border-t border-white/10">
-            <span className="text-xs font-mono text-neon-cyan uppercase tracking-wider block mb-1.5 flex items-center gap-1.5">
-              <Cpu className="w-3.5 h-3.5" />
+            <span className="text-xs font-mono text-neon-cyan uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+              <Cpu className="w-3.5 h-3.5" aria-hidden="true" />
               <span>Architecture & Implementation Blueprint:</span>
             </span>
             <p className="text-xs sm:text-sm text-gray-400 font-mono leading-relaxed">
@@ -120,38 +127,38 @@ export default function ProductDetailModal({
 
         {/* Core Highlights */}
         <div className="space-y-3">
-          <h4 className="text-xs font-mono uppercase tracking-wider text-gray-300">
+          <h3 className="text-xs font-mono uppercase tracking-wider text-gray-300">
             System Highlights & Institutional Capabilities:
-          </h4>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+          </h3>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
             {product.coreHighlights.map((hl, idx) => (
-              <div
+              <li
                 key={idx}
                 className="flex items-start gap-2.5 p-3 rounded-xl bg-white/5 border border-white/5 text-xs sm:text-sm text-gray-300"
               >
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" aria-hidden="true" />
                 <span className="leading-relaxed">{hl}</span>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
 
         {/* Modules Breakdown */}
         {product.modules.length > 0 && (
           <div className="space-y-3">
-            <h4 className="text-xs font-mono uppercase tracking-wider text-gray-300">
+            <h3 className="text-xs font-mono uppercase tracking-wider text-gray-300">
               Engineered Sub-Modules ({product.modules.length}):
-            </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            </h3>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {product.modules.map((mod, idx) => (
-                <div
+                <li
                   key={idx}
                   className="p-3.5 rounded-xl bg-[#111724] border border-white/10 space-y-1"
                 >
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between gap-2">
                     <span className="text-xs font-bold text-white font-mono">{mod.name}</span>
                     <span
-                      className={`text-[9px] font-mono px-1.5 py-0.5 rounded border ${
+                      className={`text-[9px] font-mono px-1.5 py-0.5 rounded border shrink-0 ${
                         mod.status === 'Production'
                           ? 'border-emerald-500/40 text-emerald-400 bg-emerald-950/40'
                           : 'border-violet-500/40 text-violet-400 bg-violet-950/40'
@@ -161,9 +168,9 @@ export default function ProductDetailModal({
                     </span>
                   </div>
                   <p className="text-xs text-gray-400 leading-relaxed">{mod.description}</p>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         )}
 
@@ -201,44 +208,35 @@ export default function ProductDetailModal({
           </div>
         </div>
 
-        {/* Primary Action Buttons Footer */}
-        <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
-            {product.liveDemoUrl && (
-              <a
-                href={product.liveDemoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-cyber-primary text-xs py-2.5 px-4 flex items-center gap-1.5 w-full sm:w-auto justify-center"
-              >
-                <Globe className="w-3.5 h-3.5" />
-                <span>Launch Live Application</span>
-                <ExternalLink className="w-3 h-3" />
-              </a>
-            )}
-
-            {product.githubRepo && product.githubPublic && (
-              <a
-                href={product.githubRepo}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-cyber-secondary text-xs py-2.5 px-4 flex items-center gap-1.5 w-full sm:w-auto justify-center"
-              >
-                <GitBranch className="w-3.5 h-3.5 text-violet-400" />
-                <span>Inspect Repository</span>
-                <ExternalLink className="w-3 h-3" />
-              </a>
-            )}
-          </div>
-
+        {/* Actions: the enquiry is the one amber button; links that leave the site stay neutral */}
+        <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3">
           <a
             href="#contact"
-            onClick={onClose}
-            className="inline-flex items-center gap-1.5 text-xs font-mono text-gray-300 hover:text-white px-4 py-2.5 rounded-xl border border-white/10 hover:border-neon-cyan/50 transition-all w-full sm:w-auto justify-center"
+            onClick={goToContact}
+            className="btn-cyber-primary text-xs py-2.5 px-4 justify-center"
           >
             <span>Request Enterprise Consultation</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
           </a>
+
+          <ProductLink
+            product={product}
+            className="btn-cyber-secondary text-xs py-2.5 px-4 justify-center"
+          />
+
+          {product.githubRepo && product.githubPublic && (
+            <a
+              href={product.githubRepo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-cyber-secondary text-xs py-2.5 px-4 justify-center"
+            >
+              <GitBranch className="w-3.5 h-3.5 text-violet-400" aria-hidden="true" />
+              <span>Inspect Repository</span>
+              <ExternalLink className="w-3 h-3" aria-hidden="true" />
+              <span className="sr-only">(opens in a new tab)</span>
+            </a>
+          )}
         </div>
       </div>
     </div>

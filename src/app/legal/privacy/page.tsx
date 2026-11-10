@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import { ShieldCheck, Lock, EyeOff, Server, CheckCircle2 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy & Zero Data Leakage — Hi-Tech AI Solutions & Services',
+  title: 'Privacy Policy & Zero Data Leakage',
   description:
     'Institutional privacy framework, student data isolation standards, and Digital Personal Data Protection compliance for Hi-Tech AI Solutions & Services.',
 };

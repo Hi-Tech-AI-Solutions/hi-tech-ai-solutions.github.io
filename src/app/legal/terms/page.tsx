@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import { CheckCircle2, ShieldAlert } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service & Institutional SLA — Hi-Tech AI Solutions & Services',
+  title: 'Terms of Service & Institutional SLA',
   description:
     'Institutional master services agreement, acceptable use guidelines, and enterprise SLAs governing the Hi-Tech AI software and JyotOS ecosystem.',
 };
