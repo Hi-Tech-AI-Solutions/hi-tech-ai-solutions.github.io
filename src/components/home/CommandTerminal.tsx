@@ -134,9 +134,9 @@ export default function CommandTerminal() {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto neon-conic-border rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(0,240,255,0.15)] bg-[#040813]/90 backdrop-blur-2xl border border-neon-cyan/20">
+    <div className="w-full max-w-4xl mx-auto neon-conic-border rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(183,194,214,0.15)] bg-[#0D121D]/90 backdrop-blur-2xl border border-neon-cyan/20">
       {/* Terminal Top Command Bar */}
-      <div className="flex items-center justify-between px-4 sm:px-6 py-3 bg-[#080f1e] border-b border-white/10 font-mono text-xs">
+      <div className="flex items-center justify-between px-4 sm:px-6 py-3 bg-[#111724] border-b border-white/10 font-mono text-xs">
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1.5">
             <span className="w-3 h-3 rounded-full bg-rose-500/80 inline-block shadow-[0_0_8px_rgba(244,63,94,0.6)]" />
@@ -159,7 +159,7 @@ export default function CommandTerminal() {
       </div>
 
       {/* Preset Chips Bar */}
-      <div className="px-4 sm:px-6 py-3 bg-[#060b17] border-b border-white/5 flex items-center gap-2 overflow-x-auto no-scrollbar">
+      <div className="px-4 sm:px-6 py-3 bg-[#111724] border-b border-white/5 flex items-center gap-2 overflow-x-auto no-scrollbar">
         <span className="text-[10px] font-mono text-gray-400 uppercase tracking-wider shrink-0 flex items-center gap-1">
           <Sparkles className="w-3 h-3 text-neon-cyan" />
           <span>Telemetry Presets:</span>
@@ -171,7 +171,7 @@ export default function CommandTerminal() {
             onClick={() => handleSelectPreset(preset)}
             className={`text-xs font-mono px-3 py-1.5 rounded-xl whitespace-nowrap transition-all border shrink-0 ${
               activePreset.id === preset.id
-                ? 'bg-neon-cyan/15 text-neon-cyan border-neon-cyan/60 font-semibold shadow-[0_0_15px_rgba(0,240,255,0.2)]'
+                ? 'bg-neon-cyan/15 text-neon-cyan border-neon-cyan/60 font-semibold shadow-[0_0_15px_rgba(183,194,214,0.2)]'
                 : 'bg-white/5 text-gray-400 hover:text-white border-white/10 hover:border-white/20'
             }`}
           >
@@ -181,7 +181,7 @@ export default function CommandTerminal() {
       </div>
 
       {/* Interactive Input Form */}
-      <form onSubmit={handleCustomSubmit} className="p-4 sm:p-6 bg-[#040813]">
+      <form onSubmit={handleCustomSubmit} className="p-4 sm:p-6 bg-[#0D121D]">
         <div className="relative flex items-center">
           <Terminal className="absolute left-3.5 w-4 h-4 text-neon-cyan shrink-0 pointer-events-none" />
           <input
@@ -201,7 +201,7 @@ export default function CommandTerminal() {
         </div>
 
         {/* Live Output HUD */}
-        <div className="mt-4 p-4 sm:p-5 rounded-2xl bg-[#060b17]/90 border border-white/10 space-y-3 relative overflow-hidden">
+        <div className="mt-4 p-4 sm:p-5 rounded-2xl bg-[#111724]/90 border border-white/10 space-y-3 relative overflow-hidden">
           <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-white/10 text-xs font-mono">
             <div className="flex items-center gap-2">
               <Cpu className="w-3.5 h-3.5 text-neon-cyan" />
@@ -252,7 +252,7 @@ export default function CommandTerminal() {
                 href={activePreset.productLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs font-mono font-semibold px-4 py-1.5 rounded-xl bg-gradient-to-r from-neon-cyan to-sky-400 hover:from-neon-cyan/90 hover:to-sky-400/90 text-black shadow-[0_0_15px_rgba(0,240,255,0.3)] transition-all flex items-center gap-1.5"
+                className="text-xs font-mono font-semibold px-4 py-1.5 rounded-xl bg-accent hover:bg-accent-hover text-[#0B0F19] shadow-[0_0_15px_rgba(183,194,214,0.3)] transition-all flex items-center gap-1.5"
               >
                 <span>Launch {activePreset.productName}</span>
                 <ArrowRight className="w-3 h-3" />

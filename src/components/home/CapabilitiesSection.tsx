@@ -151,7 +151,7 @@ export default function CapabilitiesSection() {
             <Sparkles className="w-3.5 h-3.5" />
             <span>Engineered Capabilities</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-semibold text-white tracking-tight">
             What We Build
           </h2>
           <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
@@ -161,7 +161,7 @@ export default function CapabilitiesSection() {
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex flex-wrap gap-2 p-1.5 rounded-xl bg-[#080e1a] border border-white/10 self-start md:self-auto">
+        <div className="flex flex-wrap gap-2 p-1.5 rounded-xl bg-[#111724] border border-white/10 self-start md:self-auto">
           {[
             { id: 'all', label: 'All Capabilities' },
             { id: 'ai', label: 'AI Solutions' },
@@ -174,7 +174,7 @@ export default function CapabilitiesSection() {
               onClick={() => setSelectedFilter(tab.id)}
               className={`text-xs font-mono px-3.5 py-1.5 rounded-lg transition-all ${
                 selectedFilter === tab.id
-                  ? 'bg-gradient-to-r from-neon-cyan/20 to-violet-500/20 text-neon-cyan border border-neon-cyan/40 font-semibold shadow-[0_0_15px_rgba(0,240,255,0.2)]'
+                  ? 'bg-gradient-to-r from-neon-cyan/20 to-violet-500/20 text-neon-cyan border border-neon-cyan/40 font-semibold shadow-[0_0_15px_rgba(183,194,214,0.2)]'
                   : 'text-gray-400 hover:text-white hover:bg-white/5'
               }`}
             >

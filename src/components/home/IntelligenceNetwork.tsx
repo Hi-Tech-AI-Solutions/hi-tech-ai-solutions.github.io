@@ -47,7 +47,7 @@ const NODES: NetworkNode[] = [
     icon: Database,
     x: 50,
     y: 26,
-    color: '#00F0FF', // Electric Cyan
+    color: '#B7C2D6', // Electric Cyan
     summary: 'Institutional & operational signal streams.',
     details:
       'Secure ingestion of campus records, telemetry, schedules, and enterprise workflows with zero-leak data governance.',
@@ -125,7 +125,7 @@ const NODES: NetworkNode[] = [
     icon: TrendingUp,
     x: 50,
     y: 92,
-    color: '#00F0FF',
+    color: '#B7C2D6',
     summary: 'Tangible institutional ROI & speed.',
     details:
       'Realized administrative time savings, 100% digital verification speed, and high-trust institutional transformation.',
@@ -195,7 +195,7 @@ export default function IntelligenceNetwork() {
           >
             <defs>
               <linearGradient id="cyanVioletGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#00F0FF" stopOpacity="0.8" />
+                <stop offset="0%" stopColor="#B7C2D6" stopOpacity="0.8" />
                 <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0.8" />
               </linearGradient>
             </defs>
@@ -214,7 +214,7 @@ export default function IntelligenceNetwork() {
                     y1={`${p1.y}%`}
                     x2={`${p2.x}%`}
                     y2={`${p2.y}%`}
-                    stroke={isConnectedToActive ? '#00F0FF' : 'rgba(255, 255, 255, 0.12)'}
+                    stroke={isConnectedToActive ? '#B7C2D6' : 'rgba(255, 255, 255, 0.12)'}
                     strokeWidth={isConnectedToActive ? '0.8' : '0.4'}
                     strokeDasharray={isConnectedToActive ? '2 1' : 'none'}
                     className="transition-all duration-500"
@@ -223,7 +223,7 @@ export default function IntelligenceNetwork() {
                   {isConnectedToActive && (
                     <circle
                       r="1"
-                      fill="#00F0FF"
+                      fill="#B7C2D6"
                       className="animate-pulse"
                     >
                       <animate
@@ -283,7 +283,7 @@ export default function IntelligenceNetwork() {
                     cx={`${node.x}%`}
                     cy={`${node.y}%`}
                     r={isActive ? '4.8' : '3.6'}
-                    fill="#0a101f"
+                    fill="#111724"
                     stroke={isActive ? node.color : 'rgba(255, 255, 255, 0.25)'}
                     strokeWidth={isActive ? '0.9' : '0.5'}
                     className="transition-all duration-300 group-hover:stroke-neon-cyan"
@@ -371,7 +371,7 @@ export default function IntelligenceNetwork() {
                   onClick={() => setActiveNodeId(n.id)}
                   className={`text-[10px] font-mono px-2 py-1 rounded transition-all ${
                     n.id === activeNodeId
-                      ? 'bg-neon-cyan text-black font-bold shadow-[0_0_10px_rgba(0,240,255,0.4)]'
+                      ? 'bg-neon-cyan text-black font-bold shadow-[0_0_10px_rgba(183,194,214,0.4)]'
                       : 'bg-white/5 text-gray-400 hover:text-white hover:bg-white/10'
                   }`}
                 >

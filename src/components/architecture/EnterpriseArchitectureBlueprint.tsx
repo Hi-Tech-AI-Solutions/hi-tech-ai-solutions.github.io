@@ -58,7 +58,7 @@ const ARCH_LAYERS: ArchLayer[] = [
     icon: Cpu,
     accentColor: 'text-violet-400',
     borderColor: 'border-violet-500/40',
-    glowColor: 'rgba(139,92,246,0.2)',
+    glowColor: 'rgba(183,194,214,0.2)',
     description:
       'The cognitive reasoning layer coordinating autonomous agents, anomaly detection algorithms, RAG knowledge retrieval, and predictive analytics models across the institutional lifecycle.',
     protocols: ['LangChain / LlamaIndex RAG Pipelines', 'Vector Embedding Streams', 'Deterministic Business Rules', 'Anomaly Scoring Engines'],
@@ -77,7 +77,7 @@ const ARCH_LAYERS: ArchLayer[] = [
     icon: Server,
     accentColor: 'text-neon-cyan',
     borderColor: 'border-cyan-500/40',
-    glowColor: 'rgba(0,240,255,0.25)',
+    glowColor: 'rgba(183,194,214,0.25)',
     description:
       'The central nervous system linking students, faculty, administrators, and trustees into one synchronized institutional directory with single sign-on, auditing, and multi-tenant partitioning.',
     protocols: ['Next.js 15 App Router', 'FastAPI Micro-Core', 'Asynchronous Task Workers', 'Event Bus Dispatcher'],
@@ -121,14 +121,14 @@ export default function EnterpriseArchitectureBlueprint() {
 
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-16 space-y-4 relative z-10">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-violet-950/60 border border-violet-500/40 text-violet-300 text-xs font-mono uppercase tracking-widest shadow-[0_0_20px_rgba(139,92,246,0.2)]">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-violet-950/60 border border-violet-500/40 text-violet-300 text-xs font-mono uppercase tracking-widest shadow-[0_0_20px_rgba(183,194,214,0.2)]">
           <Network className="w-3.5 h-3.5 text-violet-400" />
           <span>Unified Enterprise Architecture</span>
         </div>
 
-        <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+        <h2 className="text-3xl sm:text-5xl font-semibold text-white tracking-tight leading-tight">
           Engineered for Sovereignty.{' '}
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-neon-cyan via-sky-300 to-violet-400">
+          <span className="text-neon-cyan">
             Architected for Scale.
           </span>
         </h2>
@@ -167,7 +167,7 @@ export default function EnterpriseArchitectureBlueprint() {
                   onClick={() => setSelectedLayerId(layer.id)}
                   className={`w-full text-left p-5 rounded-2xl transition-all duration-300 relative border flex items-center justify-between group cursor-pointer ${
                     isSelected
-                      ? `bg-[#080e1a] ${layer.borderColor} shadow-[0_0_30px_rgba(0,240,255,0.15)]`
+                      ? `bg-[#111724] ${layer.borderColor} shadow-[0_0_30px_rgba(183,194,214,0.15)]`
                       : 'cyber-glass border-white/5 hover:border-white/20'
                   }`}
                 >
@@ -214,7 +214,7 @@ export default function EnterpriseArchitectureBlueprint() {
           </div>
 
           {/* Architectural Principles Matrix */}
-          <div className="p-5 rounded-2xl bg-[#080e1a] border border-white/10 mt-6">
+          <div className="p-5 rounded-2xl bg-[#111724] border border-white/10 mt-6">
             <h5 className="text-xs font-mono uppercase tracking-wider text-gray-400 mb-3 flex items-center gap-2">
               <Lock className="w-3.5 h-3.5 text-neon-cyan" />
               <span>Core Architectural Tenets</span>
@@ -293,7 +293,7 @@ export default function EnterpriseArchitectureBlueprint() {
                 {selectedLayer.protocols.map((protocol, idx) => (
                   <span
                     key={idx}
-                    className="text-xs font-mono px-3 py-1 rounded-lg bg-[#080e1a] border border-white/10 text-cyan-300"
+                    className="text-xs font-mono px-3 py-1 rounded-lg bg-[#111724] border border-white/10 text-cyan-300"
                   >
                     {protocol}
                   </span>

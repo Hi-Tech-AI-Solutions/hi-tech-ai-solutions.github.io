@@ -45,7 +45,7 @@ export default function ProductDetailModal({
       aria-modal="true"
       aria-labelledby="modal-title"
     >
-      <div className="relative w-full max-w-3xl max-h-[92vh] overflow-y-auto cyber-glass rounded-3xl border border-neon-cyan/30 p-6 sm:p-9 shadow-[0_20px_60px_-15px_rgba(0,240,255,0.25)] space-y-7 bg-gradient-to-b from-[#080e1a] via-[#0b1328] to-[#040711]">
+      <div className="relative w-full max-w-3xl max-h-[92vh] overflow-y-auto cyber-glass rounded-3xl border border-neon-cyan/30 p-6 sm:p-9 shadow-[0_20px_60px_-15px_rgba(183,194,214,0.25)] space-y-7 bg-gradient-to-b from-[#111724] via-[#111724] to-[#0D121D]">
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -70,7 +70,7 @@ export default function ProductDetailModal({
             </div>
           </div>
 
-          <h2 id="modal-title" className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <h2 id="modal-title" className="text-3xl sm:text-4xl font-semibold text-white tracking-tight">
             {product.name}
           </h2>
           <p className="text-sm sm:text-base text-neon-cyan font-mono leading-relaxed">
@@ -88,12 +88,12 @@ export default function ProductDetailModal({
               {product.metrics.map((m, idx) => (
                 <div
                   key={idx}
-                  className="p-3 rounded-2xl bg-black/50 border border-neon-cyan/20 flex flex-col justify-between space-y-1 shadow-[0_0_15px_rgba(0,240,255,0.05)]"
+                  className="p-3 rounded-2xl bg-black/50 border border-neon-cyan/20 flex flex-col justify-between space-y-1 shadow-[0_0_15px_rgba(183,194,214,0.05)]"
                 >
                   <span className="text-[9px] uppercase font-mono text-gray-400 tracking-wider">
                     {m.label}
                   </span>
-                  <span className="text-xs sm:text-sm font-mono font-extrabold text-neon-cyan truncate">
+                  <span className="text-xs sm:text-sm font-mono font-semibold text-neon-cyan truncate">
                     {m.value}
                   </span>
                 </div>
@@ -146,7 +146,7 @@ export default function ProductDetailModal({
               {product.modules.map((mod, idx) => (
                 <div
                   key={idx}
-                  className="p-3.5 rounded-xl bg-[#080e1a] border border-white/10 space-y-1"
+                  className="p-3.5 rounded-xl bg-[#111724] border border-white/10 space-y-1"
                 >
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold text-white font-mono">{mod.name}</span>

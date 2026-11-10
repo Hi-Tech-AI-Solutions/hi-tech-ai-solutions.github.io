@@ -33,27 +33,42 @@
 }
 
 :root {
-  --color-cyber-bg: #02050a;
-  --color-cyber-surface: #060b14;
-  --color-cyan-glow: rgba(0, 240, 255, 0.4);
-  --color-violet-glow: rgba(139, 92, 246, 0.35);
+  --color-cyber-bg: #0B0F19;
+  --color-cyber-surface: #111724;
+  /* Midnight amber, 60-30-10: bg #0B0F19 (60), structure #1A2233 (30), accent amber (10, buttons and key links only) */
+  --color-structure: #1A2233;
+  --color-accent: #F5A524;
+  --color-accent-hover: #FFB93D;
+  --color-ink: #E8ECF3;
+  --color-ink-soft: #9AA7BD;
+  --color-cyan-glow: rgba(183,194,214, 0.22);
+  --color-violet-glow: rgba(183,194,214, 0.18);
 }
 
 @layer base {
+  h1, h2, h3 {
+    text-wrap: balance;
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
   html {
     scroll-behavior: smooth;
     color-scheme: dark;
   }
 
   body {
-    background-color: #02050a;
-    color: #f3f4f6;
+    background-color: #0B0F19;
+    color: var(--color-ink);
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
     overflow-x: hidden;
   }
 
   ::selection {
-    background-color: rgba(0, 240, 255, 0.3);
+    background-color: rgba(183,194,214, 0.3);
     color: #ffffff;
   }
 }
@@ -69,8 +84,8 @@
   }
 
   .cyber-glass:hover {
-    border-color: rgba(0, 240, 255, 0.4);
-    box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.8), 0 0 25px -4px rgba(0, 240, 255, 0.25);
+    border-color: rgba(183,194,214, 0.35);
+    box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.7);
   }
 
   /* Hardware-Accelerated Rotating Conic Gradient Neon Border (Persistent) */
@@ -85,14 +100,7 @@
     inset: -1px;
     border-radius: inherit;
     padding: 1.5px;
-    background: conic-gradient(
-      from var(--border-angle),
-      #00F0FF,
-      #8B5CF6,
-      #EC4899,
-      #10B981,
-      #00F0FF
-    );
+    background: conic-gradient(from var(--border-angle), rgba(183,194,214,0.1), #B7C2D6, rgba(183,194,214,0.1) 40%, rgba(183,194,214,0.1));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -113,14 +121,7 @@
     inset: -1px;
     border-radius: inherit;
     padding: 1.5px;
-    background: conic-gradient(
-      from var(--border-angle),
-      #00F0FF,
-      #8B5CF6,
-      #EC4899,
-      #10B981,
-      #00F0FF
-    );
+    background: conic-gradient(from var(--border-angle), rgba(183,194,214,0.1), #B7C2D6, rgba(183,194,214,0.1) 40%, rgba(183,194,214,0.1));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -146,10 +147,9 @@
     letter-spacing: 0.05em;
     text-transform: uppercase;
     border-radius: 9999px;
-    background: rgba(0, 240, 255, 0.08);
-    border: 1px solid rgba(0, 240, 255, 0.3);
-    color: #00F0FF;
-    box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+    background: rgba(183,194,214, 0.08);
+    border: 1px solid rgba(183,194,214, 0.25);
+    color: #B7C2D6;
   }
 
   /* Primary Cyber Button */
@@ -164,15 +164,22 @@
     font-weight: 600;
     letter-spacing: 0.025em;
     border-radius: 0.75rem;
-    color: #02050a;
-    background: linear-gradient(135deg, #00F0FF 0%, #38BDF8 100%);
-    box-shadow: 0 0 25px -2px rgba(0, 240, 255, 0.5);
+    color: #0B0F19;
+    background: var(--color-accent);
+    /* Front layer: the one element lifted off the page */
+    box-shadow: 0 10px 28px -10px rgba(245, 165, 36, 0.45), 0 2px 6px rgba(0, 0, 0, 0.4);
     transition: all 0.25s ease;
   }
 
   .btn-cyber-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 35px 0px rgba(0, 240, 255, 0.75);
+    transform: translateY(-1px);
+    background: var(--color-accent-hover);
+    box-shadow: 0 14px 32px -10px rgba(245, 165, 36, 0.6), 0 2px 6px rgba(0, 0, 0, 0.4);
+  }
+
+  .btn-cyber-primary:focus-visible {
+    outline: 2px solid var(--color-accent-hover);
+    outline-offset: 3px;
   }
 
   /* Secondary Cyber Button */
@@ -196,10 +203,9 @@
 
   .btn-cyber-secondary:hover {
     background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(0, 240, 255, 0.4);
-    color: #00F0FF;
-    transform: translateY(-2px);
-    box-shadow: 0 0 20px -3px rgba(0, 240, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #FFFFFF;
+    transform: translateY(-1px);
   }
 
   /* Mission Control Flight Deck Pill */
@@ -208,7 +214,7 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.35rem 0.85rem;
-    font-family: var(--font-jetbrains, monospace);
+    font-family: var(--font-geist-mono, monospace);
     font-size: 0.75rem;
     border-radius: 9999px;
     background: rgba(6, 11, 20, 0.8);
@@ -226,8 +232,8 @@
 .cyber-grid-bg {
   background-size: 40px 40px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
 }
 
 /* Radar Sweep Utility */
@@ -237,7 +243,7 @@
   left: 50%;
   width: 200%;
   height: 200%;
-  background: conic-gradient(from 0deg, transparent 0deg, rgba(0, 240, 255, 0.12) 60deg, transparent 60.1deg);
+  background: conic-gradient(from 0deg, transparent 0deg, rgba(183,194,214, 0.08) 60deg, transparent 60.1deg);
   animation: radar-sweep 8s linear infinite;
   transform-origin: 0 0;
   pointer-events: none;
@@ -254,3 +260,35 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ---- Scroll reveal (see components/ui/Reveal.tsx) ---- */
+.reveal-hidden {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.reveal-shown {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+/* ---- Layered hero: each plane reads --hero-p (0 → 1 over the hero scroll) ---- */
+.hero-plane-near  { transform: translate3d(0, calc(var(--hero-p, 0) * -60px), 0); will-change: transform; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-hidden { opacity: 1; transform: none; }
+  .hero-plane-near { transform: none; will-change: auto; }
+}
+
+/* ---- Motion off-switch (html[data-motion="off"], set by the toggle or the OS reduced-motion setting) ---- */
+html[data-motion="off"] *,
+html[data-motion="off"] *::before,
+html[data-motion="off"] *::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+
+html[data-motion="off"] .reveal-hidden { opacity: 1; transform: none; }
+html[data-motion="off"] .hero-plane-near { transform: none; will-change: auto; }

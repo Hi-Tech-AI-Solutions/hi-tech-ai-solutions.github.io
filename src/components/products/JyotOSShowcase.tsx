@@ -115,19 +115,19 @@ export default function JyotOSShowcase() {
   return (
     <section id="jyotos" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5 relative overflow-hidden">
       {/* Background Accent Gradients */}
-      <div className="absolute top-1/4 right-0 w-[550px] h-[550px] bg-cyan-500/10 blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-0 left-10 w-[450px] h-[450px] bg-violet-600/10 blur-[150px] pointer-events-none" />
+      <div className="absolute top-1/4 right-0 w-[550px] h-[550px] bg-cyan-500/5 blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-0 left-10 w-[450px] h-[450px] bg-violet-600/5 blur-[150px] pointer-events-none" />
 
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-16 space-y-4 relative z-10">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/40 text-neon-cyan text-xs font-mono uppercase tracking-widest shadow-[0_0_20px_rgba(0,240,255,0.2)]">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/40 text-neon-cyan text-xs font-mono uppercase tracking-widest shadow-[0_0_20px_rgba(183,194,214,0.2)]">
           <Sparkles className="w-3.5 h-3.5" />
           <span>Flagship Institutional Ecosystem</span>
         </div>
 
-        <h2 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight">
+        <h2 className="text-4xl sm:text-6xl font-semibold text-white tracking-tight leading-tight">
           One Campus.{' '}
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-neon-cyan via-sky-400 to-violet-400">
+          <span className="text-neon-cyan">
             One Intelligence.
           </span>
         </h2>
@@ -164,8 +164,8 @@ export default function JyotOSShowcase() {
                   aria-pressed={isSelected}
                   className={`p-5 rounded-2xl border transition-all duration-300 cursor-pointer flex items-center justify-between ${
                     isSelected
-                      ? `${tier.bgColor} ${tier.borderColor} shadow-[0_0_25px_-5px_rgba(0,240,255,0.3)] scale-[1.01]`
-                      : 'bg-[#080e1a]/70 border-white/10 hover:border-white/20 hover:bg-white/5'
+                      ? `${tier.bgColor} ${tier.borderColor} shadow-[0_0_25px_-5px_rgba(183,194,214,0.3)] scale-[1.01]`
+                      : 'bg-[#111724]/70 border-white/10 hover:border-white/20 hover:bg-white/5'
                   }`}
                 >
                   <div className="flex items-center gap-4">
@@ -245,7 +245,7 @@ export default function JyotOSShowcase() {
                 <activeTier.icon className={`w-8 h-8 ${activeTier.color}`} />
               </div>
               <div>
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                <h3 className="text-2xl sm:text-3xl font-semibold text-white tracking-tight">
                   {activeTier.name}
                 </h3>
                 <p className="text-xs font-mono text-neon-cyan mt-1">

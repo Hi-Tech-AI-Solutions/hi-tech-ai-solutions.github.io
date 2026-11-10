@@ -71,7 +71,7 @@ export default function LegalHubPage() {
           <Shield className="w-3.5 h-3.5" />
           <span>Governance Architecture</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        <h1 className="text-3xl sm:text-4xl font-semibold text-white tracking-tight">
           Central Legal Hub & Governance Directory
         </h1>
         <p className="text-gray-300 text-sm sm:text-base leading-relaxed mt-2 font-sans">
@@ -89,7 +89,7 @@ export default function LegalHubPage() {
             <Link
               key={idx}
               href={doc.href}
-              className="p-6 rounded-2xl bg-[#080e1a] border border-white/10 hover:border-cyan-500/40 transition-all flex flex-col justify-between group cursor-pointer"
+              className="p-6 rounded-2xl bg-[#111724] border border-white/10 hover:border-cyan-500/40 transition-all flex flex-col justify-between group cursor-pointer"
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between">

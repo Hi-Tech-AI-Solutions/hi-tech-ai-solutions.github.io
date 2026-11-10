@@ -3,17 +3,10 @@
 import React, { useState } from 'react';
 import { PRODUCTS, Product, ProductCategory } from '@/data/products';
 import ProductDetailModal from './ProductDetailModal';
-import {
-  Layers,
-  ArrowRight,
-  CheckCircle2,
-  ExternalLink,
-  Activity,
-  Cpu,
-  Building2,
-  Terminal,
-} from 'lucide-react';
+import { Layers, ArrowRight, ExternalLink } from 'lucide-react';
 import { useThemeMode } from '@/context/ThemeContext';
+
+const FEATURED_IDS = ['jyotos', 'jyotassist-ai', 'scholarcard-ai', 'classpulse-pro'];
 
 export default function ProductShowcase() {
   const { theme } = useThemeMode();
@@ -41,205 +34,186 @@ export default function ProductShowcase() {
     return PRODUCTS.filter((p) => p.category === categoryValue).length;
   };
 
+  // Featured cards only on the "All" view; filtered views show everything compactly.
+  const featured: Product[] =
+    selectedCategory === 'All'
+      ? FEATURED_IDS.map((id) => PRODUCTS.find((p) => p.id === id)).filter(
+          (p): p is Product => Boolean(p)
+        )
+      : [];
+  const rest = filteredProducts.filter((p) => !featured.some((f) => f.id === p.id));
+
   return (
-    <section id="ecosystem" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5 relative">
-      {/* Ambient Neon Backdrops */}
-      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[550px] h-[550px] bg-cyan-500/10 blur-[160px] pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-[550px] h-[550px] bg-violet-600/10 blur-[160px] pointer-events-none" />
-
-      {/* Header & Category Filter Controls */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 relative z-10">
-        <div className="max-w-2xl space-y-3">
-          <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-neon-cyan">
-            <Layers className="w-3.5 h-3.5 text-neon-cyan animate-pulse" />
-            <span>Operational Fleet ({PRODUCTS.length} Deployed Solutions)</span>
-          </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            The Hi-Tech Product Ecosystem
-          </h2>
-          <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
-            Every platform is purpose-built to eliminate institutional friction, automate complex
-            administrative pipelines, and empower higher education with AI-native intelligence.
-          </p>
+    <section
+      id="ecosystem"
+      className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5 relative"
+    >
+      {/* Header */}
+      <div className="max-w-2xl space-y-3 mb-10 relative z-10">
+        <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-neon-cyan">
+          <Layers className="w-3.5 h-3.5" />
+          <span>{PRODUCTS.length} deployed solutions</span>
         </div>
-
-        {/* Global Live Stat Pill */}
-        <div className="hidden lg:flex items-center gap-3 bg-[#080e1a]/80 border border-white/10 rounded-2xl px-4 py-2.5 backdrop-blur-md">
-          <Activity className="w-4 h-4 text-emerald-400 animate-pulse" />
-          <div className="text-left font-mono">
-            <div className="text-[10px] uppercase text-gray-400">Deployed Fleet</div>
-            <div className="text-xs font-bold text-white">13 Verified Live Solutions</div>
-          </div>
-        </div>
+        <h2 className="text-3xl sm:text-5xl font-semibold text-white tracking-tight">
+          The Hi-Tech product ecosystem
+        </h2>
+        <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
+          Every platform is purpose-built to remove institutional friction, automate complex
+          administrative pipelines, and bring AI-native intelligence to higher education.
+        </p>
       </div>
 
-      {/* Category Tabs with Dynamic Count Badges */}
-      <div className="flex flex-wrap gap-2 p-1.5 rounded-2xl bg-[#080e1a]/90 border border-white/10 mb-12 relative z-10 backdrop-blur-md">
+      {/* Category filter */}
+      <div
+        role="group"
+        aria-label="Filter products by category"
+        className="flex flex-wrap gap-2 p-1.5 rounded-2xl bg-[#111724] border border-white/10 mb-10 relative z-10"
+      >
         {categories.map((cat) => {
-          const count = getCategoryCount(cat.value);
           const isSelected = selectedCategory === cat.value;
           return (
             <button
               key={cat.value}
+              type="button"
               onClick={() => setSelectedCategory(cat.value)}
-              className={`text-xs font-mono px-3.5 py-2 rounded-xl transition-all flex items-center gap-2 ${
+              aria-pressed={isSelected}
+              className={`text-xs font-mono px-3.5 py-2 rounded-xl transition-colors flex items-center gap-2 border ${
                 isSelected
-                  ? 'bg-gradient-to-r from-neon-cyan/20 to-violet-500/20 text-neon-cyan border border-neon-cyan/50 font-semibold shadow-[0_0_20px_rgba(0,240,255,0.25)]'
-                  : 'text-gray-400 hover:text-white hover:bg-white/5 border border-transparent'
+                  ? 'bg-white/10 text-white border-white/20 font-semibold'
+                  : 'text-gray-400 hover:text-white hover:bg-white/5 border-transparent'
               }`}
             >
               <span>{cat.label}</span>
               <span
                 className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold ${
-                  isSelected
-                    ? 'bg-neon-cyan/20 text-neon-cyan border border-neon-cyan/30'
-                    : 'bg-white/10 text-gray-400'
+                  isSelected ? 'bg-neon-cyan/20 text-neon-cyan' : 'bg-white/10 text-gray-400'
                 }`}
               >
-                {count}
+                {getCategoryCount(cat.value)}
               </span>
             </button>
           );
         })}
       </div>
 
-      {/* Product Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 relative z-10">
-        {filteredProducts.map((product, idx) => {
-          const isFlagship = product.status === 'ECOSYSTEM FLAGSHIP';
-          const sysId = `SYS_${String(idx + 1).padStart(2, '0')} // ${product.id.slice(0, 10).toUpperCase()}`;
-
-          // Conditional card styling based on theme
-          const cardClass = isCockpit
-            ? `rounded-3xl p-7 flex flex-col justify-between group relative overflow-hidden transition-all duration-300 bg-gradient-to-b from-[#080e1a]/95 via-[#0a1224]/90 to-[#040711]/98 border border-white/10 hover:border-neon-cyan/50 hover:shadow-[0_16px_45px_-10px_rgba(0,240,255,0.35)] ${
-                isFlagship ? 'neon-conic-border shadow-[0_0_35px_rgba(0,240,255,0.2)]' : 'neon-conic-border-hover'
-              }`
-            : 'cyber-glass rounded-3xl p-7 flex flex-col justify-between group relative overflow-hidden transition-all duration-300 hover:border-neon-cyan/50 hover:shadow-[0_10px_35px_-10px_rgba(0,240,255,0.25)] bg-[#080e1a]/85';
-
-          return (
-            <div key={product.id} className={cardClass}>
-              {/* Top Neon Accent Glow Line */}
-              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-neon-cyan/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-              <div>
-                {/* Avionics Coordinate & Sensor Stamp (in Quantum Cockpit Mode) */}
-                {isCockpit && (
-                  <div className="flex items-center justify-between text-[10px] font-mono text-gray-400 mb-3 border-b border-white/5 pb-2">
-                    <span className="flex items-center gap-1.5 text-gray-400">
-                      <Terminal className="w-2.5 h-2.5 text-neon-cyan" />
-                      <span>{sysId}</span>
+      <div className="relative z-10 space-y-10">
+        {/* Featured four */}
+        {featured.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {featured.map((product, i) => (
+              <article
+                key={product.id}
+                className={`group flex flex-col justify-between rounded-3xl border border-white/10 bg-[#111724] p-7 sm:p-8 transition-colors hover:border-neon-cyan/40 ${
+                  i === 0 ? 'md:col-span-2' : ''
+                }`}
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-3 mb-4">
+                    <span className="text-[11px] font-mono uppercase tracking-wider text-neon-cyan">
+                      {product.category}
                     </span>
-                    <span className="text-emerald-400 flex items-center gap-1 font-bold">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      <span>LIVE</span>
+                    <span className="inline-flex items-center gap-1.5 text-[11px] font-mono text-gray-400">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" /> Live
                     </span>
                   </div>
-                )}
+                  <h3 className="text-2xl sm:text-3xl font-semibold text-white">{product.name}</h3>
+                  <p className="mt-2 text-gray-300 leading-relaxed max-w-2xl">{product.tagline}</p>
+                  <p className="mt-4 text-sm text-gray-400 leading-relaxed max-w-2xl line-clamp-3">
+                    {product.summary}
+                  </p>
 
-                {/* Card Header: Live Indicator, Status Badge & Module Count */}
-                <div className="flex items-center justify-between gap-2 mb-3">
-                  <div className="flex items-center gap-2">
-                    {!isCockpit && (
-                      <span className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-                      </span>
-                    )}
-                    <span className={`text-[10px] font-mono tracking-wider font-semibold uppercase px-2 py-0.5 rounded border ${product.badgeColor}`}>
-                      {product.status}
-                    </span>
-                  </div>
-                  <span className="text-[10px] font-mono text-gray-400 bg-white/5 px-2 py-0.5 rounded border border-white/5">
-                    {product.modules.length} Modules
-                  </span>
-                </div>
-
-                {/* Institution Scope Pill */}
-                <div className="flex items-center gap-1.5 text-[11px] font-mono text-gray-400 mb-3">
-                  <Building2 className="w-3 h-3 text-neon-cyan shrink-0" />
-                  <span className="truncate">{product.institution}</span>
-                </div>
-
-                {/* Title & Tagline */}
-                <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-neon-cyan transition-colors tracking-tight">
-                  {product.name}
-                </h3>
-                <p className="text-xs font-mono text-neon-cyan/90 mb-4 leading-relaxed line-clamp-2">
-                  {product.tagline}
-                </p>
-
-                {/* Summary */}
-                <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-sans mb-5 line-clamp-3">
-                  {product.summary}
-                </p>
-
-                {/* Telemetry Chips (Real Production Metrics) */}
-                {product.metrics && product.metrics.length > 0 && (
-                  <div className="grid grid-cols-2 gap-2 mb-5 p-2.5 rounded-xl bg-black/50 border border-white/5">
-                    {product.metrics.slice(0, 2).map((m, mIdx) => (
-                      <div key={mIdx} className="space-y-0.5">
-                        <div className="text-[9px] uppercase font-mono text-gray-400">{m.label}</div>
-                        <div className="text-xs font-mono font-bold text-white flex items-center gap-1">
-                          <Cpu className="w-2.5 h-2.5 text-neon-cyan shrink-0" />
-                          <span className="truncate">{m.value}</span>
+                  {product.metrics && product.metrics.length > 0 && (
+                    <dl className="mt-6 flex flex-wrap gap-x-10 gap-y-4">
+                      {product.metrics.slice(0, 3).map((m) => (
+                        <div key={m.label}>
+                          <dd className="text-xl font-semibold text-white">{m.value}</dd>
+                          <dt className="text-[11px] font-mono uppercase tracking-wider text-gray-500">
+                            {m.label}
+                          </dt>
                         </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-                {/* Quick Feature Bullets */}
-                <div className="space-y-2 mb-6">
-                  {product.coreHighlights.slice(0, 2).map((hl, hIdx) => (
-                    <div key={hIdx} className="flex items-start gap-2 text-xs text-gray-300">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
-                      <span className="line-clamp-2 leading-relaxed">{hl}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Bottom Actions: High-Voltage Direct Launch + Specs Modal */}
-              <div className="pt-4 border-t border-white/10 space-y-3">
-                <div className="flex items-center justify-between text-[11px] font-mono text-gray-400">
-                  <span>Category</span>
-                  <span className="text-neon-cyan/80">{product.category}</span>
+                      ))}
+                    </dl>
+                  )}
                 </div>
 
-                <div className="flex items-center gap-2 pt-1">
+                <div className="mt-8 flex flex-wrap items-center gap-3">
                   {product.liveDemoUrl && (
                     <a
                       href={product.liveDemoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 inline-flex items-center justify-center gap-1.5 text-xs font-mono font-bold px-3 py-2.5 rounded-xl bg-gradient-to-r from-neon-cyan to-sky-400 text-black shadow-[0_0_20px_rgba(0,240,255,0.4)] hover:shadow-[0_0_30px_rgba(0,240,255,0.7)] hover:scale-[1.02] active:scale-[0.98] transition-all"
+                      className="btn-cyber-primary !py-2.5 !px-5"
                     >
-                      <span>Launch Live App</span>
-                      <ExternalLink className="w-3 h-3 text-black" />
+                      <span>Launch live app</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
                     </a>
                   )}
-
                   <button
                     type="button"
                     onClick={() => setSelectedProduct(product)}
-                    className="inline-flex items-center justify-center gap-1 text-xs font-mono text-gray-300 hover:text-white px-3.5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-neon-cyan/40 transition-all group/btn"
-                    title="Inspect Technical Architecture"
+                    className="btn-cyber-secondary !py-2.5 !px-5"
                   >
-                    <span>Specs</span>
-                    <ArrowRight className="w-3 h-3 group-hover/btn:translate-x-0.5 transition-transform" />
+                    <span>Architecture &amp; specs</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
-              </div>
+              </article>
+            ))}
+          </div>
+        )}
+
+        {/* Compact list for everything else */}
+        {rest.length > 0 && (
+          <div>
+            {featured.length > 0 && (
+              <h3 className="text-sm font-mono uppercase tracking-widest text-gray-400 mb-4">
+                More from the ecosystem
+              </h3>
+            )}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {rest.map((product) => (
+                <article
+                  key={product.id}
+                  className="group flex flex-col justify-between rounded-2xl border border-white/10 bg-[#111724] p-5 transition-colors hover:border-neon-cyan/40"
+                >
+                  <div>
+                    <div className="text-[10px] font-mono uppercase tracking-wider text-gray-500 mb-2">
+                      {product.category}
+                    </div>
+                    <h4 className="text-lg font-semibold text-white">{product.name}</h4>
+                    <p className="mt-1.5 text-sm text-gray-400 leading-relaxed line-clamp-3">
+                      {product.tagline}
+                    </p>
+                  </div>
+                  <div className="mt-5 flex items-center justify-between text-sm">
+                    {product.liveDemoUrl ? (
+                      <a
+                        href={product.liveDemoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-accent hover:text-accent-hover transition-colors"
+                      >
+                        Launch <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
+                    ) : (
+                      <span />
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => setSelectedProduct(product)}
+                      className="inline-flex items-center gap-1 text-gray-400 hover:text-white transition-colors"
+                    >
+                      Specs <ArrowRight className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </article>
+              ))}
             </div>
-          );
-        })}
+          </div>
+        )}
       </div>
 
-      {/* Detail Modal */}
-      <ProductDetailModal
-        product={selectedProduct}
-        onClose={() => setSelectedProduct(null)}
-      />
+      <ProductDetailModal product={selectedProduct} onClose={() => setSelectedProduct(null)} />
     </section>
   );
 }

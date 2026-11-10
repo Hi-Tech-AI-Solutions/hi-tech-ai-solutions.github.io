@@ -1,30 +1,55 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import {
-  Terminal,
-  ArrowRight,
-  Activity,
-  Layers,
-  Shield,
-  Cpu,
-  Radio,
-  Clock,
-} from 'lucide-react';
-import IntelligenceNetwork from './IntelligenceNetwork';
-import CommandTerminal from './CommandTerminal';
+import React, { useState, useEffect, useRef } from 'react';
+import { ArrowRight, Radio, Clock } from 'lucide-react';
+import ProductWindow from './ProductWindow';
 import { useThemeMode } from '@/context/ThemeContext';
+import { isMotionOff, onMotionChange } from '@/lib/motion';
 
+/**
+ * Hero, built on the "mirror test": it says who it is for, what they get, and what to do next.
+ * Depth: back = soft light, middle = copy, front = the product window, which hangs over the
+ * bottom edge into the next section. Only the product window moves on scroll.
+ */
 export default function HeroSection() {
   const { theme } = useThemeMode();
   const isCockpit = theme === 'quantum-cockpit';
   const [timeString, setTimeString] = useState<string>('');
+  const heroRef = useRef<HTMLElement>(null);
+
+  // Scroll progress (0 → 1 across the hero) drives the product window only.
+  useEffect(() => {
+    const el = heroRef.current;
+    if (!el) return;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      if (isMotionOff()) {
+        el.style.setProperty('--hero-p', '0');
+        return;
+      }
+      const h = el.offsetHeight || 1;
+      const p = Math.min(1, Math.max(0, window.scrollY / h));
+      el.style.setProperty('--hero-p', p.toFixed(4));
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    const off = onMotionChange(update);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      off();
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
 
   useEffect(() => {
+    if (!isCockpit) return;
     const updateTime = () => {
-      const now = new Date();
       setTimeString(
-        now.toLocaleTimeString('en-IN', {
+        new Date().toLocaleTimeString('en-IN', {
           timeZone: 'Asia/Kolkata',
           hour12: false,
           hour: '2-digit',
@@ -36,114 +61,86 @@ export default function HeroSection() {
     updateTime();
     const interval = setInterval(updateTime, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [isCockpit]);
 
   return (
-    <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
-      {/* Background Ambient Glows & Grid */}
-      <div className="absolute top-12 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-gradient-to-b from-cyan-500/15 via-violet-500/10 to-transparent blur-[150px] pointer-events-none" />
-      <div className="absolute top-[650px] right-4 w-[500px] h-[500px] bg-violet-600/10 blur-[150px] pointer-events-none" />
+    <section
+      ref={heroRef}
+      className="relative pt-28 pb-0 md:pt-36 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10"
+    >
+      {/* Back layer: soft light behind the copy */}
+      <div className="absolute inset-x-0 top-0 h-[620px] pointer-events-none overflow-hidden" aria-hidden="true">
+        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[900px] max-w-full h-[420px] bg-[#1A2233]/60 blur-[140px]" />
+      </div>
 
-      {/* Flight Deck Top Telemetry Bar (Exclusive to Quantum Cockpit) */}
+      {/* Quantum Cockpit status bar */}
       {isCockpit && (
-        <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-2 rounded-2xl bg-[#040813]/85 border border-neon-cyan/30 mb-10 max-w-5xl mx-auto backdrop-blur-md font-mono text-[11px] text-gray-400 shadow-[0_0_20px_rgba(0,240,255,0.15)] animate-in fade-in duration-300">
+        <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 px-4 py-2 rounded-2xl bg-[#111724]/85 border border-white/10 mb-10 max-w-5xl mx-auto font-mono text-[11px] text-gray-400">
           <div className="flex items-center gap-2">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-            </span>
-            <span className="text-white font-bold">MISSION CONTROL</span>
+            <span className="h-2 w-2 rounded-full bg-emerald-500" />
+            <span className="text-white font-semibold">MISSION CONTROL</span>
             <span className="text-white/20">|</span>
-            <span className="text-neon-cyan/90">QUANTUM COCKPIT V3.8</span>
+            <span className="text-gray-300">QUANTUM COCKPIT V3.8</span>
           </div>
-
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-1.5 text-gray-300">
-              <Radio className="w-3 h-3 text-neon-cyan animate-pulse" />
+              <Radio className="w-3 h-3" />
               <span>PING: <strong className="text-emerald-400">11ms</strong></span>
             </div>
             <span className="text-white/20 hidden sm:inline">|</span>
             <div className="flex items-center gap-1.5 text-gray-300">
-              <Clock className="w-3 h-3 text-violet-400" />
-              <span className="text-white font-mono">{timeString || 'LIVE IST'}</span>
+              <Clock className="w-3 h-3" />
+              <span className="text-white">{timeString || 'LIVE IST'}</span>
             </div>
           </div>
         </div>
       )}
 
-      {/* Hero Content Header */}
-      <div className="text-center max-w-4xl mx-auto space-y-8 relative z-10">
-        {/* Futuristic Status Pill */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/60 border border-neon-cyan/40 text-neon-cyan text-xs font-mono uppercase tracking-widest shadow-[0_0_25px_rgba(0,240,255,0.3)]">
-          <span className="w-2 h-2 rounded-full bg-neon-cyan animate-ping" />
-          <span>Autonomous AI Solutions & Institutional Operating Systems</span>
+      {/* Middle layer: the copy. Readable immediately, never animated in. */}
+      <div className="text-center max-w-4xl mx-auto relative z-10">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-gray-300 text-xs font-mono tracking-wide mb-8">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+          <span>Built for colleges and universities</span>
         </div>
 
-        {/* Signature Headline */}
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.08]">
-          We don&apos;t just build software.{' '}
-          <span className="block mt-2 bg-clip-text text-transparent bg-gradient-to-r from-neon-cyan via-sky-400 to-violet-400">
-            We build intelligent solutions.
-          </span>
+        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-semibold tracking-tight text-white leading-[1.05]">
+          AI that runs your campus admin,{' '}
+          <span className="block mt-2 text-gray-400">so your staff can focus on students.</span>
         </h1>
 
-        {/* Subtitle */}
-        <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed font-sans">
-          Engineering mission-critical AI-native platforms, autonomous workflows, and institutional
-          operating ecosystems designed to solve real-world friction with quantum precision.
+        <p className="mt-7 text-base sm:text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
+          Admissions, exams, attendance, ID cards and a student helpdesk on one connected system.
+          Already live at Amroli colleges, BAOU Study Centre 1839 and VNSGU-affiliated campuses.
         </p>
 
-        {/* Interactive Dual Action Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
-          <a href="#ecosystem" className="btn-cyber-primary w-full sm:w-auto">
-            <span>Explore 13 Deployed Solutions</span>
+        {/* The one amber element on the screen */}
+        <div className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="#matcher" className="btn-cyber-primary w-full sm:w-auto">
+            <span>Find your solution in 60 seconds</span>
             <ArrowRight className="w-4 h-4" />
           </a>
-          <a href="#contact" className="btn-cyber-secondary w-full sm:w-auto">
-            <Terminal className="w-4 h-4 text-neon-cyan" />
-            <span>Build With Us</span>
+          <a href="#ecosystem" className="btn-cyber-secondary w-full sm:w-auto">
+            <span>See the 13 products</span>
           </a>
         </div>
 
-        {/* Real-Time Live Architecture Indicators */}
-        <div className="pt-4 flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs font-mono text-gray-400">
-          <div className={isCockpit ? "avionics-pill" : "flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full"}>
-            <Activity className="w-3.5 h-3.5 text-neon-cyan" />
-            <span>Status: <strong className="text-white">Active Production</strong></span>
-          </div>
-          <div className={isCockpit ? "avionics-pill" : "flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full"}>
-            <Layers className="w-3.5 h-3.5 text-violet-400" />
-            <span>Flagship: <strong className="text-white">JyotOS Suite</strong></span>
-          </div>
-          <div className={isCockpit ? "avionics-pill" : "flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full"}>
-            <Cpu className="w-3.5 h-3.5 text-cyan-400" />
-            <span>Fleet: <strong className="text-white">13 Deployed Solutions</strong></span>
-          </div>
-          <div className={isCockpit ? "avionics-pill" : "flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full"}>
-            <Shield className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Privacy: <strong className="text-white">Zero Leak Policy</strong></span>
-          </div>
-        </div>
+        <dl className="mt-12 grid grid-cols-3 max-w-2xl mx-auto gap-4 border-t border-white/10 pt-8">
+          {[
+            { v: '13', l: 'Products deployed' },
+            { v: '50,000+', l: 'Student records on JyotOS' },
+            { v: '1,500+', l: 'BAOU students managed' },
+          ].map((s) => (
+            <div key={s.l}>
+              <dd className="text-2xl sm:text-4xl font-semibold text-white tracking-tight">{s.v}</dd>
+              <dt className="mt-1 text-[11px] sm:text-xs text-gray-400">{s.l}</dt>
+            </div>
+          ))}
+        </dl>
       </div>
 
-      {/* Interactive AAI Command Terminal Centerpiece (in Quantum Cockpit Mode) */}
-      {isCockpit && (
-        <div className="mt-14 relative z-10 animate-in fade-in duration-300">
-          <CommandTerminal />
-        </div>
-      )}
-
-      {/* Signature Interactive Visualization: The Hi-Tech Intelligence Network */}
-      <div className="mt-20 pt-4 relative z-10">
-        <div className="text-center mb-6">
-          <span className="text-[11px] font-mono text-gray-400 uppercase tracking-widest">
-            {'// ARCHITECTURAL CORE TOPOLOGY'}
-          </span>
-          <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight mt-1">
-            The Hi-Tech Cognitive Processing Pipeline
-          </h3>
-        </div>
-        <IntelligenceNetwork />
+      {/* Front layer: the product window rises and hangs over the section edge */}
+      <div className="hero-plane-near relative z-20 mt-14 max-w-4xl mx-auto -mb-24 md:-mb-32">
+        <ProductWindow />
       </div>
     </section>
   );

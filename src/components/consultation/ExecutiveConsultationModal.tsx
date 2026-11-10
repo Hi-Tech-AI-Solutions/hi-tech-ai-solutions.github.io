@@ -115,7 +115,7 @@ Looking forward to hearing from you.`;
       <div className="absolute inset-0" onClick={onClose} />
 
       {/* Modal Card */}
-      <div className="relative z-10 w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-[#030712] border border-cyan-500/40 rounded-3xl p-6 sm:p-8 shadow-[0_0_50px_rgba(0,240,255,0.25)] flex flex-col">
+      <div className="relative z-10 w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-[#0B0F19] border border-cyan-500/40 rounded-3xl p-6 sm:p-8 shadow-[0_0_50px_rgba(183,194,214,0.25)] flex flex-col">
         {/* Top Header */}
         <div className="flex items-start justify-between gap-4 pb-5 border-b border-white/10">
           <div>
@@ -125,7 +125,7 @@ Looking forward to hearing from you.`;
             </div>
             <h3
               id="consultation-modal-title"
-              className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight"
+              className="text-2xl sm:text-3xl font-semibold text-white tracking-tight"
             >
               Initiate Executive Consultation
             </h3>
@@ -143,13 +143,13 @@ Looking forward to hearing from you.`;
         </div>
 
         {/* Tab Switcher */}
-        <div className="flex gap-2 my-5 p-1 rounded-xl bg-[#080e1a] border border-white/10 self-start">
+        <div className="flex gap-2 my-5 p-1 rounded-xl bg-[#111724] border border-white/10 self-start">
           <button
             type="button"
             onClick={() => setActiveTab('form')}
             className={`text-xs font-mono px-3.5 py-1.5 rounded-lg transition-all ${
               activeTab === 'form'
-                ? 'bg-gradient-to-r from-neon-cyan to-cyan-400 text-[#030712] font-bold shadow-[0_0_15px_rgba(0,240,255,0.4)]'
+                ? 'bg-accent text-[#0B0F19] font-bold shadow-[0_0_15px_rgba(183,194,214,0.4)]'
                 : 'text-gray-400 hover:text-white'
             }`}
           >
@@ -160,7 +160,7 @@ Looking forward to hearing from you.`;
             onClick={() => setActiveTab('channels')}
             className={`text-xs font-mono px-3.5 py-1.5 rounded-lg transition-all ${
               activeTab === 'channels'
-                ? 'bg-gradient-to-r from-neon-cyan to-cyan-400 text-[#030712] font-bold shadow-[0_0_15px_rgba(0,240,255,0.4)]'
+                ? 'bg-accent text-[#0B0F19] font-bold shadow-[0_0_15px_rgba(183,194,214,0.4)]'
                 : 'text-gray-400 hover:text-white'
             }`}
           >
@@ -181,7 +181,7 @@ Looking forward to hearing from you.`;
                   placeholder="e.g. Dr. Rajesh Patel"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl bg-[#080e1a] border border-white/10 text-white text-sm focus:outline-none focus:border-neon-cyan transition-colors"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#111724] border border-white/10 text-white text-sm focus:outline-none focus:border-neon-cyan transition-colors"
                 />
               </div>
               <div>
@@ -194,7 +194,7 @@ Looking forward to hearing from you.`;
                   placeholder="e.g. University / Enterprise"
                   value={formData.organization}
                   onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl bg-[#080e1a] border border-white/10 text-white text-sm focus:outline-none focus:border-neon-cyan transition-colors"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#111724] border border-white/10 text-white text-sm focus:outline-none focus:border-neon-cyan transition-colors"
                 />
               </div>
             </div>
@@ -209,7 +209,7 @@ Looking forward to hearing from you.`;
                   placeholder="name@institution.edu"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl bg-[#080e1a] border border-white/10 text-white text-sm focus:outline-none focus:border-neon-cyan transition-colors"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#111724] border border-white/10 text-white text-sm focus:outline-none focus:border-neon-cyan transition-colors"
                 />
               </div>
               <div>
@@ -221,7 +221,7 @@ Looking forward to hearing from you.`;
                   placeholder="+91 98765 43210"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl bg-[#080e1a] border border-white/10 text-white text-sm focus:outline-none focus:border-neon-cyan transition-colors"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#111724] border border-white/10 text-white text-sm focus:outline-none focus:border-neon-cyan transition-colors"
                 />
               </div>
             </div>
@@ -233,7 +233,7 @@ Looking forward to hearing from you.`;
               <select
                 value={formData.solution}
                 onChange={(e) => setFormData({ ...formData, solution: e.target.value })}
-                className="w-full px-4 py-2.5 rounded-xl bg-[#080e1a] border border-white/10 text-white text-sm focus:outline-none focus:border-neon-cyan transition-colors"
+                className="w-full px-4 py-2.5 rounded-xl bg-[#111724] border border-white/10 text-white text-sm focus:outline-none focus:border-neon-cyan transition-colors"
               >
                 <option value="JyotOS Campus Operating System">JyotOS — Campus Operating System</option>
                 <option value="ScholarCard AI Credentialing">ScholarCard AI — Verification & Digital IDs</option>
@@ -254,7 +254,7 @@ Looking forward to hearing from you.`;
                 placeholder="Briefly describe your campus, student scale, or technical timeline..."
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full px-4 py-2.5 rounded-xl bg-[#080e1a] border border-white/10 text-white text-sm focus:outline-none focus:border-neon-cyan transition-colors resize-none"
+                className="w-full px-4 py-2.5 rounded-xl bg-[#111724] border border-white/10 text-white text-sm focus:outline-none focus:border-neon-cyan transition-colors resize-none"
               />
             </div>
 
@@ -272,7 +272,7 @@ Looking forward to hearing from you.`;
               <button
                 type="button"
                 onClick={handleSendEmail}
-                className="w-full sm:flex-1 py-3 px-4 rounded-xl bg-gradient-to-r from-neon-cyan to-cyan-400 text-black font-semibold text-sm flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(0,240,255,0.3)] transition-all"
+                className="w-full sm:flex-1 py-3 px-4 rounded-xl bg-accent hover:bg-accent-hover text-[#0B0F19] font-semibold text-sm flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(183,194,214,0.3)] transition-all"
               >
                 <Send className="w-4 h-4" />
                 <span>Dispatch Email Inquiry</span>
@@ -282,7 +282,7 @@ Looking forward to hearing from you.`;
         ) : (
           <div className="space-y-4">
             {/* Quick Contact Cards */}
-            <div className="p-4 rounded-2xl bg-[#080e1a] border border-white/10 space-y-3">
+            <div className="p-4 rounded-2xl bg-[#111724] border border-white/10 space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2 text-sm font-semibold text-white">
                   <Mail className="w-4 h-4 text-neon-cyan" />
@@ -309,7 +309,7 @@ Looking forward to hearing from you.`;
               <p className="text-xs font-mono text-cyan-300 select-all">{OFFICIAL_EMAIL}</p>
             </div>
 
-            <div className="p-4 rounded-2xl bg-[#080e1a] border border-white/10 space-y-2">
+            <div className="p-4 rounded-2xl bg-[#111724] border border-white/10 space-y-2">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2 text-sm font-semibold text-white">
                   <MessageCircle className="w-4 h-4 text-emerald-400" />
@@ -322,7 +322,7 @@ Looking forward to hearing from you.`;
               <p className="text-xs font-mono text-emerald-300 select-all">{OFFICIAL_PHONE}</p>
             </div>
 
-            <div className="p-4 rounded-2xl bg-[#080e1a] border border-white/10 space-y-2">
+            <div className="p-4 rounded-2xl bg-[#111724] border border-white/10 space-y-2">
               <div className="flex items-center gap-2 text-sm font-semibold text-white">
                 <MapPin className="w-4 h-4 text-emerald-400" />
                 <span>Headquarters & Google Verified Office</span>
@@ -343,7 +343,7 @@ Looking forward to hearing from you.`;
               </div>
             </div>
 
-            <div className="p-4 rounded-2xl bg-[#080e1a] border border-white/10 space-y-2">
+            <div className="p-4 rounded-2xl bg-[#111724] border border-white/10 space-y-2">
               <div className="flex items-center gap-2 text-sm font-semibold text-white">
                 <Building className="w-4 h-4 text-violet-400" />
                 <span>Operating Schedule</span>

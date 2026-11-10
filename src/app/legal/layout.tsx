@@ -23,7 +23,7 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
         </div>
 
         {/* Quick Document Navigation Strip */}
-        <div className="flex flex-wrap gap-2 mb-10 p-2 rounded-2xl bg-[#080e1a] border border-white/10">
+        <div className="flex flex-wrap gap-2 mb-10 p-2 rounded-2xl bg-[#111724] border border-white/10">
           <Link
             href="/legal/"
             className="text-xs font-mono px-3 py-1.5 rounded-xl text-gray-300 hover:text-neon-cyan hover:bg-white/5 transition-all flex items-center gap-1.5"
@@ -74,7 +74,7 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
         </div>
 
         {/* Legal Footer Note */}
-        <div className="mt-10 p-6 rounded-2xl bg-[#080e1a] border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-gray-400">
+        <div className="mt-10 p-6 rounded-2xl bg-[#111724] border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-gray-400">
           <div>
             <span>Corporate Entity: </span>
             <strong className="text-white">Hi-Tech AI Solutions & Services</strong>

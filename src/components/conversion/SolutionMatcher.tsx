@@ -261,9 +261,9 @@ I would like to schedule a technical walkthrough and discuss institutional sandb
   };
 
   return (
-    <div className="cyber-glass rounded-3xl p-6 sm:p-10 border border-cyan-500/30 shadow-[0_0_50px_-15px_rgba(0,240,255,0.2)] text-left relative overflow-hidden">
+    <div className="cyber-glass rounded-3xl p-6 sm:p-10 border border-cyan-500/30 shadow-[0_0_50px_-15px_rgba(183,194,214,0.2)] text-left relative overflow-hidden">
       {/* Background Corner Glow */}
-      <div className="absolute top-0 right-0 w-80 h-80 bg-cyan-500/10 blur-[130px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-80 h-80 bg-cyan-500/5 blur-[130px] pointer-events-none" />
 
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-6 mb-8">
@@ -272,7 +272,7 @@ I would like to schedule a technical walkthrough and discuss institutional sandb
             <Sparkles className="w-3.5 h-3.5" />
             <span>Interactive Assessment Engine</span>
           </div>
-          <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+          <h3 className="text-2xl sm:text-3xl font-semibold text-white tracking-tight">
             Solution Architecture Matcher
           </h3>
           <p className="text-gray-400 text-xs sm:text-sm font-sans mt-1">
@@ -300,7 +300,7 @@ I would like to schedule a technical walkthrough and discuss institutional sandb
             <span>Question {currentStep + 1} of {steps.length}</span>
             <div className="flex-1 h-1.5 bg-white/5 rounded-full overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-neon-cyan to-violet-500 transition-all duration-300"
+                className="h-full bg-gray-300 transition-all duration-300"
                 style={{ width: `${((currentStep + 1) / steps.length) * 100}%` }}
               />
             </div>
@@ -328,7 +328,7 @@ I would like to schedule a technical walkthrough and discuss institutional sandb
                   key={option.id}
                   type="button"
                   onClick={() => handleSelectOption(option.id)}
-                  className="p-5 rounded-2xl bg-[#080e1a] border border-white/10 hover:border-cyan-500/50 hover:bg-[#080e1a]/80 transition-all text-left group flex flex-col justify-between cursor-pointer space-y-3"
+                  className="p-5 rounded-2xl bg-[#111724] border border-white/10 hover:border-cyan-500/50 hover:bg-[#111724]/80 transition-all text-left group flex flex-col justify-between cursor-pointer space-y-3"
                 >
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex items-center gap-2.5">
@@ -366,13 +366,13 @@ I would like to schedule a technical walkthrough and discuss institutional sandb
       ) : (
         /* Result & Recommended Architecture Card */
         <div className="space-y-6 animate-in fade-in duration-300">
-          <div className="p-6 sm:p-8 rounded-2xl bg-[#080e1a] border border-cyan-500/40 space-y-5 shadow-[0_0_30px_rgba(0,240,255,0.15)]">
+          <div className="p-6 sm:p-8 rounded-2xl bg-[#111724] border border-cyan-500/40 space-y-5 shadow-[0_0_30px_rgba(183,194,214,0.15)]">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/10 pb-4">
               <div>
                 <span className="text-[10px] font-mono uppercase px-2.5 py-0.5 rounded border bg-cyan-950/60 border-cyan-500/40 text-neon-cyan font-semibold">
                   RECOMMENDED ARCHITECTURE: {result.badge}
                 </span>
-                <h4 className="text-2xl font-extrabold text-white tracking-tight mt-1.5">
+                <h4 className="text-2xl font-semibold text-white tracking-tight mt-1.5">
                   {result.title}
                 </h4>
                 <p className="text-xs text-cyan-300 font-mono">{result.tagline}</p>
@@ -435,7 +435,7 @@ I would like to schedule a technical walkthrough and discuss institutional sandb
               <button
                 type="button"
                 onClick={handleDispatchEmail}
-                className="w-full sm:flex-1 py-3 px-4 rounded-xl bg-gradient-to-r from-neon-cyan to-cyan-400 hover:from-cyan-300 hover:to-neon-cyan text-black font-semibold text-sm flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(0,240,255,0.3)] transition-all cursor-pointer"
+                className="w-full sm:flex-1 py-3 px-4 rounded-xl bg-accent hover:bg-accent-hover text-[#0B0F19] font-semibold text-sm flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(183,194,214,0.3)] transition-all cursor-pointer"
               >
                 <Send className="w-4 h-4" />
                 <span>Email Assessment to Engineering Team</span>

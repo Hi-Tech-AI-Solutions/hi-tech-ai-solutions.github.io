@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Menu, X, ArrowRight, Zap, Shield } from 'lucide-react';
 import { useThemeMode } from '@/context/ThemeContext';
+import MotionToggle from '@/components/ui/MotionToggle';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -22,7 +23,7 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-[#030712]/85 backdrop-blur-md border-b border-white/10 shadow-lg shadow-black/40'
+          ? 'bg-[#0B0F19]/85 backdrop-blur-md border-b border-white/10 shadow-lg shadow-black/40'
           : 'bg-transparent border-b border-transparent'
       }`}
     >
@@ -33,17 +34,17 @@ export default function Navbar() {
             href="/"
             className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-cyan rounded-lg p-1"
           >
-            <div className="w-10 h-10 rounded-xl bg-[#080e1a] border border-neon-cyan/40 p-1 flex items-center justify-center group-hover:border-neon-cyan group-hover:shadow-[0_0_15px_rgba(0,240,255,0.4)] transition-all">
+            <div className="w-10 h-10 rounded-xl bg-[#111724] border border-neon-cyan/40 p-1 flex items-center justify-center group-hover:border-neon-cyan group-hover:shadow-[0_0_15px_rgba(183,194,214,0.4)] transition-all">
               <svg viewBox="0 0 128 128" className="w-full h-full" fill="none">
-                <path d="M38 28v72M90 28v72M38 64h52" stroke="#00F0FF" strokeWidth="14" strokeLinecap="round" />
-                <circle cx="38" cy="28" r="8" fill="#00F0FF" />
+                <path d="M38 28v72M90 28v72M38 64h52" stroke="#B7C2D6" strokeWidth="14" strokeLinecap="round" />
+                <circle cx="38" cy="28" r="8" fill="#B7C2D6" />
                 <circle cx="38" cy="100" r="8" fill="#10B981" />
-                <circle cx="90" cy="28" r="8" fill="#00F0FF" />
+                <circle cx="90" cy="28" r="8" fill="#B7C2D6" />
                 <circle cx="90" cy="100" r="8" fill="#10B981" />
-                <circle cx="64" cy="64" r="10" fill="#FFFFFF" stroke="#00F0FF" strokeWidth="4" />
+                <circle cx="64" cy="64" r="10" fill="#FFFFFF" stroke="#B7C2D6" strokeWidth="4" />
               </svg>
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col whitespace-nowrap">
               <span className="text-lg font-bold tracking-tight text-white flex items-center gap-1.5">
                 Hi-Tech <span className="text-neon-cyan">AI Solutions</span>
               </span>
@@ -55,7 +56,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-8" aria-label="Main Navigation">
+          <nav className="hidden md:flex items-center gap-5 lg:gap-8 whitespace-nowrap" aria-label="Main Navigation">
             <Link
               href="#solutions"
               className="text-sm font-medium text-gray-300 hover:text-neon-cyan transition-colors"
@@ -91,7 +92,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={toggleTheme}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#080f1e] hover:bg-white/10 border border-white/10 hover:border-neon-cyan/50 text-xs font-mono text-gray-300 hover:text-white transition-all shadow-inner"
+              className="hidden lg:flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#111724] hover:bg-white/10 border border-white/10 hover:border-neon-cyan/50 text-xs font-mono text-gray-300 hover:text-white transition-all shadow-inner"
               title={theme === 'quantum-cockpit' ? 'Switch to Classic Studio design' : 'Switch to Quantum Cockpit design'}
             >
               {theme === 'quantum-cockpit' ? (
@@ -107,9 +108,11 @@ export default function Navbar() {
               )}
             </button>
 
+            <MotionToggle className="hidden lg:inline-flex" />
+
             <Link
               href="#contact"
-              className="btn-cyber-primary text-xs uppercase tracking-wider py-2.5 px-5"
+              className="btn-cyber-primary text-xs uppercase tracking-wider py-2.5 px-5 whitespace-nowrap"
             >
               <span>Build With Us</span>
               <ArrowRight className="w-4 h-4" />
@@ -146,7 +149,7 @@ export default function Navbar() {
 
       {/* Mobile Dropdown Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#070b14]/95 backdrop-blur-xl border-b border-white/10 px-4 pt-2 pb-6 space-y-3">
+        <div className="md:hidden bg-[#0B0F19]/95 backdrop-blur-xl border-b border-white/10 px-4 pt-2 pb-6 space-y-3">
           <Link
             href="#solutions"
             onClick={() => setMobileMenuOpen(false)}

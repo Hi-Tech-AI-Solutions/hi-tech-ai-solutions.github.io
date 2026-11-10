@@ -20,7 +20,7 @@ export default function DisclaimerPage() {
           <span className="text-xs font-mono text-gray-500">•</span>
           <span className="text-xs font-mono text-gray-400">Version 2.4 • Effective September 2026</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        <h1 className="text-3xl sm:text-4xl font-semibold text-white tracking-tight">
           Disclaimer & Operational Boundaries
         </h1>
         <p className="text-sm text-rose-300 font-mono mt-1">
@@ -113,7 +113,7 @@ export default function DisclaimerPage() {
         <p className="text-sm">
           Case studies, architectural diagrams, and empirical results presented on this platform may reference external institutional frameworks (such as the Gujarat Common Admission Services — GCAS, university management portals, or affiliated partner colleges).
         </p>
-        <div className="p-4 rounded-xl bg-[#080e1a] border border-white/10 space-y-2 text-xs text-gray-300">
+        <div className="p-4 rounded-xl bg-[#111724] border border-white/10 space-y-2 text-xs text-gray-300">
           <p>
             • All registered trademarks, logos, university emblems, and institutional titles mentioned are the property of their respective owners.
           </p>
@@ -135,7 +135,7 @@ export default function DisclaimerPage() {
       </section>
 
       {/* Section 5: Inquiries & Verification */}
-      <section className="p-6 rounded-2xl bg-[#080e1a] border border-white/10 space-y-3">
+      <section className="p-6 rounded-2xl bg-[#111724] border border-white/10 space-y-3">
         <h3 className="text-sm font-bold text-white font-mono uppercase flex items-center gap-2">
           <HelpCircle className="w-4 h-4 text-neon-cyan" />
           <span>Questions & Governance Inquiries</span>

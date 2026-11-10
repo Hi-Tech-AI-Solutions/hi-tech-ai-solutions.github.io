@@ -1,12 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
 import { ShieldCheck } from 'lucide-react';
+import MotionToggle from '@/components/ui/MotionToggle';
 
 export default function Footer() {
   const currentYear = 2026;
 
   return (
-    <footer className="relative bg-[#02050d] border-t border-white/10 text-gray-400 overflow-hidden">
+    <footer className="relative bg-[#0B0F19] border-t border-white/10 text-gray-400 overflow-hidden">
       {/* Subtle Glow Backdrop */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-cyan-500/5 blur-[120px] pointer-events-none" />
 
@@ -15,14 +16,14 @@ export default function Footer() {
           {/* Brand Col */}
           <div className="lg:col-span-2 space-y-4">
             <Link href="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-[#080e1a] border border-neon-cyan/40 p-1 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-[#111724] border border-neon-cyan/40 p-1 flex items-center justify-center">
                 <svg viewBox="0 0 128 128" className="w-full h-full" fill="none">
-                  <path d="M38 28v72M90 28v72M38 64h52" stroke="#00F0FF" strokeWidth="14" strokeLinecap="round" />
-                  <circle cx="38" cy="28" r="8" fill="#00F0FF" />
+                  <path d="M38 28v72M90 28v72M38 64h52" stroke="#B7C2D6" strokeWidth="14" strokeLinecap="round" />
+                  <circle cx="38" cy="28" r="8" fill="#B7C2D6" />
                   <circle cx="38" cy="100" r="8" fill="#10B981" />
-                  <circle cx="90" cy="28" r="8" fill="#00F0FF" />
+                  <circle cx="90" cy="28" r="8" fill="#B7C2D6" />
                   <circle cx="90" cy="100" r="8" fill="#10B981" />
-                  <circle cx="64" cy="64" r="10" fill="#FFFFFF" stroke="#00F0FF" strokeWidth="4" />
+                  <circle cx="64" cy="64" r="10" fill="#FFFFFF" stroke="#B7C2D6" strokeWidth="4" />
                 </svg>
               </div>
               <span className="text-lg font-bold text-white tracking-tight">
@@ -195,6 +196,7 @@ export default function Footer() {
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
               <span>Institutional Grade Security</span>
             </span>
+            <MotionToggle />
             <span>Version 1.0.0</span>
           </div>
         </div>

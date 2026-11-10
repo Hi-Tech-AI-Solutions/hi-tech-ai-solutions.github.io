@@ -20,7 +20,7 @@ export default function TermsOfServicePage() {
           <span className="text-xs font-mono text-gray-500">•</span>
           <span className="text-xs font-mono text-gray-400">Version 2.4 • Effective September 2026</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        <h1 className="text-3xl sm:text-4xl font-semibold text-white tracking-tight">
           Terms of Service & Deployment Agreement
         </h1>
         <p className="text-sm text-sky-300 font-mono mt-1">
@@ -29,7 +29,7 @@ export default function TermsOfServicePage() {
       </div>
 
       {/* SLA Guarantees Card */}
-      <div className="p-5 rounded-2xl bg-[#080e1a] border border-sky-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div className="p-5 rounded-2xl bg-[#111724] border border-sky-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <span className="text-xs font-mono uppercase text-sky-400 font-bold block mb-1">
             Service Level Commitment (SLA)

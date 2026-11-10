@@ -20,7 +20,7 @@ export default function CookiePolicyPage() {
           <span className="text-xs font-mono text-gray-500">•</span>
           <span className="text-xs font-mono text-gray-400">Version 2.4 • Effective September 2026</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        <h1 className="text-3xl sm:text-4xl font-semibold text-white tracking-tight">
           Cookie & Local Storage Policy
         </h1>
         <p className="text-sm text-amber-300 font-mono mt-1">
@@ -29,7 +29,7 @@ export default function CookiePolicyPage() {
       </div>
 
       {/* Zero Tracker Badge */}
-      <div className="p-5 rounded-2xl bg-[#080e1a] border border-amber-500/30 flex items-start gap-4">
+      <div className="p-5 rounded-2xl bg-[#111724] border border-amber-500/30 flex items-start gap-4">
         <ShieldCheck className="w-6 h-6 text-amber-400 shrink-0 mt-0.5" />
         <div className="space-y-1">
           <h3 className="text-sm font-bold text-white font-mono uppercase">

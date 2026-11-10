@@ -1,19 +1,20 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter, JetBrains_Mono } from 'next/font/google';
+import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { ThemeToggleProvider } from '@/context/ThemeContext';
+import { MOTION_INIT_SCRIPT } from '@/lib/motion';
 
-const inter = Inter({
+const geist = Geist({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-geist',
   display: 'swap',
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const geistMono = Geist_Mono({
   subsets: ['latin'],
-  variable: '--font-jetbrains',
+  variable: '--font-geist-mono',
   display: 'swap',
 });
 
@@ -105,7 +106,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#030712',
+  themeColor: '#0B0F19',
   colorScheme: 'dark',
   width: 'device-width',
   initialScale: 1,
@@ -259,8 +260,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} dark`}>
+    <html lang="en" className={`${geist.variable} ${geistMono.variable} dark`} suppressHydrationWarning>
       <head>
+        {/* Motion preference (on/off), applied before first paint */}
+        <script dangerouslySetInnerHTML={{ __html: MOTION_INIT_SCRIPT }} />
         {/* Favicon fallback tags */}
         <link rel="icon" href="/icon.png" type="image/png" />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
