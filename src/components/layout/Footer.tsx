@@ -9,7 +9,6 @@ export default function Footer() {
   return (
     <footer className="relative bg-[#0B0F19] border-t border-white/10 text-gray-400 overflow-hidden">
       {/* Subtle Glow Backdrop */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-cyan-500/5 blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
@@ -48,7 +47,7 @@ export default function Footer() {
                   <span>5.0</span>
                   <span>★★★★★</span>
                 </span>
-                <span className="text-gray-500">|</span>
+                <span className="text-gray-400">|</span>
                 <span className="text-cyan-400">Verified Google Business</span>
               </div>
             </div>
@@ -187,7 +186,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 mt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500 font-mono">
+        <div className="pt-8 mt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400 font-mono">
           <div>
             © {currentYear} Hi-Tech AI Solutions & Services. All rights reserved.
           </div>

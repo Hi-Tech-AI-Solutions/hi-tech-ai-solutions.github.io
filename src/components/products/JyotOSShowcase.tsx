@@ -115,8 +115,6 @@ export default function JyotOSShowcase() {
   return (
     <section id="jyotos" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5 relative overflow-hidden">
       {/* Background Accent Gradients */}
-      <div className="absolute top-1/4 right-0 w-[550px] h-[550px] bg-cyan-500/5 blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-0 left-10 w-[450px] h-[450px] bg-violet-600/5 blur-[150px] pointer-events-none" />
 
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-16 space-y-4 relative z-10">
@@ -182,9 +180,9 @@ export default function JyotOSShowcase() {
                       <span className={`text-[10px] font-mono tracking-wider font-semibold uppercase block ${tier.color}`}>
                         {tier.badge}
                       </span>
-                      <h4 className="text-lg font-bold text-white tracking-tight">
+                      <h3 className="text-lg font-bold text-white tracking-tight">
                         {tier.name}
-                      </h4>
+                      </h3>
                     </div>
                   </div>
 
@@ -263,9 +261,9 @@ export default function JyotOSShowcase() {
 
             {/* Core Functions List */}
             <div className="space-y-3 mb-6">
-              <h5 className="text-xs font-mono uppercase tracking-wider text-gray-400">
+              <h4 className="text-xs font-mono uppercase tracking-wider text-gray-400">
                 Key Layer Capabilities:
-              </h5>
+              </h4>
               <div className="space-y-2">
                 {activeTier.keyFunctions.map((fn, i) => (
                   <div key={i} className="flex items-start gap-3 text-sm text-gray-200">

@@ -57,7 +57,7 @@ function FloatingThemeSwitcher() {
   const { theme, setTheme } = useThemeMode();
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex items-center gap-1.5 p-1.5 rounded-2xl bg-[#111724]/90 border border-neon-cyan/40 shadow-[0_10px_35px_rgba(0,0,0,0.8),0_0_20px_rgba(183,194,214,0.2)] backdrop-blur-xl font-mono text-[11px] animate-in fade-in slide-in-from-bottom-3 duration-500">
+    <div className="hidden md:flex fixed bottom-6 right-6 z-50 items-center gap-1.5 p-1.5 rounded-2xl bg-[#111724]/90 border border-neon-cyan/40 shadow-[0_10px_35px_rgba(0,0,0,0.8),0_0_20px_rgba(183,194,214,0.2)] backdrop-blur-xl font-mono text-[11px] animate-in fade-in slide-in-from-bottom-3 duration-500">
       <div className="px-2 py-1 text-[10px] uppercase text-gray-400 font-bold hidden sm:flex items-center gap-1">
         <Sparkles className="w-3 h-3 text-neon-cyan" />
         <span>Design:</span>

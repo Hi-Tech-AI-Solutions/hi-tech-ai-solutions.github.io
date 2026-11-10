@@ -27,7 +27,7 @@ export default function ProductWindow() {
         <span className="w-2.5 h-2.5 rounded-full bg-white/15" />
         <span className="w-2.5 h-2.5 rounded-full bg-white/15" />
         <span className="ml-3 text-[11px] font-mono text-gray-400">hi-tech / products</span>
-        <span className="ml-auto text-[10px] font-mono uppercase tracking-wider text-gray-500">
+        <span className="ml-auto text-[10px] font-mono uppercase tracking-wider text-gray-400">
           Illustrative interface
         </span>
       </div>
@@ -67,7 +67,7 @@ export default function ProductWindow() {
             <div className="text-[11px] font-mono uppercase tracking-wider text-neon-cyan mb-2">
               {active.category}
             </div>
-            <h3 className="text-xl md:text-2xl font-semibold text-white">{active.name}</h3>
+            <p className="text-xl md:text-2xl font-semibold text-white">{active.name}</p>
             <p className="mt-2 text-sm text-gray-400 max-w-xl leading-relaxed">{active.tagline}</p>
           </div>
 
@@ -75,7 +75,7 @@ export default function ProductWindow() {
             <dl className="grid grid-cols-2 gap-3 max-w-xl">
               {active.metrics.slice(0, 2).map((m) => (
                 <div key={m.label} className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
-                  <dt className="text-[10px] font-mono uppercase tracking-wider text-gray-500">
+                  <dt className="text-[10px] font-mono uppercase tracking-wider text-gray-400">
                     {m.label}
                   </dt>
                   <dd className="mt-1 text-base font-semibold text-white">{m.value}</dd>

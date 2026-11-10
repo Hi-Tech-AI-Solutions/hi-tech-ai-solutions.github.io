@@ -69,9 +69,10 @@ export default function HeroSection() {
       className="relative pt-28 pb-0 md:pt-36 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10"
     >
       {/* Back layer: soft light behind the copy */}
-      <div className="absolute inset-x-0 top-0 h-[620px] pointer-events-none overflow-hidden" aria-hidden="true">
-        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[900px] max-w-full h-[420px] bg-[#1A2233]/60 blur-[140px]" />
-      </div>
+      <div
+        className="absolute inset-x-0 top-0 h-[620px] pointer-events-none bg-[radial-gradient(ellipse_60%_55%_at_50%_30%,rgba(26,34,51,0.9),transparent)]"
+        aria-hidden="true"
+      />
 
       {/* Quantum Cockpit status bar */}
       {isCockpit && (

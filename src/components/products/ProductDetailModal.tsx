@@ -217,7 +217,7 @@ export default function ProductDetailModal({
               </a>
             )}
 
-            {product.githubRepo && (
+            {product.githubRepo && product.githubPublic && (
               <a
                 href={product.githubRepo}
                 target="_blank"

@@ -40,7 +40,7 @@ export default function SecurityArchitecturePage() {
           <span className="text-[10px] font-mono uppercase px-2.5 py-0.5 rounded border bg-emerald-950/60 border-emerald-500/40 text-emerald-400 font-semibold">
             SECURITY ARCHITECTURE
           </span>
-          <span className="text-xs font-mono text-gray-500">•</span>
+          <span className="text-xs font-mono text-gray-400">•</span>
           <span className="text-xs font-mono text-gray-400">Institutional Whitepaper • September 2026</span>
         </div>
         <h1 className="text-3xl sm:text-4xl font-semibold text-white tracking-tight">

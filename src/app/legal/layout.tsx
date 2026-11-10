@@ -78,7 +78,7 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
           <div>
             <span>Corporate Entity: </span>
             <strong className="text-white">Hi-Tech AI Solutions & Services</strong>
-            <span className="block text-[11px] text-gray-500">Bhavani Complex, Katargam, Surat, Gujarat 395004</span>
+            <span className="block text-[11px] text-gray-400">Bhavani Complex, Katargam, Surat, Gujarat 395004</span>
           </div>
           <div className="text-right">
             <span>Governance Inquiries: </span>

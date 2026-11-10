@@ -17,7 +17,7 @@ export default function DisclaimerPage() {
           <span className="text-[10px] font-mono uppercase px-2.5 py-0.5 rounded border bg-rose-950/60 border-rose-500/40 text-rose-400 font-semibold">
             INSTITUTIONAL DISCLAIMER & BOUNDARIES
           </span>
-          <span className="text-xs font-mono text-gray-500">•</span>
+          <span className="text-xs font-mono text-gray-400">•</span>
           <span className="text-xs font-mono text-gray-400">Version 2.4 • Effective September 2026</span>
         </div>
         <h1 className="text-3xl sm:text-4xl font-semibold text-white tracking-tight">

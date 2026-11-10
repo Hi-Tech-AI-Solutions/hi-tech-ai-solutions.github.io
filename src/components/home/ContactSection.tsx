@@ -40,7 +40,6 @@ export default function ContactSection() {
   return (
     <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5 relative">
       {/* Background Glows */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-cyan-500/5 blur-[180px] pointer-events-none" />
 
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-16 space-y-4 relative z-10">

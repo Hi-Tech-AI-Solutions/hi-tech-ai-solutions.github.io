@@ -233,15 +233,19 @@ export default function SolutionMatcher() {
     setResult(null);
   };
 
+  // Turn internal option ids (e.g. "campus-erps") into the readable label the visitor clicked.
+  const labelFor = (stepIndex: number, id?: string) =>
+    id ? steps[stepIndex]?.options.find((o) => o.id === id)?.label ?? id : undefined;
+
   const handleDispatchWhatsApp = () => {
     if (!result) return;
     const text = encodeURIComponent(
       `Hello Hi-Tech AI Solutions Team,
 
 I completed the Solution Architecture Assessment on your website:
-- Organization Type: ${answers.orgType || 'Higher Education'}
-- Primary Objective: ${answers.challenge || 'Campus Modernization'}
-- Scale & Timeline: ${answers.scale || 'Next Semester'}
+- Organization Type: ${labelFor(0, answers.orgType) || 'Higher Education'}
+- Primary Objective: ${labelFor(1, answers.challenge) || 'Campus Modernization'}
+- Scale & Timeline: ${labelFor(2, answers.scale) || 'Next Semester'}
 - Recommended Solution: ${result.title} (${result.primaryProduct})
 
 I would like to schedule a technical walkthrough and discuss institutional sandbox deployment.`
@@ -255,7 +259,7 @@ I would like to schedule a technical walkthrough and discuss institutional sandb
       `Solution Assessment Inquiry: ${result.primaryProduct} for our Institution`
     );
     const body = encodeURIComponent(
-      `Hello Hi-Tech AI Solutions Team,\n\nWe evaluated our institutional requirements using your online Solution Matcher:\n- Organization: ${answers.orgType}\n- Primary Friction: ${answers.challenge}\n- Scale / Timeline: ${answers.scale}\n- Matched Architecture: ${result.title}\n\nPlease share your implementation blueprint and available times for an executive briefing.\n\nBest regards.`
+      `Hello Hi-Tech AI Solutions Team,\n\nWe evaluated our institutional requirements using your online Solution Matcher:\n- Organization: ${labelFor(0, answers.orgType)}\n- Primary Friction: ${labelFor(1, answers.challenge)}\n- Scale / Timeline: ${labelFor(2, answers.scale)}\n- Matched Architecture: ${result.title}\n\nPlease share your implementation blueprint and available times for an executive briefing.\n\nBest regards.`
     );
     window.location.href = `mailto:hitech.nft@gmail.com?subject=${subject}&body=${body}`;
   };
@@ -263,7 +267,6 @@ I would like to schedule a technical walkthrough and discuss institutional sandb
   return (
     <div className="cyber-glass rounded-3xl p-6 sm:p-10 border border-cyan-500/30 shadow-[0_0_50px_-15px_rgba(183,194,214,0.2)] text-left relative overflow-hidden">
       {/* Background Corner Glow */}
-      <div className="absolute top-0 right-0 w-80 h-80 bg-cyan-500/5 blur-[130px] pointer-events-none" />
 
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-6 mb-8">
@@ -341,7 +344,7 @@ I would like to schedule a technical walkthrough and discuss institutional sandb
                         {option.label}
                       </h5>
                     </div>
-                    <ArrowRight className="w-4 h-4 text-gray-500 group-hover:text-neon-cyan group-hover:translate-x-1 transition-all" />
+                    <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-neon-cyan group-hover:translate-x-1 transition-all" />
                   </div>
                   <p className="text-xs text-gray-400 font-sans leading-relaxed">
                     {option.desc}

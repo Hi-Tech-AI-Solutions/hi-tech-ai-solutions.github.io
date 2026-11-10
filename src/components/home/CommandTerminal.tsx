@@ -29,7 +29,6 @@ const PRESETS: PromptPreset[] = [
     query: 'How does the system reconcile 10,459 lecture logs across 87 faculty members?',
     productName: 'ClassPulsePro',
     productLink: 'https://classpulse-jyotos-ai.vercel.app/',
-    githubLink: 'https://github.com/jyotOS-Core/ClassPulsePro',
     response:
       'ClassPulsePro utilizes chunked PostgREST streaming to ingest daily CSV session logs, cross-referencing them against master aSc timetable workbooks across 4 college wings. Features scoped HOD/Principal variance cockpits, dynamic working-day deduction, and an AI Teacher Diary that auto-generates Bloom’s taxonomy lesson plans and NAAC-compliant inspection sheets.',
     metrics: ['10,459+ Logs Reconciled', '87 Faculty Identities', '4 College Wings Scoped'],
@@ -40,7 +39,6 @@ const PRESETS: PromptPreset[] = [
     query: 'Explain the Meta WhatsApp API v21.0 integration and vector AI auto-replies.',
     productName: 'jyotAssist AI',
     productLink: 'https://jyot-assist-ai.vercel.app/',
-    githubLink: 'https://github.com/jyotOS-Core/jyotAssist-AI',
     response:
       'jyotAssist AI connects natively to Meta Cloud API v21.0 backed by Supabase Realtime and pgvector. Incoming student/client queries are semantically matched via Gemini Flash embeddings against institutional handbooks with zero hallucinations. Includes a visual @xyflow drag-and-drop bot builder, live Instagram Graph API event photo chains, and sales/admission Kanban pipelines.',
     metrics: ['Official Meta API v21.0', 'pgvector RAG Grounding', '487 Passing Tests'],
@@ -51,7 +49,6 @@ const PRESETS: PromptPreset[] = [
     query: 'How are physical and digital credentials generated and verified?',
     productName: 'ScholarCard AI',
     productLink: 'https://scholarcard-ai.vercel.app/',
-    githubLink: 'https://github.com/jyotOS-Core/scholarcard-ai',
     response:
       'ScholarCard AI provides a mobile-first student profile intake wizard with client-side 3:4 canvas cropping (~100KB compression) and HTML5 signature pad. College admins drag-and-drop Excel sheets to auto-map columns to database schemas, generating 300 DPI high-resolution batch ZIP print feeds formatted precisely for CR80 thermal card machines.',
     metrics: ['300 DPI CR80 Print Output', 'HTML5 Signature Pad', 'Smart Excel Mapper'],
@@ -73,7 +70,6 @@ const PRESETS: PromptPreset[] = [
     query: 'How does EventOS handle large-scale campus fest check-ins?',
     productName: 'EventOS',
     productLink: 'https://event-os-jyot-os.vercel.app/',
-    githubLink: 'https://github.com/jyotOS-Core/EventOS',
     response:
       'EventOS executes the full 9-step event lifecycle from coordinator proposal to verified public archive. Features offline-tolerant mobile camera PWA scanning processing QR tickets in under 400ms, synchronizing directly with StaffBridge and ScholarCard AI accounts via shared ems_* schemas.',
     metrics: ['<400ms QR Gate Scan', 'ems_* Shared Schema', 'Public Verified Archive'],

@@ -39,6 +39,8 @@ export interface Product {
   targetAudience: string[];
   liveDemoUrl?: string;
   githubRepo?: string;
+  /** Only show the repo link when the repository is public (private repos 404 for visitors). */
+  githubPublic?: boolean;
   metrics?: ProductMetric[];
   demoAvailable: boolean;
 }

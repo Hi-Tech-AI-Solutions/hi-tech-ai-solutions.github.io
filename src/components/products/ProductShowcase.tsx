@@ -127,7 +127,7 @@ export default function ProductShowcase() {
                       {product.metrics.slice(0, 3).map((m) => (
                         <div key={m.label}>
                           <dd className="text-xl font-semibold text-white">{m.value}</dd>
-                          <dt className="text-[11px] font-mono uppercase tracking-wider text-gray-500">
+                          <dt className="text-[11px] font-mono uppercase tracking-wider text-gray-400">
                             {m.label}
                           </dt>
                         </div>
@@ -177,7 +177,7 @@ export default function ProductShowcase() {
                   className="group flex flex-col justify-between rounded-2xl border border-white/10 bg-[#111724] p-5 transition-colors hover:border-neon-cyan/40"
                 >
                   <div>
-                    <div className="text-[10px] font-mono uppercase tracking-wider text-gray-500 mb-2">
+                    <div className="text-[10px] font-mono uppercase tracking-wider text-gray-400 mb-2">
                       {product.category}
                     </div>
                     <h4 className="text-lg font-semibold text-white">{product.name}</h4>

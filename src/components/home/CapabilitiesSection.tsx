@@ -142,7 +142,6 @@ export default function CapabilitiesSection() {
   return (
     <section id="solutions" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5 relative">
       {/* Background Accent */}
-      <div className="absolute top-1/3 left-0 w-96 h-96 bg-cyan-500/5 blur-[120px] pointer-events-none" />
 
       {/* Header & Filter Controls */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
