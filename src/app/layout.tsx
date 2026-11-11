@@ -297,8 +297,10 @@ export default function RootLayout({
           {/* Global Navigation Header */}
           <Navbar />
 
-          {/* Main Content Area: a real <main> landmark, focusable so the skip link lands on it */}
-          <main id="main-content" tabIndex={-1} className="flex-1 focus:outline-none">
+          {/* Main Content Area: a real <main> landmark. Deliberately NOT focusable: with tabIndex={-1}
+              every click on page text moved focus to <main>, so the next Tab jumped to the first
+              link of the page. The skip link works without it. */}
+          <main id="main-content" className="flex-1">
             {children}
           </main>
 

@@ -348,7 +348,7 @@ export default function SolutionMatcher() {
               key={currentStep}
               ref={headingRef}
               tabIndex={-1}
-              className="text-lg sm:text-xl font-bold text-white tracking-tight rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-cyan focus-visible:ring-offset-4 focus-visible:ring-offset-[#0B0F19]"
+              className="scroll-mt-28 text-lg sm:text-xl font-bold text-white tracking-tight rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-cyan focus-visible:ring-offset-4 focus-visible:ring-offset-[#0B0F19]"
             >
               {step.title}
             </h4>
@@ -412,7 +412,7 @@ export default function SolutionMatcher() {
               <h4
                 ref={headingRef}
                 tabIndex={-1}
-                className="text-2xl font-semibold text-white tracking-tight mt-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-cyan focus-visible:ring-offset-4 focus-visible:ring-offset-[#111724]"
+                className="scroll-mt-28 text-2xl font-semibold text-white tracking-tight mt-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-cyan focus-visible:ring-offset-4 focus-visible:ring-offset-[#111724]"
               >
                 {result.title}
               </h4>

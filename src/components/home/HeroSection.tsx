@@ -92,7 +92,7 @@ export default function HeroSection() {
           <span>Built for colleges and universities</span>
         </div>
 
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-white leading-[1.05]">
+        <h1 className="text-4xl max-[359px]:text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-white leading-[1.05]">
           AI that runs your campus admin,{' '}
           <span className="block mt-1.5 text-gray-400">so your staff can focus on students.</span>
         </h1>
