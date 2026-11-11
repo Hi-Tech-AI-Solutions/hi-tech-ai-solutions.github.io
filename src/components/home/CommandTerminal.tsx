@@ -170,7 +170,8 @@ export default function CommandTerminal() {
       </div>
 
       {/* Preset Chips Bar */}
-      <div className="px-4 sm:px-6 py-3 bg-[#111724] border-b border-white/5 flex items-center gap-2 overflow-x-auto no-scrollbar">
+      {/* Wraps onto a second line: it used to scroll sideways, hiding two presets even at 1440 px */}
+      <div className="px-4 sm:px-6 py-3 bg-[#111724] border-b border-white/5 flex flex-wrap items-center gap-2">
         <span className="text-[10px] font-mono text-gray-400 uppercase tracking-wider shrink-0 flex items-center gap-1">
           <Sparkles className="w-3 h-3 text-neon-cyan" aria-hidden="true" />
           <span>Telemetry Presets:</span>
