@@ -184,10 +184,11 @@ export default function Navbar() {
 
           {/* Display preferences live here on small screens so the header bar stays uncluttered */}
           <div className="pt-3 mt-2 border-t border-white/10 flex flex-wrap items-center gap-2">
+            {/* The visible text is the accessible name here (no aria-label that says something else) */}
             <button
               type="button"
               onClick={toggleTheme}
-              aria-label={themeLabel}
+              title="Switch between the two designs"
               className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-mono text-gray-300 hover:text-white transition-colors"
             >
               {isCockpit ? (
@@ -195,7 +196,7 @@ export default function Navbar() {
               ) : (
                 <Shield className="w-3.5 h-3.5" aria-hidden="true" />
               )}
-              <span>Design: {isCockpit ? 'Cockpit' : 'Classic'}</span>
+              <span>Design: {isCockpit ? 'Quantum Cockpit' : 'Classic Studio'}</span>
             </button>
             <MotionToggle alwaysShowLabel />
           </div>

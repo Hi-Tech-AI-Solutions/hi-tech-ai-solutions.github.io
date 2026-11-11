@@ -56,9 +56,9 @@ export default function Footer() {
             </p>
 
             {/* Direct contact: the phone number and email must be findable without opening a dialog */}
-            <ul className="pt-1 space-y-2 text-sm">
+            <ul className="pt-1 space-y-1 text-sm">
               <li>
-                <a href={telUrl} className="inline-flex items-center gap-2 text-gray-200 hover:text-white transition-colors">
+                <a href={telUrl} className="inline-flex items-center gap-2 py-1 text-gray-200 hover:text-white transition-colors">
                   <Phone className="w-4 h-4 text-gray-400" aria-hidden="true" />
                   <span>{CONTACT.phoneDisplay}</span>
                 </a>
@@ -68,14 +68,14 @@ export default function Footer() {
                   href={whatsappUrl()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-gray-200 hover:text-white transition-colors"
+                  className="inline-flex items-center gap-2 py-1 text-gray-200 hover:text-white transition-colors"
                 >
                   <MessageCircle className="w-4 h-4 text-emerald-400" aria-hidden="true" />
                   <span>Chat on WhatsApp</span>
                 </a>
               </li>
               <li>
-                <a href={mailtoUrl()} className="inline-flex items-center gap-2 text-gray-200 hover:text-white transition-colors">
+                <a href={mailtoUrl()} className="inline-flex items-center gap-2 py-1 text-gray-200 hover:text-white transition-colors">
                   <Mail className="w-4 h-4 text-gray-400" aria-hidden="true" />
                   <span>{CONTACT.email}</span>
                 </a>

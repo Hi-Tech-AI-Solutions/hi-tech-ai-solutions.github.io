@@ -163,7 +163,7 @@ export default function JyotOSShowcase() {
                       : 'bg-[#111724]/70 border-white/10 hover:border-white/20 hover:bg-white/5'
                   }`}
                 >
-                  <span className="flex items-center gap-4">
+                  <span className="flex items-center gap-4 min-w-0">
                     <span
                       className={`w-12 h-12 shrink-0 rounded-xl flex items-center justify-center border transition-all ${
                         isSelected
@@ -173,7 +173,7 @@ export default function JyotOSShowcase() {
                     >
                       <tier.icon className="w-6 h-6" aria-hidden="true" />
                     </span>
-                    <span>
+                    <span className="min-w-0">
                       <span className={`text-[10px] font-mono tracking-wider font-semibold uppercase block ${tier.color}`}>
                         {tier.badge}
                       </span>
@@ -185,7 +185,7 @@ export default function JyotOSShowcase() {
 
                   <span
                     aria-hidden="true"
-                    className={`shrink-0 text-xs font-mono px-2.5 py-1 rounded transition-colors ${
+                    className={`hidden sm:inline-block shrink-0 text-xs font-mono px-2.5 py-1 rounded transition-colors ${
                       isSelected
                         ? 'bg-neon-cyan text-black font-bold'
                         : 'text-gray-400 bg-white/5'

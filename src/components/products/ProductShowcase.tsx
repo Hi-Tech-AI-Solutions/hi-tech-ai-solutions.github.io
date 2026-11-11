@@ -126,7 +126,7 @@ export default function ProductShowcase() {
                   {product.metrics && product.metrics.length > 0 && (
                     <dl className="mt-6 flex flex-wrap gap-x-10 gap-y-4">
                       {product.metrics.slice(0, 3).map((m) => (
-                        <div key={m.label} className="flex flex-col-reverse">
+                        <div key={m.label} className="flex flex-col-reverse justify-end">
                           <dt className="text-[11px] font-mono uppercase tracking-wider text-gray-400">
                             {m.label}
                           </dt>

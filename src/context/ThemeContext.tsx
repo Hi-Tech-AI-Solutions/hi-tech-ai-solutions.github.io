@@ -58,8 +58,8 @@ function FloatingThemeSwitcher() {
 
   return (
     // z-40, below the header and the dialogs (z-50): at z-50 it floated on top of open dialogs.
-    <div
-      role="group"
+    // An <aside> so this control, which sits outside <main>, is inside a landmark of its own.
+    <aside
       aria-label="Design mode"
       className="hidden md:flex fixed bottom-6 right-6 z-40 items-center gap-1.5 p-1.5 rounded-2xl bg-[#111724]/90 border border-neon-cyan/40 shadow-[0_10px_35px_rgba(0,0,0,0.8),0_0_20px_rgba(183,194,214,0.2)] backdrop-blur-xl font-mono text-[11px]"
     >
@@ -97,6 +97,6 @@ function FloatingThemeSwitcher() {
         <Shield className="w-3.5 h-3.5 text-violet-400" aria-hidden="true" />
         <span>Classic Studio</span>
       </button>
-    </div>
+    </aside>
   );
 }
