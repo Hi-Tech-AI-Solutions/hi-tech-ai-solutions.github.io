@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
-export const metadata = { title: 'Page not found' };
+// No canonical for the 404 page (it would otherwise inherit one pointing at /_not-found/).
+export const metadata = { title: 'Page not found', alternates: { canonical: null } };
 
 export default function NotFound() {
   // The root layout already provides the <main> landmark, so this is a plain section.

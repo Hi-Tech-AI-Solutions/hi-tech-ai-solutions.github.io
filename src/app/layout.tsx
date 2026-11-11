@@ -19,9 +19,12 @@ const geistMono = Geist_Mono({
 });
 
 const SITE_URL = 'https://hi-tech-ai-solutions.github.io';
-const SITE_TITLE = 'Hi-Tech AI Solutions & Services — Intelligent Systems & Product Ecosystem';
+// Title and description say who the site is for, in the words of the hero. The previous
+// versions ("Intelligent Systems & Product Ecosystem") never mentioned colleges or universities,
+// and the 198-character description was cut off in search results.
+const SITE_TITLE = 'AI campus software for colleges & universities | Hi-Tech AI Solutions';
 const SITE_DESCRIPTION =
-  "We don't just build software. We build intelligent solutions. Official digital headquarters and product showcase for Hi-Tech AI Solutions, JyotOS ecosystem, ScholarCard AI, StaffBridge, and EventOS.";
+  'AI platforms for colleges and universities: admissions, exams, attendance, ID cards and a student helpdesk on one connected system. Based in Surat, Gujarat.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -48,17 +51,24 @@ export const metadata: Metadata = {
   authors: [{ name: 'Hi-Tech AI Solutions & Services', url: SITE_URL }],
   creator: 'Hi-Tech AI Solutions & Services',
   publisher: 'Hi-Tech AI Solutions & Services',
+  // Resolved against each page's own path, so every page declares itself as canonical.
+  alternates: {
+    canonical: './',
+  },
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
+  // The files now are what these entries say they are. Before, all four icon files were the
+  // same 1024 x 1024 JPEG (519 KB) under .ico and .png names, and two of them were downloaded
+  // on every first visit.
   icons: {
     icon: [
-      { url: '/icon.png', type: 'image/png' },
+      { url: '/favicon.ico', sizes: '48x48' },
       { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/icon.png', type: 'image/png', sizes: '192x192' },
     ],
-    shortcut: '/favicon.ico',
     apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
   },
   openGraph: {
@@ -264,14 +274,9 @@ export default function RootLayout({
       <head>
         {/* Motion preference (on/off), applied before first paint */}
         <script dangerouslySetInnerHTML={{ __html: MOTION_INIT_SCRIPT }} />
-        {/* Favicon fallback tags */}
-        <link rel="icon" href="/icon.png" type="image/png" />
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        {/* Icons and the Bing verification tag come from `metadata` above (they were emitted twice) */}
         {/* Generative Engine Optimization (GEO) LLMs manifest */}
         <link rel="llms-txt" href="/llms.txt" />
-        {/* Bing Webmaster Verification */}
-        <meta name="msvalidate.01" content="90C0C41F2E4878AABD06C515771EF01B" />
         {/* Structured Data for SearchGPT, ChatGPT, Perplexity & Google Knowledge Panel */}
         <script
           type="application/ld+json"
