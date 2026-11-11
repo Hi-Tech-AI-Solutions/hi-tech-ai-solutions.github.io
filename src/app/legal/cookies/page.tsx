@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import { ShieldCheck, XCircle } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Cookie & Storage Policy — Hi-Tech AI Solutions & Services',
+  title: 'Cookie & Storage Policy',
   description:
     'Technical explanation of cookie usage, session storage, and the strict absence of advertising trackers on the Hi-Tech AI website and platforms.',
 };
@@ -17,7 +17,7 @@ export default function CookiePolicyPage() {
           <span className="text-[10px] font-mono uppercase px-2.5 py-0.5 rounded border bg-amber-950/60 border-amber-500/40 text-amber-400 font-semibold">
             COOKIE & STORAGE POLICY
           </span>
-          <span className="text-xs font-mono text-gray-500">•</span>
+          <span className="text-xs font-mono text-gray-400">•</span>
           <span className="text-xs font-mono text-gray-400">Version 2.4 • Effective September 2026</span>
         </div>
         <h1 className="text-3xl sm:text-4xl font-semibold text-white tracking-tight">
@@ -32,9 +32,9 @@ export default function CookiePolicyPage() {
       <div className="p-5 rounded-2xl bg-[#111724] border border-amber-500/30 flex items-start gap-4">
         <ShieldCheck className="w-6 h-6 text-amber-400 shrink-0 mt-0.5" />
         <div className="space-y-1">
-          <h3 className="text-sm font-bold text-white font-mono uppercase">
+          <h2 className="text-sm font-bold text-white font-mono uppercase">
             Strict Zero-Advertising Tracking Commitment
-          </h3>
+          </h2>
           <p className="text-xs text-gray-300">
             Hi-Tech AI Solutions & Services does NOT deploy third-party advertising tracking pixels, cross-site profiling beacons, or commercial retargeting cookies on this website.
           </p>

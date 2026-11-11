@@ -249,11 +249,16 @@
   pointer-events: none;
 }
 
-/* Reduced Motion Accessibility */
+/* Reduced Motion Accessibility.
+   With JavaScript on, the inline script in layout.tsx turns the OS preference into
+   html[data-motion="off"], which is handled at the end of this file. These media rules are the
+   fallback when that script has not run, and they step aside when the visitor has explicitly
+   switched motion on (otherwise the switch said "Motion on" while nothing moved). */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  html:not([data-motion="on"]),
+  html:not([data-motion="on"]) *,
+  html:not([data-motion="on"]) *::before,
+  html:not([data-motion="on"]) *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -277,11 +282,15 @@
 .hero-plane-near  { transform: translate3d(0, calc(var(--hero-p, 0) * -60px), 0); will-change: transform; }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal-hidden { opacity: 1; transform: none; }
-  .hero-plane-near { transform: none; will-change: auto; }
+  html:not([data-motion="on"]) .reveal-hidden { opacity: 1; transform: none; }
+  html:not([data-motion="on"]) .hero-plane-near { transform: none; will-change: auto; }
+  html:not([data-motion="on"]) .flow-dot { display: none; }
 }
 
-/* ---- Motion off-switch (html[data-motion="off"], set by the toggle or the OS reduced-motion setting) ---- */
+/* ---- Motion off-switch (html[data-motion="off"], set by the toggle or the OS reduced-motion setting) ----
+   The first selector is html itself: scroll-behavior: smooth is declared on <html>, and the
+   descendant selector alone never matched it, so in-page links kept scrolling smoothly. */
+html[data-motion="off"],
 html[data-motion="off"] *,
 html[data-motion="off"] *::before,
 html[data-motion="off"] *::after {
@@ -292,3 +301,6 @@ html[data-motion="off"] *::after {
 
 html[data-motion="off"] .reveal-hidden { opacity: 1; transform: none; }
 html[data-motion="off"] .hero-plane-near { transform: none; will-change: auto; }
+/* The data-flow dots in the architecture diagram are SVG (SMIL) animations, which CSS cannot
+   pause, so they are removed instead. */
+html[data-motion="off"] .flow-dot { display: none; }

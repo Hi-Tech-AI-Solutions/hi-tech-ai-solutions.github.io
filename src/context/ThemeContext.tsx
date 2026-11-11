@@ -57,8 +57,13 @@ function FloatingThemeSwitcher() {
   const { theme, setTheme } = useThemeMode();
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex items-center gap-1.5 p-1.5 rounded-2xl bg-[#111724]/90 border border-neon-cyan/40 shadow-[0_10px_35px_rgba(0,0,0,0.8),0_0_20px_rgba(183,194,214,0.2)] backdrop-blur-xl font-mono text-[11px] animate-in fade-in slide-in-from-bottom-3 duration-500">
-      <div className="px-2 py-1 text-[10px] uppercase text-gray-400 font-bold hidden sm:flex items-center gap-1">
+    // z-40, below the header and the dialogs (z-50): at z-50 it floated on top of open dialogs.
+    // An <aside> so this control, which sits outside <main>, is inside a landmark of its own.
+    <aside
+      aria-label="Design mode"
+      className="hidden md:flex fixed bottom-6 right-6 z-40 items-center gap-1.5 p-1.5 rounded-2xl bg-[#111724]/90 border border-neon-cyan/40 shadow-[0_10px_35px_rgba(0,0,0,0.8),0_0_20px_rgba(183,194,214,0.2)] backdrop-blur-xl font-mono text-[11px]"
+    >
+      <div className="px-2 py-1 text-[10px] uppercase text-gray-400 font-bold hidden sm:flex items-center gap-1" aria-hidden="true">
         <Sparkles className="w-3 h-3 text-neon-cyan" />
         <span>Design:</span>
       </div>
@@ -66,6 +71,7 @@ function FloatingThemeSwitcher() {
       <button
         type="button"
         onClick={() => setTheme('quantum-cockpit')}
+        aria-pressed={theme === 'quantum-cockpit'}
         className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl transition-all ${
           theme === 'quantum-cockpit'
             ? 'bg-gradient-to-r from-neon-cyan/25 to-sky-400/25 text-neon-cyan border border-neon-cyan font-bold shadow-[0_0_15px_rgba(183,194,214,0.3)]'
@@ -73,13 +79,14 @@ function FloatingThemeSwitcher() {
         }`}
         title="Switch to Quantum Command Cockpit (Hybrid A+B)"
       >
-        <Zap className="w-3.5 h-3.5 text-neon-cyan animate-pulse" />
+        <Zap className="w-3.5 h-3.5 text-neon-cyan animate-pulse" aria-hidden="true" />
         <span>Quantum Cockpit</span>
       </button>
 
       <button
         type="button"
         onClick={() => setTheme('classic-cyber')}
+        aria-pressed={theme === 'classic-cyber'}
         className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl transition-all ${
           theme === 'classic-cyber'
             ? 'bg-white/15 text-white border border-white/40 font-bold shadow-[0_0_15px_rgba(255,255,255,0.2)]'
@@ -87,9 +94,9 @@ function FloatingThemeSwitcher() {
         }`}
         title="Switch back to Classic Cyber Studio (Previous Version)"
       >
-        <Shield className="w-3.5 h-3.5 text-violet-400" />
+        <Shield className="w-3.5 h-3.5 text-violet-400" aria-hidden="true" />
         <span>Classic Studio</span>
       </button>
-    </div>
+    </aside>
   );
 }

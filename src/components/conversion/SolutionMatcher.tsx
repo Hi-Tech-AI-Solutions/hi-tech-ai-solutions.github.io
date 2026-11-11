@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Sparkles,
   ArrowRight,
@@ -14,6 +14,7 @@ import {
   Building2,
   Clock,
 } from 'lucide-react';
+import { CONTACT, telUrl, whatsappUrl, mailtoUrl } from '@/lib/site';
 
 interface QuestionStep {
   title: string;
@@ -36,6 +37,101 @@ interface MatchResult {
   badge: string;
 }
 
+// Questions and options are written for a principal or registrar, not an engineer.
+// The option ids are unchanged, so the matching logic below works exactly as before.
+const STEPS: QuestionStep[] = [
+  {
+    title: 'What kind of organisation are you?',
+    subtitle: 'Pick the closest match.',
+    options: [
+      {
+        id: 'college',
+        label: 'College or polytechnic',
+        desc: 'A single undergraduate or postgraduate institute.',
+        icon: Building2,
+      },
+      {
+        id: 'university',
+        label: 'University or multi-campus trust',
+        desc: 'Several colleges or campuses under one management.',
+        icon: Layers,
+      },
+      {
+        id: 'enterprise',
+        label: 'Business or other organisation',
+        desc: 'A company that needs custom AI software or automation.',
+        icon: Cpu,
+      },
+      {
+        id: 'events',
+        label: 'Event or conference organiser',
+        desc: 'Fests, summits and conferences with registration and entry.',
+        icon: Sparkles,
+      },
+    ],
+  },
+  {
+    title: 'What do you most want to fix first?',
+    subtitle: 'Choose the one that costs your staff the most time today.',
+    options: [
+      {
+        id: 'campus-erps',
+        label: 'Everything in one system',
+        desc: 'Replace scattered software, spreadsheets and paper approvals with one platform.',
+      },
+      {
+        id: 'identity-credentialing',
+        label: 'Student ID cards and verification',
+        desc: 'Collect student details, print ID cards and verify them by QR code.',
+      },
+      {
+        id: 'staff-governance',
+        label: 'Staff attendance, leave and rosters',
+        desc: 'Paperless leave approvals, duty rosters and staff records.',
+      },
+      {
+        id: 'admission-analytics',
+        label: 'Admissions tracking',
+        desc: 'See seats filled, merit ranks and enrolment as admissions happen.',
+      },
+      {
+        id: 'event-orchestration',
+        label: 'Event registration and entry',
+        desc: 'QR passes and fast check-in at the gate.',
+      },
+      {
+        id: 'custom-ai-agents',
+        label: 'A custom AI assistant or automation',
+        desc: 'A helpdesk or workflow built around your own documents and rules.',
+      },
+    ],
+  },
+  {
+    title: 'How big is this, and how soon?',
+    subtitle: 'This helps us plan the rollout.',
+    options: [
+      {
+        id: 'immediate-semester',
+        label: 'Under 3,000 users, by next semester',
+        desc: 'You need it running within about 30 days.',
+        icon: Clock,
+      },
+      {
+        id: 'enterprise-scale',
+        label: '3,000 to 15,000+ users, phased rollout',
+        desc: 'Several departments, with data moved over from your current system.',
+        icon: ShieldCheck,
+      },
+      {
+        id: 'exploratory-pilot',
+        label: 'A pilot first',
+        desc: 'Try one module with a small group before deciding.',
+        icon: Sparkles,
+      },
+    ],
+  },
+];
+
 export default function SolutionMatcher() {
   const [currentStep, setCurrentStep] = useState<number>(0);
   const [answers, setAnswers] = useState<{
@@ -46,109 +142,26 @@ export default function SolutionMatcher() {
   }>({});
   const [result, setResult] = useState<MatchResult | null>(null);
 
-  const WHATSAPP_NUMBER = '919974803770';
+  // After each answer the old buttons disappear, which used to drop keyboard focus onto <body>
+  // and gave screen-reader users no sign that a new question had appeared. Focus now moves to
+  // the new question (or the result) heading. Never on first render: that would steal focus on load.
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const hasInteracted = useRef(false);
 
-  const steps: QuestionStep[] = [
-    {
-      title: '1. What type of organization or institution are you representing?',
-      subtitle: 'Select the operational model that best describes your campus or enterprise.',
-      options: [
-        {
-          id: 'college',
-          label: 'Higher Education College / Polytechnic',
-          desc: 'Undergraduate or postgraduate institute seeking academic and administrative unity.',
-          icon: Building2,
-        },
-        {
-          id: 'university',
-          label: 'University / Multi-Campus Trust',
-          desc: 'Large collegiate consortium requiring multi-tenant partitioned governance.',
-          icon: Layers,
-        },
-        {
-          id: 'enterprise',
-          label: 'Enterprise / Corporate Organization',
-          desc: 'High-growth business needing intelligent workflow automation and custom AI software.',
-          icon: Cpu,
-        },
-        {
-          id: 'events',
-          label: 'Summit / Conference / Event Entity',
-          desc: 'Institutional or industry organizer managing high-concurrency ticket lifecycle.',
-          icon: Sparkles,
-        },
-      ],
-    },
-    {
-      title: '2. What is your primary operational friction or objective?',
-      subtitle: 'Where is manual drag or data fragmentation slowing your organization down?',
-      options: [
-        {
-          id: 'campus-erps',
-          label: 'Unified Campus Operating System',
-          desc: 'Replace disconnected ERPs, spreadsheets, and manual approval chains with one brain.',
-        },
-        {
-          id: 'identity-credentialing',
-          label: 'Student Credentialing & Verification',
-          desc: 'Issue tamper-evident digital IDs, automated academic transcripts, and credentials.',
-        },
-        {
-          id: 'staff-governance',
-          label: 'Faculty & Human Capital Governance',
-          desc: 'Sync biometric attendance, paperless leave approvals, and duty rosters.',
-        },
-        {
-          id: 'admission-analytics',
-          label: 'Admission Telemetry & Capacity Forecasting',
-          desc: 'Track real-time seat occupancy, merit ranks, and enrollment velocity.',
-        },
-        {
-          id: 'event-orchestration',
-          label: 'High-Concurrency Event Access',
-          desc: 'Instant QR ticket distribution and sub-second optical gate check-ins.',
-        },
-        {
-          id: 'custom-ai-agents',
-          label: 'Custom Autonomous AI Workflows',
-          desc: 'Bespoke multi-agent LLM assistants, RAG knowledge retrieval, and data pipelines.',
-        },
-      ],
-    },
-    {
-      title: '3. What is your operational scale and target implementation timeline?',
-      subtitle: 'Help us calibrate the architecture tier and deployment runway.',
-      options: [
-        {
-          id: 'immediate-semester',
-          label: 'Next Semester / Within 30 Days (< 3,000 Users)',
-          desc: 'Rapid deployment with zero downtime during active academic operations.',
-          icon: Clock,
-        },
-        {
-          id: 'enterprise-scale',
-          label: 'Strategic Transformation (3,000 – 15,000+ Users)',
-          desc: 'Multi-department rollout with legacy database schema migration and custom integrations.',
-          icon: ShieldCheck,
-        },
-        {
-          id: 'exploratory-pilot',
-          label: 'Proof-of-Concept Pilot / Single Module',
-          desc: 'Targeted trial to benchmark speed and staff adoption before full rollout.',
-          icon: Sparkles,
-        },
-      ],
-    },
-  ];
+  useEffect(() => {
+    if (!hasInteracted.current) return;
+    headingRef.current?.focus();
+  }, [currentStep, result]);
 
   const handleSelectOption = (optionId: string) => {
+    hasInteracted.current = true;
     const updatedAnswers = { ...answers };
     if (currentStep === 0) updatedAnswers.orgType = optionId;
     if (currentStep === 1) updatedAnswers.challenge = optionId;
     if (currentStep === 2) updatedAnswers.scale = optionId;
     setAnswers(updatedAnswers);
 
-    if (currentStep < steps.length - 1) {
+    if (currentStep < STEPS.length - 1) {
       setCurrentStep(currentStep + 1);
     } else {
       calculateResult(updatedAnswers);
@@ -228,55 +241,75 @@ export default function SolutionMatcher() {
   };
 
   const handleReset = () => {
+    hasInteracted.current = true;
     setCurrentStep(0);
     setAnswers({});
     setResult(null);
   };
 
+  const handleBack = () => {
+    hasInteracted.current = true;
+    setCurrentStep(currentStep - 1);
+  };
+
+  // Turn internal option ids (e.g. "campus-erps") into the readable label the visitor clicked.
+  const labelFor = (stepIndex: number, id?: string) =>
+    id ? STEPS[stepIndex]?.options.find((o) => o.id === id)?.label ?? id : '';
+
+  // One summary for both channels. It ends with a line for the sender to complete, because
+  // the answers alone do not say who is asking or from which institution.
+  const summaryLines = (r: MatchResult) => [
+    `- We are: ${labelFor(0, answers.orgType)}`,
+    `- We want to fix first: ${labelFor(1, answers.challenge)}`,
+    `- Size and timing: ${labelFor(2, answers.scale)}`,
+    `- Suggested setup: ${r.title} (${r.primaryProduct})`,
+  ];
+
   const handleDispatchWhatsApp = () => {
     if (!result) return;
-    const text = encodeURIComponent(
-      `Hello Hi-Tech AI Solutions Team,
-
-I completed the Solution Architecture Assessment on your website:
-- Organization Type: ${answers.orgType || 'Higher Education'}
-- Primary Objective: ${answers.challenge || 'Campus Modernization'}
-- Scale & Timeline: ${answers.scale || 'Next Semester'}
-- Recommended Solution: ${result.title} (${result.primaryProduct})
-
-I would like to schedule a technical walkthrough and discuss institutional sandbox deployment.`
-    );
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank');
+    const text = [
+      'Hello Hi-Tech AI Solutions Team,',
+      '',
+      'I used the solution finder on your website:',
+      ...summaryLines(result),
+      '',
+      'Please contact me to arrange a walkthrough.',
+      '',
+      'My name and institution:',
+    ].join('\n');
+    window.open(whatsappUrl(text), '_blank', 'noopener,noreferrer');
   };
 
   const handleDispatchEmail = () => {
     if (!result) return;
-    const subject = encodeURIComponent(
-      `Solution Assessment Inquiry: ${result.primaryProduct} for our Institution`
-    );
-    const body = encodeURIComponent(
-      `Hello Hi-Tech AI Solutions Team,\n\nWe evaluated our institutional requirements using your online Solution Matcher:\n- Organization: ${answers.orgType}\n- Primary Friction: ${answers.challenge}\n- Scale / Timeline: ${answers.scale}\n- Matched Architecture: ${result.title}\n\nPlease share your implementation blueprint and available times for an executive briefing.\n\nBest regards.`
-    );
-    window.location.href = `mailto:hitech.nft@gmail.com?subject=${subject}&body=${body}`;
+    const subject = `Solution finder enquiry: ${result.primaryProduct}`;
+    const body = [
+      'Hello Hi-Tech AI Solutions Team,',
+      '',
+      'We used the solution finder on your website:',
+      ...summaryLines(result),
+      '',
+      'Please contact us to arrange a walkthrough.',
+      '',
+      'Name and institution:',
+      'Phone:',
+    ].join('\n');
+    window.location.href = mailtoUrl(subject, body);
   };
+
+  const step = STEPS[currentStep];
+  const percent = Math.round(((currentStep + 1) / STEPS.length) * 100);
 
   return (
     <div className="cyber-glass rounded-3xl p-6 sm:p-10 border border-cyan-500/30 shadow-[0_0_50px_-15px_rgba(183,194,214,0.2)] text-left relative overflow-hidden">
-      {/* Background Corner Glow */}
-      <div className="absolute top-0 right-0 w-80 h-80 bg-cyan-500/5 blur-[130px] pointer-events-none" />
-
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-6 mb-8">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/40 text-neon-cyan text-xs font-mono uppercase tracking-wider mb-2">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Interactive Assessment Engine</span>
-          </div>
           <h3 className="text-2xl sm:text-3xl font-semibold text-white tracking-tight">
-            Solution Architecture Matcher
+            Solution finder
           </h3>
           <p className="text-gray-400 text-xs sm:text-sm font-sans mt-1">
-            Answer 3 quick questions to discover the optimal Hi-Tech platform configuration for your campus or enterprise.
+            Three questions, no sign-up. You get a suggested setup to send us on WhatsApp or by email.
           </p>
         </div>
 
@@ -284,9 +317,9 @@ I would like to schedule a technical walkthrough and discuss institutional sandb
           <button
             type="button"
             onClick={handleReset}
-            className="self-start sm:self-auto text-xs font-mono px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-gray-400 hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer"
+            className="self-start sm:self-auto text-xs font-mono px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-gray-300 hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer"
           >
-            <RotateCcw className="w-3.5 h-3.5" />
+            <RotateCcw className="w-3.5 h-3.5" aria-hidden="true" />
             <span>Start Over</span>
           </button>
         )}
@@ -297,31 +330,36 @@ I would like to schedule a technical walkthrough and discuss institutional sandb
         <div className="space-y-6">
           {/* Progress Indicator */}
           <div className="flex items-center gap-2 text-xs font-mono text-gray-400">
-            <span>Question {currentStep + 1} of {steps.length}</span>
-            <div className="flex-1 h-1.5 bg-white/5 rounded-full overflow-hidden">
+            <span>Question {currentStep + 1} of {STEPS.length}</span>
+            <div className="flex-1 h-1.5 bg-white/5 rounded-full overflow-hidden" aria-hidden="true">
               <div
                 className="h-full bg-gray-300 transition-all duration-300"
-                style={{ width: `${((currentStep + 1) / steps.length) * 100}%` }}
+                style={{ width: `${percent}%` }}
               />
             </div>
-            <span className="text-neon-cyan font-bold">
-              {Math.round(((currentStep + 1) / steps.length) * 100)}%
+            <span className="text-neon-cyan font-bold" aria-hidden="true">
+              {percent}%
             </span>
           </div>
 
-          {/* Current Step Question */}
+          {/* Current Step Question. The key remounts the heading so the new question is announced. */}
           <div className="space-y-1">
-            <h4 className="text-lg sm:text-xl font-bold text-white tracking-tight">
-              {steps[currentStep].title}
+            <h4
+              key={currentStep}
+              ref={headingRef}
+              tabIndex={-1}
+              className="scroll-mt-28 text-lg sm:text-xl font-bold text-white tracking-tight rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-cyan focus-visible:ring-offset-4 focus-visible:ring-offset-[#0B0F19]"
+            >
+              {step.title}
             </h4>
             <p className="text-xs sm:text-sm text-gray-400 font-sans">
-              {steps[currentStep].subtitle}
+              {step.subtitle}
             </p>
           </div>
 
           {/* Options Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
-            {steps[currentStep].options.map((option) => {
+            {step.options.map((option) => {
               const Icon = option.icon;
               return (
                 <button
@@ -330,22 +368,22 @@ I would like to schedule a technical walkthrough and discuss institutional sandb
                   onClick={() => handleSelectOption(option.id)}
                   className="p-5 rounded-2xl bg-[#111724] border border-white/10 hover:border-cyan-500/50 hover:bg-[#111724]/80 transition-all text-left group flex flex-col justify-between cursor-pointer space-y-3"
                 >
-                  <div className="flex items-start justify-between gap-2">
-                    <div className="flex items-center gap-2.5">
+                  <span className="flex items-start justify-between gap-2">
+                    <span className="flex items-center gap-2.5">
                       {Icon && (
-                        <div className="p-2 rounded-lg bg-white/5 border border-white/10 text-neon-cyan group-hover:bg-cyan-950/60 group-hover:border-cyan-500/40 transition-colors">
-                          <Icon className="w-4 h-4" />
-                        </div>
+                        <span className="p-2 rounded-lg bg-white/5 border border-white/10 text-neon-cyan group-hover:bg-cyan-950/60 group-hover:border-cyan-500/40 transition-colors">
+                          <Icon className="w-4 h-4" aria-hidden="true" />
+                        </span>
                       )}
-                      <h5 className="text-sm font-bold text-white group-hover:text-neon-cyan transition-colors">
+                      <span className="text-sm font-bold text-white">
                         {option.label}
-                      </h5>
-                    </div>
-                    <ArrowRight className="w-4 h-4 text-gray-500 group-hover:text-neon-cyan group-hover:translate-x-1 transition-all" />
-                  </div>
-                  <p className="text-xs text-gray-400 font-sans leading-relaxed">
+                      </span>
+                    </span>
+                    <ArrowRight className="w-4 h-4 shrink-0 text-gray-400 group-hover:text-white group-hover:translate-x-1 transition-all" aria-hidden="true" />
+                  </span>
+                  <span className="block text-xs text-gray-400 font-sans leading-relaxed">
                     {option.desc}
-                  </p>
+                  </span>
                 </button>
               );
             })}
@@ -355,8 +393,8 @@ I would like to schedule a technical walkthrough and discuss institutional sandb
             <div className="pt-2">
               <button
                 type="button"
-                onClick={() => setCurrentStep(currentStep - 1)}
-                className="text-xs font-mono text-gray-400 hover:text-white transition-colors"
+                onClick={handleBack}
+                className="text-xs font-mono py-2 text-gray-400 hover:text-white transition-colors"
               >
                 ← Back to previous question
               </button>
@@ -365,36 +403,32 @@ I would like to schedule a technical walkthrough and discuss institutional sandb
         </div>
       ) : (
         /* Result & Recommended Architecture Card */
-        <div className="space-y-6 animate-in fade-in duration-300">
+        <div className="space-y-6">
           <div className="p-6 sm:p-8 rounded-2xl bg-[#111724] border border-cyan-500/40 space-y-5 shadow-[0_0_30px_rgba(183,194,214,0.15)]">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/10 pb-4">
-              <div>
-                <span className="text-[10px] font-mono uppercase px-2.5 py-0.5 rounded border bg-cyan-950/60 border-cyan-500/40 text-neon-cyan font-semibold">
-                  RECOMMENDED ARCHITECTURE: {result.badge}
-                </span>
-                <h4 className="text-2xl font-semibold text-white tracking-tight mt-1.5">
-                  {result.title}
-                </h4>
-                <p className="text-xs text-cyan-300 font-mono">{result.tagline}</p>
-              </div>
-              <div className="text-right">
-                <span className="text-xs font-mono text-emerald-400 font-semibold flex items-center gap-1">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>Optimal Fit Identified</span>
-                </span>
-              </div>
+            <div className="border-b border-white/10 pb-4">
+              <span className="text-[10px] font-mono uppercase px-2.5 py-0.5 rounded border bg-cyan-950/60 border-cyan-500/40 text-neon-cyan font-semibold">
+                Suggested setup: {result.badge}
+              </span>
+              <h4
+                ref={headingRef}
+                tabIndex={-1}
+                className="scroll-mt-28 text-2xl font-semibold text-white tracking-tight mt-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-cyan focus-visible:ring-offset-4 focus-visible:ring-offset-[#111724]"
+              >
+                {result.title}
+              </h4>
+              <p className="text-xs text-cyan-300 font-mono mt-1">{result.tagline}</p>
             </div>
 
             {/* Matched Tiers & Highlights */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-sans">
               <div className="space-y-2 p-4 rounded-xl bg-black/40 border border-white/5">
                 <span className="text-[10px] font-mono text-gray-400 uppercase tracking-wider block">
-                  Synchronized Architecture Tiers:
+                  What it includes
                 </span>
                 <ul className="space-y-1.5 text-gray-300">
                   {result.matchedTiers.map((tier, idx) => (
                     <li key={idx} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-neon-cyan shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-neon-cyan shrink-0 mt-0.5" aria-hidden="true" />
                       <span>{tier}</span>
                     </li>
                   ))}
@@ -404,7 +438,7 @@ I would like to schedule a technical walkthrough and discuss institutional sandb
               <div className="space-y-3 p-4 rounded-xl bg-black/40 border border-white/5">
                 <div>
                   <span className="text-[10px] font-mono text-gray-400 uppercase tracking-wider block">
-                    Estimated Institutional Impact:
+                    Estimated impact
                   </span>
                   <p className="text-emerald-400 font-bold font-mono text-sm mt-0.5">
                     {result.estimatedImpact}
@@ -412,7 +446,7 @@ I would like to schedule a technical walkthrough and discuss institutional sandb
                 </div>
                 <div>
                   <span className="text-[10px] font-mono text-gray-400 uppercase tracking-wider block">
-                    Recommended Runway:
+                    Suggested rollout
                   </span>
                   <p className="text-gray-300 text-xs mt-0.5">
                     {result.recommendedPlan}
@@ -421,15 +455,15 @@ I would like to schedule a technical walkthrough and discuss institutional sandb
               </div>
             </div>
 
-            {/* Direct Action Dispatch */}
+            {/* Send it to us */}
             <div className="pt-3 border-t border-white/10 flex flex-col sm:flex-row items-center gap-3">
               <button
                 type="button"
                 onClick={handleDispatchWhatsApp}
                 className="w-full sm:flex-1 py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-sm flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(16,185,129,0.3)] transition-all cursor-pointer"
               >
-                <MessageSquare className="w-4 h-4" />
-                <span>Submit Assessment via WhatsApp Priority</span>
+                <MessageSquare className="w-4 h-4" aria-hidden="true" />
+                <span>Send this to us on WhatsApp</span>
               </button>
 
               <button
@@ -437,10 +471,23 @@ I would like to schedule a technical walkthrough and discuss institutional sandb
                 onClick={handleDispatchEmail}
                 className="w-full sm:flex-1 py-3 px-4 rounded-xl bg-accent hover:bg-accent-hover text-[#0B0F19] font-semibold text-sm flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(183,194,214,0.3)] transition-all cursor-pointer"
               >
-                <Send className="w-4 h-4" />
-                <span>Email Assessment to Engineering Team</span>
+                <Send className="w-4 h-4" aria-hidden="true" />
+                <span>Send this to us by email</span>
               </button>
             </div>
+
+            {/* The buttons need WhatsApp or a mail app on the device. This always works. */}
+            <p className="text-xs text-gray-400 leading-relaxed">
+              Prefer to talk? Call or WhatsApp{' '}
+              <a href={telUrl} className="text-gray-200 underline underline-offset-2 hover:text-white whitespace-nowrap">
+                {CONTACT.phoneDisplay}
+              </a>
+              , or write to{' '}
+              <a href={mailtoUrl()} className="text-gray-200 underline underline-offset-2 hover:text-white">
+                {CONTACT.email}
+              </a>
+              .
+            </p>
           </div>
         </div>
       )}

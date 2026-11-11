@@ -24,8 +24,6 @@ export default function CaseStudiesSection() {
   return (
     <section id="proof" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5 relative">
       {/* Background Atmosphere */}
-      <div className="absolute top-1/4 right-10 w-96 h-96 bg-cyan-500/5 blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-96 h-96 bg-violet-500/5 blur-[150px] pointer-events-none" />
 
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto mb-16 space-y-4 relative z-10">
@@ -48,7 +46,11 @@ export default function CaseStudiesSection() {
       </div>
 
       {/* Case Study Selection Tabs */}
-      <div className="flex flex-wrap items-center justify-center gap-3 mb-12 relative z-10">
+      <div
+        role="group"
+        aria-label="Choose a case study"
+        className="flex flex-wrap items-center justify-center gap-3 mb-12 relative z-10"
+      >
         {CASE_STUDIES.map((study) => {
           const isSelected = study.id === selectedCaseId;
           return (
@@ -56,6 +58,7 @@ export default function CaseStudiesSection() {
               key={study.id}
               type="button"
               onClick={() => setSelectedCaseId(study.id)}
+              aria-pressed={isSelected}
               className={`px-4 py-2.5 rounded-xl text-xs font-mono transition-all flex items-center gap-2 border cursor-pointer ${
                 isSelected
                   ? 'bg-[#111724] border-cyan-500/60 text-white shadow-[0_0_20px_rgba(183,194,214,0.25)] font-bold'
@@ -79,7 +82,7 @@ export default function CaseStudiesSection() {
                 {currentCase.badge}
               </span>
               <span className="text-xs font-mono text-gray-400 flex items-center gap-1.5">
-                <Clock className="w-3.5 h-3.5 text-gray-500" />
+                <Clock className="w-3.5 h-3.5 text-gray-400" />
                 <span>{currentCase.timeline}</span>
               </span>
             </div>

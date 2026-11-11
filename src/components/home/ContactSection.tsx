@@ -10,43 +10,35 @@ import {
   ExternalLink,
   Check,
   Copy,
+  Phone,
 } from 'lucide-react';
 import ExecutiveConsultationModal from '@/components/consultation/ExecutiveConsultationModal';
+import { CONTACT, telUrl, whatsappUrl, mailtoUrl } from '@/lib/site';
+
+const WHATSAPP_GREETING =
+  'Hello Hi-Tech AI Solutions team, I would like to initiate an executive consultation regarding an intelligent institutional / enterprise solution.';
 
 export default function ContactSection() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
 
-  const OFFICIAL_EMAIL = 'hitech.nft@gmail.com';
-  const WHATSAPP_NUMBER = '919974803770';
-
   const handleCopyEmail = async () => {
     try {
-      await navigator.clipboard.writeText(OFFICIAL_EMAIL);
+      await navigator.clipboard.writeText(CONTACT.email);
       setCopiedEmail(true);
       setTimeout(() => setCopiedEmail(false), 2500);
     } catch {
-      // Fallback
+      // Clipboard unavailable: the address is still shown as a link.
     }
-  };
-
-  const handleDirectWhatsApp = () => {
-    const text = encodeURIComponent(
-      'Hello Hi-Tech AI Solutions team, I would like to initiate an executive consultation regarding an intelligent institutional / enterprise solution.'
-    );
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank');
   };
 
   return (
     <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5 relative">
-      {/* Background Glows */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-cyan-500/5 blur-[180px] pointer-events-none" />
-
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-16 space-y-4 relative z-10">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/40 text-neon-cyan text-xs font-mono uppercase tracking-widest shadow-[0_0_20px_rgba(183,194,214,0.2)]">
-          <Sparkles className="w-3.5 h-3.5" />
-          <span>Conversion & Institutional Solutions Hub</span>
+          <Sparkles className="w-3.5 h-3.5" aria-hidden="true" />
+          <span>Get in touch</span>
         </div>
 
         <h2 className="text-3xl sm:text-5xl font-semibold text-white leading-tight tracking-tight">
@@ -57,16 +49,17 @@ export default function ContactSection() {
         </h2>
 
         <p className="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed font-sans">
-          Whether you require a full-scale campus operating system like <strong>JyotOS</strong>, student credentialing via <strong>ScholarCard AI</strong>, or custom autonomous AI workflows, evaluate your architecture below or consult directly with our engineering leadership.
+          Whether you require a full-scale campus operating system like <strong>JyotOS</strong>, student credentialing via <strong>ScholarCard AI</strong>, or custom autonomous AI workflows, try the{' '}
+          <a href="#matcher" className="text-white underline underline-offset-4 decoration-white/40 hover:decoration-white">
+            60-second solution finder
+          </a>{' '}
+          or talk to us directly.
         </p>
       </div>
 
-      {/* Solution Matcher now lives right under the hero (see page.tsx, #matcher) */}
-
       {/* Direct Executive Consultation Card */}
       <div className="cyber-glass rounded-3xl p-8 sm:p-14 relative overflow-hidden text-center max-w-4xl mx-auto space-y-8 border border-cyan-500/30 shadow-[0_0_60px_-15px_rgba(183,194,214,0.25)] z-10">
-
-        {/* Primary Interactive Actions */}
+        {/* Primary actions: the enquiry form, and WhatsApp as a real link */}
         <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
           <button
             type="button"
@@ -75,71 +68,69 @@ export default function ContactSection() {
             id="btn-initiate-consultation"
           >
             <span>Initiate Executive Consultation</span>
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-4 h-4" aria-hidden="true" />
           </button>
 
           <a
-            href="https://github.com/Hi-Tech-AI-Solutions"
+            href={whatsappUrl(WHATSAPP_GREETING)}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-cyber-secondary w-full sm:w-auto"
-            id="btn-explore-github"
+            id="btn-whatsapp-direct"
           >
-            <span>Explore GitHub Organization</span>
-            <ExternalLink className="w-4 h-4" />
+            <MessageCircle className="w-4 h-4 text-emerald-400" aria-hidden="true" />
+            <span>Chat on WhatsApp</span>
+            <ExternalLink className="w-4 h-4" aria-hidden="true" />
+            <span className="sr-only">(opens in a new tab)</span>
           </a>
         </div>
 
-        {/* Quick Instant Channels Strip */}
+        {/* Direct channels: every one is a real link, reachable by keyboard and by long-press */}
         <div className="pt-8 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
-          {/* WhatsApp Direct */}
-          <div
-            onClick={handleDirectWhatsApp}
-            className="p-4 rounded-2xl bg-[#111724]/80 border border-emerald-500/20 hover:border-emerald-500/50 cursor-pointer transition-all group"
+          {/* Phone */}
+          <a
+            href={telUrl}
+            className="p-4 rounded-2xl bg-[#111724]/80 border border-emerald-500/20 hover:border-emerald-500/50 transition-all block"
           >
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-mono uppercase tracking-wider text-emerald-400 flex items-center gap-1.5 font-semibold">
-                <MessageCircle className="w-3.5 h-3.5" />
-                <span>WhatsApp Priority</span>
-              </span>
-              <span className="text-[10px] font-mono text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity">
-                Chat Now →
-              </span>
-            </div>
-            <p className="text-xs text-gray-300">
-              Immediate connection for leadership, deans, and tech executives.
-            </p>
-          </div>
+            <span className="mb-2 text-xs font-mono uppercase tracking-wider text-emerald-400 flex items-center gap-1.5 font-semibold">
+              <Phone className="w-3.5 h-3.5" aria-hidden="true" />
+              <span>Call or WhatsApp</span>
+            </span>
+            <span className="block text-sm font-mono text-white">{CONTACT.phoneDisplay}</span>
+          </a>
 
           {/* Email Channel */}
           <div className="p-4 rounded-2xl bg-[#111724]/80 border border-cyan-500/20 hover:border-cyan-500/50 transition-all">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-mono uppercase tracking-wider text-neon-cyan flex items-center gap-1.5 font-semibold">
-                <Mail className="w-3.5 h-3.5" />
+                <Mail className="w-3.5 h-3.5" aria-hidden="true" />
                 <span>Direct Email</span>
               </span>
               <button
                 type="button"
                 onClick={handleCopyEmail}
-                className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-gray-300 hover:text-white flex items-center gap-1 transition-colors"
-                title="Copy email address"
+                className="text-[11px] font-mono px-2 py-1 rounded bg-white/5 border border-white/10 text-gray-300 hover:text-white flex items-center gap-1 transition-colors"
+                aria-label="Copy email address"
               >
                 {copiedEmail ? (
                   <>
-                    <Check className="w-3 h-3 text-emerald-400" />
+                    <Check className="w-3 h-3 text-emerald-400" aria-hidden="true" />
                     <span className="text-emerald-400">Copied</span>
                   </>
                 ) : (
                   <>
-                    <Copy className="w-3 h-3" />
+                    <Copy className="w-3 h-3" aria-hidden="true" />
                     <span>Copy</span>
                   </>
                 )}
               </button>
             </div>
-            <p className="text-xs font-mono text-cyan-300 select-all truncate">
-              {OFFICIAL_EMAIL}
-            </p>
+            <a
+              href={mailtoUrl()}
+              className="block text-sm font-mono text-white underline underline-offset-2 decoration-white/30 hover:decoration-white break-all"
+            >
+              {CONTACT.email}
+            </a>
           </div>
 
           {/* Google Verified HQ */}
@@ -151,7 +142,7 @@ export default function ContactSection() {
           >
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-mono uppercase tracking-wider text-violet-400 flex items-center gap-1.5 font-semibold">
-                <MapPin className="w-3.5 h-3.5" />
+                <MapPin className="w-3.5 h-3.5" aria-hidden="true" />
                 <span>Headquarters</span>
               </span>
               <span className="text-[10px] font-mono text-violet-400">
@@ -161,6 +152,7 @@ export default function ContactSection() {
             <p className="text-xs text-gray-300 line-clamp-2">
               Bhavani Complex, Katargam, Surat, Gujarat 395004
             </p>
+            <span className="sr-only">(opens in a new tab)</span>
           </a>
         </div>
       </div>

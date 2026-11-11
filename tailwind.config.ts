@@ -53,6 +53,10 @@ const config: Config = {
         sky: slate,
         violet: slate,
         indigo: slate,
+        // Tailwind's own amber/orange were still used for labels, icons, badges and the rating
+        // stars (about two dozen places, none of them an action). Remapped so `accent` is the only amber.
+        amber: slate,
+        orange: slate,
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

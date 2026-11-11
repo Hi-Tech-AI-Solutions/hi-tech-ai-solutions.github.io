@@ -23,50 +23,50 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
         </div>
 
         {/* Quick Document Navigation Strip */}
-        <div className="flex flex-wrap gap-2 mb-10 p-2 rounded-2xl bg-[#111724] border border-white/10">
+        <nav aria-label="Legal documents" className="flex flex-wrap gap-2 mb-10 p-2 rounded-2xl bg-[#111724] border border-white/10">
           <Link
             href="/legal/"
-            className="text-xs font-mono px-3 py-1.5 rounded-xl text-gray-300 hover:text-neon-cyan hover:bg-white/5 transition-all flex items-center gap-1.5"
+            className="text-xs font-mono px-3 py-1.5 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition-all flex items-center gap-1.5"
           >
             <Scale className="w-3.5 h-3.5 text-neon-cyan" />
             <span>Legal Hub</span>
           </Link>
           <Link
             href="/legal/privacy/"
-            className="text-xs font-mono px-3 py-1.5 rounded-xl text-gray-300 hover:text-neon-cyan hover:bg-white/5 transition-all flex items-center gap-1.5"
+            className="text-xs font-mono px-3 py-1.5 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition-all flex items-center gap-1.5"
           >
             <FileText className="w-3.5 h-3.5 text-violet-400" />
             <span>Privacy Policy</span>
           </Link>
           <Link
             href="/legal/terms/"
-            className="text-xs font-mono px-3 py-1.5 rounded-xl text-gray-300 hover:text-neon-cyan hover:bg-white/5 transition-all flex items-center gap-1.5"
+            className="text-xs font-mono px-3 py-1.5 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition-all flex items-center gap-1.5"
           >
             <Scale className="w-3.5 h-3.5 text-sky-400" />
             <span>Terms of Service</span>
           </Link>
           <Link
             href="/legal/security/"
-            className="text-xs font-mono px-3 py-1.5 rounded-xl text-gray-300 hover:text-neon-cyan hover:bg-white/5 transition-all flex items-center gap-1.5"
+            className="text-xs font-mono px-3 py-1.5 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition-all flex items-center gap-1.5"
           >
             <Lock className="w-3.5 h-3.5 text-emerald-400" />
             <span>Security Architecture</span>
           </Link>
           <Link
             href="/legal/cookies/"
-            className="text-xs font-mono px-3 py-1.5 rounded-xl text-gray-300 hover:text-neon-cyan hover:bg-white/5 transition-all flex items-center gap-1.5"
+            className="text-xs font-mono px-3 py-1.5 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition-all flex items-center gap-1.5"
           >
             <Cookie className="w-3.5 h-3.5 text-amber-400" />
             <span>Cookie Policy</span>
           </Link>
           <Link
             href="/legal/disclaimer/"
-            className="text-xs font-mono px-3 py-1.5 rounded-xl text-gray-300 hover:text-neon-cyan hover:bg-white/5 transition-all flex items-center gap-1.5"
+            className="text-xs font-mono px-3 py-1.5 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition-all flex items-center gap-1.5"
           >
             <AlertCircle className="w-3.5 h-3.5 text-rose-400" />
             <span>Disclaimer</span>
           </Link>
-        </div>
+        </nav>
 
         {/* Document Content Canvas */}
         <div className="cyber-glass rounded-3xl p-6 sm:p-12 border border-white/10 shadow-[0_0_60px_rgba(0,0,0,0.6)] relative overflow-hidden">
@@ -78,11 +78,11 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
           <div>
             <span>Corporate Entity: </span>
             <strong className="text-white">Hi-Tech AI Solutions & Services</strong>
-            <span className="block text-[11px] text-gray-500">Bhavani Complex, Katargam, Surat, Gujarat 395004</span>
+            <span className="block text-[11px] text-gray-400">Bhavani Complex, Katargam, Surat, Gujarat 395004</span>
           </div>
           <div className="text-right">
             <span>Governance Inquiries: </span>
-            <a href="mailto:hitech.nft@gmail.com" className="text-neon-cyan hover:underline">
+            <a href="mailto:hitech.nft@gmail.com" className="text-neon-cyan underline underline-offset-2 hover:text-white">
               hitech.nft@gmail.com
             </a>
           </div>

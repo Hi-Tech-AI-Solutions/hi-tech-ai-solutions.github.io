@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ExternalLink } from 'lucide-react';
 import { PRODUCTS } from '@/data/products';
+import ProductLink from '@/components/products/ProductLink';
 
 // Illustrative console built from the real product catalogue (no invented numbers).
 const FEATURED_IDS = ['jyotos', 'jyotassist-ai', 'scholarcard-ai', 'classpulse-pro', 'staffbridge', 'eventos'];
@@ -22,12 +22,12 @@ export default function ProductWindow() {
       aria-label="Illustrative product console showing live Hi-Tech products"
     >
       {/* Window chrome */}
-      <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10 bg-white/[0.02]">
+      <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10 bg-white/[0.02]" aria-hidden="true">
         <span className="w-2.5 h-2.5 rounded-full bg-white/15" />
         <span className="w-2.5 h-2.5 rounded-full bg-white/15" />
         <span className="w-2.5 h-2.5 rounded-full bg-white/15" />
         <span className="ml-3 text-[11px] font-mono text-gray-400">hi-tech / products</span>
-        <span className="ml-auto text-[10px] font-mono uppercase tracking-wider text-gray-500">
+        <span className="ml-auto text-[10px] font-mono uppercase tracking-wider text-gray-400">
           Illustrative interface
         </span>
       </div>
@@ -53,6 +53,7 @@ export default function ProductWindow() {
                 >
                   <span
                     className={`w-1.5 h-1.5 rounded-full ${isActive ? 'bg-neon-cyan' : 'bg-white/20'}`}
+                    aria-hidden="true"
                   />
                   <span className="whitespace-nowrap">{p.name}</span>
                 </button>
@@ -67,7 +68,7 @@ export default function ProductWindow() {
             <div className="text-[11px] font-mono uppercase tracking-wider text-neon-cyan mb-2">
               {active.category}
             </div>
-            <h3 className="text-xl md:text-2xl font-semibold text-white">{active.name}</h3>
+            <p className="text-xl md:text-2xl font-semibold text-white">{active.name}</p>
             <p className="mt-2 text-sm text-gray-400 max-w-xl leading-relaxed">{active.tagline}</p>
           </div>
 
@@ -75,7 +76,7 @@ export default function ProductWindow() {
             <dl className="grid grid-cols-2 gap-3 max-w-xl">
               {active.metrics.slice(0, 2).map((m) => (
                 <div key={m.label} className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
-                  <dt className="text-[10px] font-mono uppercase tracking-wider text-gray-500">
+                  <dt className="text-[10px] font-mono uppercase tracking-wider text-gray-400">
                     {m.label}
                   </dt>
                   <dd className="mt-1 text-base font-semibold text-white">{m.value}</dd>
@@ -84,16 +85,11 @@ export default function ProductWindow() {
             </dl>
           )}
 
-          {active.liveDemoUrl && (
-            <a
-              href={active.liveDemoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-auto inline-flex items-center gap-1.5 self-start text-sm text-accent hover:text-accent-hover transition-colors"
-            >
-              Open live app <ExternalLink className="w-3.5 h-3.5" />
-            </a>
-          )}
+          {/* A plain link, not amber: it leaves the site, so it must not compete with the enquiry buttons */}
+          <ProductLink
+            product={active}
+            className="mt-auto inline-flex items-center gap-1.5 self-start py-1.5 text-sm text-gray-200 underline underline-offset-4 decoration-white/30 hover:text-white hover:decoration-white transition-colors"
+          />
         </div>
       </div>
     </div>

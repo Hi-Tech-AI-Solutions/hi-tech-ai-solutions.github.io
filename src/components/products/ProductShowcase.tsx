@@ -3,7 +3,8 @@
 import React, { useState } from 'react';
 import { PRODUCTS, Product, ProductCategory } from '@/data/products';
 import ProductDetailModal from './ProductDetailModal';
-import { Layers, ArrowRight, ExternalLink } from 'lucide-react';
+import ProductLink from './ProductLink';
+import { Layers, ArrowRight } from 'lucide-react';
 import { useThemeMode } from '@/context/ThemeContext';
 
 const FEATURED_IDS = ['jyotos', 'jyotassist-ai', 'scholarcard-ai', 'classpulse-pro'];
@@ -51,7 +52,7 @@ export default function ProductShowcase() {
       {/* Header */}
       <div className="max-w-2xl space-y-3 mb-10 relative z-10">
         <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-neon-cyan">
-          <Layers className="w-3.5 h-3.5" />
+          <Layers className="w-3.5 h-3.5" aria-hidden="true" />
           <span>{PRODUCTS.length} deployed solutions</span>
         </div>
         <h2 className="text-3xl sm:text-5xl font-semibold text-white tracking-tight">
@@ -113,7 +114,7 @@ export default function ProductShowcase() {
                       {product.category}
                     </span>
                     <span className="inline-flex items-center gap-1.5 text-[11px] font-mono text-gray-400">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" /> Live
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" aria-hidden="true" /> Live
                     </span>
                   </div>
                   <h3 className="text-2xl sm:text-3xl font-semibold text-white">{product.name}</h3>
@@ -125,37 +126,31 @@ export default function ProductShowcase() {
                   {product.metrics && product.metrics.length > 0 && (
                     <dl className="mt-6 flex flex-wrap gap-x-10 gap-y-4">
                       {product.metrics.slice(0, 3).map((m) => (
-                        <div key={m.label}>
-                          <dd className="text-xl font-semibold text-white">{m.value}</dd>
-                          <dt className="text-[11px] font-mono uppercase tracking-wider text-gray-500">
+                        <div key={m.label} className="flex flex-col-reverse justify-end">
+                          <dt className="text-[11px] font-mono uppercase tracking-wider text-gray-400">
                             {m.label}
                           </dt>
+                          <dd className="text-xl font-semibold text-white">{m.value}</dd>
                         </div>
                       ))}
                     </dl>
                   )}
                 </div>
 
+                {/* Neutral buttons: amber is kept for enquiry actions, and the app link leaves the site */}
                 <div className="mt-8 flex flex-wrap items-center gap-3">
-                  {product.liveDemoUrl && (
-                    <a
-                      href={product.liveDemoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-cyber-primary !py-2.5 !px-5"
-                    >
-                      <span>Launch live app</span>
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
-                  )}
                   <button
                     type="button"
                     onClick={() => setSelectedProduct(product)}
                     className="btn-cyber-secondary !py-2.5 !px-5"
                   >
                     <span>Architecture &amp; specs</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
                   </button>
+                  <ProductLink
+                    product={product}
+                    className="inline-flex items-center gap-1.5 px-2 py-2.5 text-sm font-semibold text-gray-200 hover:text-white underline underline-offset-4 decoration-white/30 hover:decoration-white transition-colors"
+                  />
                 </div>
               </article>
             ))}
@@ -166,9 +161,9 @@ export default function ProductShowcase() {
         {rest.length > 0 && (
           <div>
             {featured.length > 0 && (
-              <h3 className="text-sm font-mono uppercase tracking-widest text-gray-400 mb-4">
+              <p className="text-sm font-mono uppercase tracking-widest text-gray-400 mb-4">
                 More from the ecosystem
-              </h3>
+              </p>
             )}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {rest.map((product) => (
@@ -177,34 +172,29 @@ export default function ProductShowcase() {
                   className="group flex flex-col justify-between rounded-2xl border border-white/10 bg-[#111724] p-5 transition-colors hover:border-neon-cyan/40"
                 >
                   <div>
-                    <div className="text-[10px] font-mono uppercase tracking-wider text-gray-500 mb-2">
+                    <div className="text-[10px] font-mono uppercase tracking-wider text-gray-400 mb-2">
                       {product.category}
                     </div>
-                    <h4 className="text-lg font-semibold text-white">{product.name}</h4>
+                    {/* h3 in every view: in a filtered view there is no intermediate heading above these cards */}
+                    <h3 className="text-lg font-semibold text-white">{product.name}</h3>
                     <p className="mt-1.5 text-sm text-gray-400 leading-relaxed line-clamp-3">
                       {product.tagline}
                     </p>
                   </div>
-                  <div className="mt-5 flex items-center justify-between text-sm">
-                    {product.liveDemoUrl ? (
-                      <a
-                        href={product.liveDemoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-accent hover:text-accent-hover transition-colors"
-                      >
-                        Launch <ExternalLink className="w-3.5 h-3.5" />
-                      </a>
-                    ) : (
-                      <span />
-                    )}
+                  <div className="mt-5 flex items-center justify-between gap-3 text-sm">
                     <button
                       type="button"
                       onClick={() => setSelectedProduct(product)}
-                      className="inline-flex items-center gap-1 text-gray-400 hover:text-white transition-colors"
+                      className="inline-flex items-center gap-1 py-1.5 font-medium text-gray-200 hover:text-white transition-colors"
                     >
-                      Specs <ArrowRight className="w-3.5 h-3.5" />
+                      Specs <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+                      <span className="sr-only">for {product.name}</span>
                     </button>
+                    <ProductLink
+                      product={product}
+                      compact
+                      className="inline-flex items-center gap-1.5 py-1.5 text-gray-400 hover:text-white transition-colors"
+                    />
                   </div>
                 </article>
               ))}

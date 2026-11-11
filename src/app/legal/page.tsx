@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 import { Shield, FileText, Scale, Lock, Cookie, AlertCircle, ArrowRight, CheckCircle2 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Central Legal Hub & Governance — Hi-Tech AI Solutions & Services',
+  title: 'Central Legal Hub & Governance',
   description:
     'Official corporate governance documents, privacy standards, security architectures, and institutional terms for Hi-Tech AI Solutions & Services and the JyotOS product ecosystem.',
 };
@@ -98,9 +98,9 @@ export default function LegalHubPage() {
                   </span>
                   <Icon className={`w-5 h-5 ${doc.color}`} />
                 </div>
-                <h3 className="text-lg font-bold text-white group-hover:text-neon-cyan transition-colors">
+                <h2 className="text-lg font-bold text-white">
                   {doc.title}
-                </h3>
+                </h2>
                 <p className="text-xs text-gray-400 font-sans leading-relaxed">
                   {doc.summary}
                 </p>
@@ -117,10 +117,10 @@ export default function LegalHubPage() {
 
       {/* Governance Guarantees */}
       <div className="p-6 rounded-2xl bg-cyan-950/20 border border-cyan-500/30 space-y-3">
-        <h4 className="text-xs font-mono uppercase tracking-wider text-neon-cyan flex items-center gap-2 font-bold">
-          <CheckCircle2 className="w-4 h-4" />
+        <h2 className="text-xs font-mono uppercase tracking-wider text-neon-cyan flex items-center gap-2 font-bold">
+          <CheckCircle2 className="w-4 h-4" aria-hidden="true" />
           <span>Institutional Trust Commitment</span>
-        </h4>
+        </h2>
         <p className="text-xs text-gray-300 leading-relaxed font-sans">
           All client data processed across the Hi-Tech ecosystem remains strictly under institutional ownership. We do not sell, license, or expose proprietary academic records, student identities, or employee attendance datasets to public AI training corpuses.
         </p>

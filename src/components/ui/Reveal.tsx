@@ -26,6 +26,9 @@ export default function Reveal({ children, className = '', delay = 0 }: Props) {
     if (el.getBoundingClientRect().top < window.innerHeight * 0.9) return;
 
     setState('hidden');
+    // threshold 0: reveal as soon as the top edge is 8% into the viewport, whatever the height.
+    // With the old 0.05 a section taller than about 18 viewports could never show 5% of itself,
+    // so at 400% zoom (320 x 256 px) three whole sections stayed invisible for good.
     const io = new IntersectionObserver(
       (entries) => {
         if (entries.some((e) => e.isIntersecting)) {
@@ -33,7 +36,7 @@ export default function Reveal({ children, className = '', delay = 0 }: Props) {
           io.disconnect();
         }
       },
-      { rootMargin: '0px 0px -8% 0px', threshold: 0.05 }
+      { rootMargin: '0px 0px -8% 0px', threshold: 0 }
     );
     io.observe(el);
     // If the visitor switches motion off mid-scroll, show everything straight away.

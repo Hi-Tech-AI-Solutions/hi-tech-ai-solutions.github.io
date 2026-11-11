@@ -142,7 +142,6 @@ export default function CapabilitiesSection() {
   return (
     <section id="solutions" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5 relative">
       {/* Background Accent */}
-      <div className="absolute top-1/3 left-0 w-96 h-96 bg-cyan-500/5 blur-[120px] pointer-events-none" />
 
       {/* Header & Filter Controls */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
@@ -161,7 +160,11 @@ export default function CapabilitiesSection() {
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex flex-wrap gap-2 p-1.5 rounded-xl bg-[#111724] border border-white/10 self-start md:self-auto">
+        <div
+          role="group"
+          aria-label="Filter capabilities"
+          className="flex flex-wrap gap-2 p-1.5 rounded-xl bg-[#111724] border border-white/10 self-start md:self-auto"
+        >
           {[
             { id: 'all', label: 'All Capabilities' },
             { id: 'ai', label: 'AI Solutions' },
@@ -171,8 +174,10 @@ export default function CapabilitiesSection() {
           ].map((tab) => (
             <button
               key={tab.id}
+              type="button"
               onClick={() => setSelectedFilter(tab.id)}
-              className={`text-xs font-mono px-3.5 py-1.5 rounded-lg transition-all ${
+              aria-pressed={selectedFilter === tab.id}
+              className={`text-xs font-mono px-3.5 py-2 rounded-lg transition-all ${
                 selectedFilter === tab.id
                   ? 'bg-gradient-to-r from-neon-cyan/20 to-violet-500/20 text-neon-cyan border border-neon-cyan/40 font-semibold shadow-[0_0_15px_rgba(183,194,214,0.2)]'
                   : 'text-gray-400 hover:text-white hover:bg-white/5'

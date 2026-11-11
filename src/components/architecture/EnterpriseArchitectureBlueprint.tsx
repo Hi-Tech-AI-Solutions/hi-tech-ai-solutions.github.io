@@ -116,8 +116,6 @@ export default function EnterpriseArchitectureBlueprint() {
   return (
     <section id="architecture" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5 relative">
       {/* Dynamic Background Glow */}
-      <div className="absolute top-1/3 left-0 w-[500px] h-[500px] bg-cyan-500/5 blur-[160px] pointer-events-none" />
-      <div className="absolute bottom-10 right-0 w-[500px] h-[500px] bg-violet-600/5 blur-[160px] pointer-events-none" />
 
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-16 space-y-4 relative z-10">
@@ -165,40 +163,42 @@ export default function EnterpriseArchitectureBlueprint() {
                   key={layer.id}
                   type="button"
                   onClick={() => setSelectedLayerId(layer.id)}
+                  aria-pressed={isSelected}
                   className={`w-full text-left p-5 rounded-2xl transition-all duration-300 relative border flex items-center justify-between group cursor-pointer ${
                     isSelected
                       ? `bg-[#111724] ${layer.borderColor} shadow-[0_0_30px_rgba(183,194,214,0.15)]`
                       : 'cyber-glass border-white/5 hover:border-white/20'
                   }`}
                 >
-                  <div className="flex items-center gap-4">
-                    <div
-                      className={`w-12 h-12 rounded-xl border flex items-center justify-center transition-all ${
+                  <span className="flex items-center gap-4">
+                    <span
+                      className={`w-12 h-12 shrink-0 rounded-xl border flex items-center justify-center transition-all ${
                         isSelected
                           ? `bg-white/10 ${layer.borderColor} ${layer.accentColor}`
                           : 'bg-white/5 border-white/10 text-gray-400 group-hover:text-white'
                       }`}
                     >
-                      <Icon className="w-6 h-6" />
-                    </div>
+                      <Icon className="w-6 h-6" aria-hidden="true" />
+                    </span>
 
-                    <div>
-                      <div className="flex items-center gap-2">
+                    {/* spans, not headings: a heading inside a button is invalid and vanishes from the outline */}
+                    <span className="block">
+                      <span className="flex items-center gap-2">
                         <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-gray-400">
                           LAYER {layer.number}
                         </span>
                         {isSelected && (
-                          <span className="w-1.5 h-1.5 rounded-full bg-neon-cyan animate-pulse" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-neon-cyan animate-pulse" aria-hidden="true" />
                         )}
-                      </div>
-                      <h4 className="text-lg font-bold text-white tracking-tight group-hover:text-neon-cyan transition-colors">
+                      </span>
+                      <span className="block text-lg font-bold text-white tracking-tight">
                         {layer.name}
-                      </h4>
-                      <p className="text-xs text-gray-400 font-mono">{layer.tagline}</p>
-                    </div>
-                  </div>
+                      </span>
+                      <span className="block text-xs text-gray-400 font-mono">{layer.tagline}</span>
+                    </span>
+                  </span>
 
-                  <div className="hidden sm:flex items-center gap-2 text-xs font-mono text-gray-400">
+                  <span className="hidden sm:flex items-center gap-2 text-xs font-mono text-gray-400" aria-hidden="true">
                     <span className={isSelected ? layer.accentColor : 'group-hover:text-white'}>
                       Inspect
                     </span>
@@ -207,7 +207,7 @@ export default function EnterpriseArchitectureBlueprint() {
                         isSelected ? 'translate-x-1 ' + layer.accentColor : 'group-hover:translate-x-1'
                       }`}
                     />
-                  </div>
+                  </span>
                 </button>
               );
             })}
@@ -215,10 +215,10 @@ export default function EnterpriseArchitectureBlueprint() {
 
           {/* Architectural Principles Matrix */}
           <div className="p-5 rounded-2xl bg-[#111724] border border-white/10 mt-6">
-            <h5 className="text-xs font-mono uppercase tracking-wider text-gray-400 mb-3 flex items-center gap-2">
-              <Lock className="w-3.5 h-3.5 text-neon-cyan" />
+            <h3 className="text-xs font-mono uppercase tracking-wider text-gray-400 mb-3 flex items-center gap-2">
+              <Lock className="w-3.5 h-3.5 text-neon-cyan" aria-hidden="true" />
               <span>Core Architectural Tenets</span>
-            </h5>
+            </h3>
             <div className="grid grid-cols-2 gap-2 text-xs text-gray-300 font-mono">
               <span className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-3 h-3 text-emerald-400" />
@@ -244,8 +244,8 @@ export default function EnterpriseArchitectureBlueprint() {
         <div className="lg:col-span-6">
           <div className="cyber-glass rounded-3xl p-6 sm:p-8 border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.5)] space-y-6 relative overflow-hidden">
             {/* Top Badge */}
-            <div className="flex items-center justify-between border-b border-white/10 pb-4">
-              <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4">
+              <div className="flex flex-wrap items-center gap-2">
                 <span className="text-xs font-mono uppercase px-2.5 py-1 rounded border bg-white/5 text-neon-cyan border-cyan-500/30">
                   LAYER {selectedLayer.number} SPECIFICATION
                 </span>
